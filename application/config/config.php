@@ -25,6 +25,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config['base_url'] = 'http://localhost/luanvan/';
 
+// $config['theme_url'] = 'public/themes/'; // Only for themes
+// $config['theme_view'] = 'site_page/themes/'; // Only for themes
+
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -100,7 +103,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

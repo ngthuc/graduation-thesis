@@ -18,7 +18,7 @@ class Profile extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()	{
-		$this->load->view('welcome_message');
+		echo 'Hello';
 	}
 
 	public function user($username) {
