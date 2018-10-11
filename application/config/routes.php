@@ -56,5 +56,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['~(:any)'] = 'profile/user/$1';
 $route['~(:any)/admin'] = 'admin/checkRole/$1';
 $route['admin'] = 'admin/dashboard';
+$route['login'] = 'home/login';
 $route['canbo'] = 'home';
 $route['canbo/test'] = 'home/test';

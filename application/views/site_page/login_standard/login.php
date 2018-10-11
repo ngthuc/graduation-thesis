@@ -40,7 +40,7 @@
 						</div>
 					</div>
 					<div class="footer">
-						Bản quyền &copy; Mỹ Phước 2018
+						Bản quyền khoa CNTT&TT, trường Đại học Cần Thơ &copy; 2018
 					</div>
 				</div>
 			</div>
@@ -56,19 +56,19 @@
 	<script type="text/javascript">
 	  // Login
 	  $(document).ready(function(){
-	    $("form").submit(function(){
-				alert($("#loginForm").serialize());
-				// $.ajax({
- 				// 	 type: "post",
- 				// 	 url: "<?php echo base_url('login')?>",
- 				// 	 cache: false,
- 				// 	 data: $("#loginForm").serialize(),
- 				// 	 success: function(json){
- 				// 		 var obj = jQuery.parseJSON(json);
- 				// 		 $.notify(obj['MESSAGE'],obj['STATUS']);
- 				// 		 location.reload(true);
- 				// 	 }
- 			 // });
+	    $("#loginForm").submit(function(){
+				// alert($("#loginForm").serialize());
+				$.ajax({
+ 					 type: "post",
+ 					 url: "<?php echo base_url('login')?>",
+ 					 cache: false,
+ 					 data: $("#loginForm").serialize(),
+ 					 success: function(json){
+ 						 var obj = jQuery.parseJSON(json);
+ 						 $.notify(obj['MESSAGE'],obj['STATUS']);
+ 						 location.reload(true);
+ 					 }
+ 			 });
 	    });
 	  });
 	</script>
