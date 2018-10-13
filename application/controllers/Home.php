@@ -30,12 +30,12 @@ class Home extends CI_Controller {
       var_dump($_UserInput);
       // $_userData = $this->Musers->CheckUser($_UserInput);
       //
-      // if($_userData) {
-      //   $this->session->set_userdata('user', $_userData);
-      //   echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Đăng nhập thành công!"));
-      // } else {
-      //   echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Đăng nhập thất bại!"));
-      // }
+      if(isset($_UserInput)) {
+        // $this->session->set_userdata('user', $_userData);
+        echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Đăng nhập thành công!"));
+      } else {
+        echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Đăng nhập thất bại!"));
+      }
     }
 
     public function logout() {

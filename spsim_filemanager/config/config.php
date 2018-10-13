@@ -70,7 +70,7 @@ $config = array(
 	|
 	*/
 	//'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ! in_array(strtolower($_SERVER['HTTPS']), array( 'off', 'no' ))) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'],
-	'base_url'=>'http://khubaoton.com.vn/',
+	'base_url'=>'http://localhost/luanvan/',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ $config = array(
 	| with start and final /
 	|
 	*/
-	'upload_dir' => '/media/',
+	'upload_dir' => '/spsim_media/',
 	/*
 	|--------------------------------------------------------------------------
 	| relative path from filemanager folder to upload folder
@@ -89,7 +89,7 @@ $config = array(
 	| with final /
 	|
 	*/
-	'current_path' => '../../media/',
+	'current_path' => '../spsim_media/',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -100,7 +100,7 @@ $config = array(
 	| DO NOT put inside upload folder
 	|
 	*/
-	'thumbs_base_path' => '../../thumbs/',
+	'thumbs_base_path' => '../spsim_thumbs/',
 
 
 	/*
