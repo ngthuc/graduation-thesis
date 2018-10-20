@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/luanvan/';
+$config['base_url'] = ($_SERVER['HTTP_HOST'] == 'spsimct594.tk') ? 'http://'.$_SERVER['HTTP_HOST'].'/' : 'http://'.$_SERVER['HTTP_HOST'].'/luanvan/';
 
 // $config['theme_url'] = 'public/themes/'; // Only for themes
 // $config['theme_view'] = 'site_page/themes/'; // Only for themes
