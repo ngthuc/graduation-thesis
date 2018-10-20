@@ -1,76 +1,124 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-// if ( ! function_exists('theme_url'))
-// {
-// 	function theme_url($uri = '', $protocol = NULL)
-// 	{
-//     $CI = get_instance();
-// 		return $CI->config->theme_url($uri, $protocol);
-// 	}
-// }
-//
-// // ------------------------------------------------------------------------
-//
-// if ( ! function_exists('theme_view'))
-// {
-// 	function theme_view($uri = '', $protocol = NULL)
-// 	{
-//     $CI = get_instance();
-// 		return $CI->config->theme_view($uri, $protocol);
-// 	}
-// }
+if (!function_exists('create_pagination'))
+{
+    function create_pagination($base_url,$total_rows,$per_page,$params = null)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
 
-// if (!function_exists('get_media'))
-// {
-//     function get_media($type, $key = null, $limit = null, $start = 0)
-//     {
-//       // Get a reference to the controller object
-//       //$CI = get_instance();
-//       // use this below
-//       $CI = &get_instance();
-//
-//       // You may need to load the model if it hasn't been pre-loaded
-//       $CI->load->model('Media');
-//
-//       // Call a function of the model
-//       if(isset($key)) {
-//         $value = $CI->Media->getMediaWithTitle($type,$key);
-//         return $value['MEDIAEMBEDDEDLINK'];
-//       } else if(isset($limit)) {
-//         $value = $CI->Media->getMediaByType($type,$limit,$start);
-//         return $value;
-//       } else {
-//         $value = $CI->Media->getMediaByType($type);
-//         return $value['MEDIAEMBEDDEDLINK'];
-//       }
-//     }
-// }
-//
-// if (!function_exists('get_media_id'))
-// {
-//     function get_media_id($type, $id, $data)
-//     {
-//       // Get a reference to the controller object
-//       //$CI = get_instance();
-//       // use this below
-//       $CI = &get_instance();
-//
-//       // You may need to load the model if it hasn't been pre-loaded
-//       $CI->load->model('Media');
-//
-//       // Call a function of the model
-//       $value = $CI->Media->getMediaWithId($type,$id);
-//       if($data == 'title') {
-//         return $value['MEDIATITLE'];
-//       } else if($data == 'data') {
-//         return $value['MEDIADATA'];
-//       } else if($data == 'link') {
-//         return $value['MEDIAEMBEDDEDLINK'];
-//       } else {
-//         return 'Error: Missing an argument!';
-//       }
-//     }
-// }
+      if(isset($params)) {
+        $config['base_url'] = $base_url;
+        $config['total_rows'] = $total_rows;
+        $config['per_page'] = $per_page;
+        $config['use_page_numbers'] = TRUE;
+
+        foreach ($params as $key => $value) {
+          $config[$key] = $value;
+        }
+      } else {
+        // default initialize
+        $config['base_url'] = $base_url;
+        $config['total_rows'] = $total_rows;
+        $config['per_page'] = $per_page;
+        $config["uri_segment"] = 3;
+        $config['use_page_numbers'] = TRUE;
+      }
+
+      $CI->pagination->initialize($config); // pagination library required
+
+      // build paging links
+      return $CI->pagination->create_links();
+    }
+}
+
+if (!function_exists('get_media'))
+{
+    function get_media($type, $key = null, $limit = null, $start = 0)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Media');
+
+      // Call a function of the model
+      if(isset($key)) {
+        $value = $CI->Media->getMediaWithTitle($type,$key);
+        return $value['MEDIAEMBEDDEDLINK'];
+      } else if(isset($limit)) {
+        $value = $CI->Media->getMediaByType($type,$limit,$start);
+        return $value;
+      } else {
+        $value = $CI->Media->getMediaByType($type);
+        return $value['MEDIAEMBEDDEDLINK'];
+      }
+    }
+}
+
+if (!function_exists('get_media_id'))
+{
+    function get_media_id($type, $id, $data)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Media');
+
+      // Call a function of the model
+      $value = $CI->Media->getMediaWithId($type,$id);
+      if($data == 'title') {
+        return $value['MEDIATITLE'];
+      } else if($data == 'data') {
+        return $value['MEDIADATA'];
+      } else if($data == 'link') {
+        return $value['MEDIAEMBEDDEDLINK'];
+      } else {
+        return 'Error: Missing an argument!';
+      }
+    }
+}
+
+if (!function_exists('get_category_by_id'))
+{
+    function get_category_by_id($cate_id)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Mcategory');
+
+      // Call a function of the model
+      return $CI->Mcategory->getById($cate_id);
+    }
+}
+
+if (!function_exists('get_user_by_id'))
+{
+    function get_user_by_id($user_id)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      return $CI->Musers->getById($user_id);
+    }
+}
 
 if (!function_exists('get_active_class'))
 {
@@ -94,6 +142,23 @@ if (!function_exists('get_youtube_id'))
         $youtube_id = $first_explode_url[1];
       }
       return $youtube_id;
+    }
+}
+
+if (!function_exists('get_resource'))
+{
+    function get_resource($url)
+    {
+      // code...
+      $init_url_default = 'https://docs.google.com/uc?id=';
+      $first_explode_url = explode('/',$url);
+      foreach ($first_explode_url as $key => $explode_string) {
+        // code...
+        if(strlen($explode_string) == 33) {
+          return $init_url_default.$explode_string;
+        }
+      }
+      return null;
     }
 }
 

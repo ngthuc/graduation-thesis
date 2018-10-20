@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Auth extends CI_Controller {
     protected $_data = array();
 
     public function __construct(){
@@ -10,7 +10,7 @@ class Home extends CI_Controller {
 
     public function index() {
       //code
-      $this->load->view('site_page/login_standard/login');
+      redirect(base_url($this->lang->line('article')), 'refresh');
     }
 
     public function language($lang = "") {
@@ -20,6 +20,12 @@ class Home extends CI_Controller {
     }
 
     public function login() {
+      //code
+      // $this->load->view('login_form');
+      $this->load->view('mp_site/login_standard/login');
+    }
+
+    public function login_processing() {
       $uid = $this->input->post('username');
 			$pwd = md5($this->input->post('password'));
 
@@ -27,11 +33,10 @@ class Home extends CI_Controller {
         'USERID' => $uid,
         'USERPASSWORD' => $pwd
       );
-      var_dump($_UserInput);
-      // $_userData = $this->Musers->CheckUser($_UserInput);
-      //
-      if(isset($_UserInput)) {
-        // $this->session->set_userdata('user', $_userData);
+      $_userData = $this->Musers->CheckUser($_UserInput);
+
+      if($_userData) {
+        $this->session->set_userdata('user', $_userData);
         echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Đăng nhập thành công!"));
       } else {
         echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Đăng nhập thất bại!"));
@@ -42,12 +47,16 @@ class Home extends CI_Controller {
       //code
       $this->session->unset_userdata('user');	// Unset session of user
       $this->session->unset_userdata('access');	// Unset session of user
+      // echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Đăng xuất thành công!"));
+      // var_dump(json_encode(array("STATUS"=>"success","MESSAGE"=>"Đăng xuất thành công!")));
       redirect(base_url(), 'refresh');
     }
 
-    public function test($str = null) {
+    public function test($str=null) {
       //code
       if(isset($str)) {
+        // var_dump(get_resource($str));
+
         echo '<form method="post">
         <input type="text" name="txt_test" />
         <button type="submit" name="test">OK</button>
@@ -55,9 +64,12 @@ class Home extends CI_Controller {
 
         if(isset($_POST['test'])) {
           // var_dump(get_resource($_POST['txt_test']));
-          var_dump(check_domain($_POST['txt_test']));
+          echo '<video controls="controls" width="300" height="150">
+<source src="'.get_resource($_POST['txt_test']).'" /></video>
+<iframe width="100%" height="80%" frameborder="0"
+        		src="'.get_resource($_POST['txt_test']).'">
+        	</iframe>';
         }
-
       } else var_dump($_SESSION);
     }
 }

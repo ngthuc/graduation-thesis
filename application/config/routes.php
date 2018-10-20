@@ -59,3 +59,4 @@ $route['admin'] = 'admin/dashboard';
 $route['login'] = 'home/login';
 $route['canbo'] = 'home';
 $route['canbo/test'] = 'home/test';
+$route['canbo/test/(:any)'] = 'home/test/$1';
