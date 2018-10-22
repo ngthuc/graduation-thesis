@@ -25,18 +25,33 @@
       };
 
       function attachSignin(element) {
-        console.log(element.id);
+        // console.log(element.id);
         auth2.attachClickHandler(element, {},
             function(googleUser) {
               // document.getElementById('name').innerText = "Signed in: " +
               //     googleUser.getBasicProfile().getName();
               // alert(googleUser.getBasicProfile().getName() + ' - ' + googleUser.getBasicProfile().getEmail());
-              console.log(googleUser.getBasicProfile().getName());
-              
               callAjaxAuth(googleUser.getBasicProfile().getName(),googleUser.getBasicProfile().getEmail());
             }, function(error) {
               alert(JSON.stringify(error, undefined, 2));
             });
+      }
+
+      function callAjaxReg(email) {
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('reg');?>",
+            cache: false,
+            data : {
+                email : email
+            },
+            success: function(json){
+              var obj = jQuery.parseJSON(json);
+              var string_alert = '<span>'+obj['MESSAGE']+'</span>';
+              $("#alert-info").html(string_alert);
+              // location.reload(true);
+            }
+        });
       }
 
       function callAjaxAuth(name,email) {
@@ -54,20 +69,11 @@
               if(obj['STATUS']=='success') {
                 string_alert = '<span>'+obj['MESSAGE']+'</span>';
               } else {
-                string_alert = '<span>Anonymous account. <a href="#">Submit an identity request now!</a></span>';
+                string_alert = '<span>Anonymous account. <a href="#" onclick="'+"callAjaxReg('"+email+"'"+');">Submit an identity request now!</a></span>';
               }
               $("#alert-info").html(string_alert);
               // location.reload(true);
             }
-        });
-      }
-
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          // console.log('User signed out.');
-          alert('User signed out.');
-          console.log(googleUser.getBasicProfile().getName());
         });
       }
     </script>
@@ -75,7 +81,7 @@
   <body>
     <div class="logmod">
       <div class="logmod__wrapper">
-        <span class="logmod__close">Close</span>
+        <!-- <span class="logmod__close">Close</span> -->
         <div class="logmod__container">
           <ul class="logmod__tabs">
             <li data-tabtar="lgm-2"><a href="#">Login</a></li>
@@ -145,7 +151,7 @@
                   </div>
                   <div class="simform__actions">
                     <input class="sumbit" name="commit" type="sumbit" value="Log In" />
-                    <a href="#" onclick="signOut();">Sign out</a>
+                    <!-- <a href="#" onclick="signOut();">Sign out</a> -->
                   </div>
                 </form>
               </div>
@@ -173,6 +179,6 @@
     <script>startApp();</script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script  src="<?=base_url('public/js/index.js');?>"></script>
-    <script src="<?php echo base_url('public/themes/login_standard/js/jquery.min.js');?>" charset="utf-8"></script>
+    <script src="<?=base_url('public/themes/login_standard/js/jquery.min.js');?>" charset="utf-8"></script>
   </body>
 </html>

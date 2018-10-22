@@ -40,11 +40,21 @@ class Home extends CI_Controller {
       if(isset($_POST)) {
         if(isset($data)) {
           // $this->session->set_userdata('user', $_userData);
-          echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Đăng nhập thành công! ID: ".$data['USERID']." - Tên: ".$data['USERFULLNAME']." - Email: ".$data['USEREMAIL']));
+          // echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Đăng nhập thành công! ID: ".$data['USERID']." - Tên: ".$data['USERFULLNAME']." - Email: ".$data['USEREMAIL']));
+          echo json_encode(array("STATUS"=>"success","MESSAGE"=>"ID: ".$data['USERID']." - Tên: ".$data['USERFULLNAME']." - Email: ".$data['USEREMAIL']));
         } else {
           echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Đăng nhập thất bại!"));
         }
       }
+    }
+
+    public function reg() {
+      $email = $this->input->post('email');
+
+      // var_dump($_UserInput);
+      // $_userData = $this->Musers->CheckUser($_UserInput);
+      //
+      echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Success Register! Email: ".$email." will be approved by admin!"));
     }
 
     public function login() {
