@@ -10,13 +10,41 @@ class Home extends CI_Controller {
 
     public function index() {
       //code
-      $this->load->view('site_page/login_standard/login');
+      $this->load->view('site_page/login/login');
     }
 
     public function language($lang = "") {
         $language = ($lang != "") ? $lang : "vietnamese";
         $this->session->set_userdata('lang', $language);
         redirect(base_url());
+    }
+
+    public function login_google() {
+      $this->load->view('site_page/login/login_default');
+      // $this->load->view('site_page/login/login_google');
+    }
+
+    public function auth() {
+      // code
+      // $token = $this->input->post('token');
+      $name = $this->input->post('name');
+      $email = $this->input->post('email');
+			$uid = get_username($email);
+
+      if(check_domain($email)) {
+        $data['USERID'] = $uid;
+        $data['USERFULLNAME'] = $name;
+        $data['USEREMAIL'] = $email;
+      }
+      // var_dump($data);
+      if(isset($_POST)) {
+        if(isset($data)) {
+          // $this->session->set_userdata('user', $_userData);
+          echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Đăng nhập thành công! ID: ".$data['USERID']." - Tên: ".$data['USERFULLNAME']." - Email: ".$data['USEREMAIL']));
+        } else {
+          echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Đăng nhập thất bại!"));
+        }
+      }
     }
 
     public function login() {

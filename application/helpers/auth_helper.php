@@ -33,12 +33,18 @@ if (!function_exists('check_domain'))
       // return $CI->Musers->HasRole($user,$str_role);
 
       $explode_string = explode('@',$email_string);
-      foreach ($explode_string as $key => $string) {
-        // code...
-        if($string == 'lapvo3.tk') {
-          return TRUE;
-        }
+      if($explode_string[1] == 'lapvo3.tk') {
+        return TRUE;
       }
       return FALSE;
+    }
+}
+
+if (!function_exists('get_username'))
+{
+    function get_username($email_string)
+    {
+      $explode_string = explode('@',$email_string);
+      return $explode_string[0];
     }
 }
