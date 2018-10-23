@@ -47,9 +47,8 @@
             },
             success: function(json){
               var obj = jQuery.parseJSON(json);
-              var string_alert = '<span>'+obj['MESSAGE']+'</span>';
-              $("#alert-info").html(string_alert);
-              // location.reload(true);
+              $("#alert-info").html('<span>'+obj['MESSAGE']+'</span>');
+              window.setTimeout(function(){location.reload()},2000);
             }
         });
       }
@@ -67,13 +66,27 @@
               var obj = jQuery.parseJSON(json);
               var string_alert;
               if(obj['STATUS']=='success') {
-                string_alert = '<span>'+obj['MESSAGE']+'</span>';
+                $("#alert-info").html('<span>'+obj['MESSAGE']+'</span>');
+                window.setTimeout(function(){location.reload()},2000);
               } else {
                 string_alert = '<span>Anonymous account. <a href="#" onclick="'+"callAjaxReg('"+email+"'"+');">Submit an identity request now!</a></span>';
+                $("#alert-info").html(string_alert);
               }
-              $("#alert-info").html(string_alert);
-              // location.reload(true);
             }
+        });
+      }
+
+      function callAjaxLogin(){
+        $.ajax({
+          type: "post",
+          url: "<?php echo base_url('auth')?>",
+          cache: false,
+          data: $("#signinform").serialize(),
+          success: function(json){
+            var obj = jQuery.parseJSON(json);
+            $("#alert-info").html('<span>'+obj['MESSAGE']+'</span>');
+            window.setTimeout(function(){location.reload()},2000);
+          }
         });
       }
     </script>
@@ -135,22 +148,26 @@
                 <div id="alert-info"></div>
               </div>
               <div class="logmod__form">
-                <form accept-charset="utf-8" action="#" class="simform">
+                <!-- Only Debug -->
+                <!-- <form accept-charset="utf-8" id="signinform" method="post" class="simform" action="<?php echo base_url('auth')?>"> -->
+                <!-- End Debug -->
+                <form accept-charset="utf-8" id="signinform" method="post" class="simform">
                   <div class="sminputs">
                     <div class="input full">
-                      <label class="string optional" for="user-name">Email*</label>
-                      <input class="string optional" maxlength="255" id="user-email" placeholder="Email" type="email" size="50" />
+                      <label class="string optional" for="user-name">Username*</label>
+                      <input class="string optional" maxlength="255" name="username" id="user-name" placeholder="Username" type="text" size="50" />
                     </div>
                   </div>
                   <div class="sminputs">
                     <div class="input full">
                       <label class="string optional" for="user-pw">Password *</label>
-                      <input class="string optional" maxlength="255" id="user-pw" placeholder="Password" type="password" size="50" />
+                      <input class="string optional" maxlength="255" name="password" id="user-pw" placeholder="Password" type="password" size="50" />
                       <span class="hide-password">Show</span>
                     </div>
                   </div>
                   <div class="simform__actions">
-                    <input class="sumbit" name="commit" type="sumbit" value="Log In" />
+                    <!-- <input class="sumbit" name="commit" type="sumbit" value="Log In" /> -->
+                    <button class="sumbit" type="button" id="commit" name="commit">Log In</button>
                     <!-- <a href="#" onclick="signOut();">Sign out</a> -->
                   </div>
                 </form>
@@ -159,14 +176,12 @@
                 <div class="logmod__alter customGPlusSignIn" id="Google_Auth">
                   <div class="logmod__alter-container">
                     <div class="connect googleplus">
-                    <!-- <a href="#" class="connect googleplus"> -->
                       <div class="connect__icon">
                         <i class="fa fa-google-plus"></i>
                       </div>
                       <div class="connect__context">
                         <span>Sign in with <strong>Google+</strong></span>
                       </div>
-                    <!-- </a> -->
                     </div>
                   </div>
                 </div>
@@ -180,5 +195,21 @@
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script  src="<?=base_url('public/js/index.js');?>"></script>
     <script src="<?=base_url('public/themes/login_standard/js/jquery.min.js');?>" charset="utf-8"></script>
+    <script src="<?php echo base_url('public/libraries/notify.js/notify.min.js'); ?>"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#commit").click(function(){
+          // alert($("#signinform").serialize());
+          callAjaxLogin();
+        });
+        $( "#signinform" ).keypress(function( event ) {
+          if ( event.which == 13 ) {
+             //code here
+             //13 represents Enter key
+             callAjaxLogin();
+          }
+        });
+      });
+    </script>
   </body>
 </html>

@@ -26,22 +26,38 @@ class Home extends CI_Controller {
 
     public function auth() {
       // code
-      // $token = $this->input->post('token');
-      $name = $this->input->post('name');
-      $email = $this->input->post('email');
-			$uid = get_username($email);
+      // var_dump($_POST);
+      if(isset($_POST['email'])) {
+        $email = $this->input->post('email');
+        $name = $this->input->post('name');
+  			$uid = get_username($email);
 
-      if(check_domain($email)) {
-        $data['USERID'] = $uid;
-        $data['USERFULLNAME'] = $name;
-        $data['USEREMAIL'] = $email;
+        if(check_domain($email)) {
+          if(check_email($email)) {
+            if(check_status_of_email($email) == 'approved') {
+              $data['USERID'] = $uid;
+              $data['USERFULLNAME'] = $name;
+              $data['USEREMAIL'] = $email;
+              $data['USERROLE'] = check_role_by_email($email);
+            }
+          }
+        }
+      } else if(isset($_POST['username'])) {
+        $uid = $this->input->post('username');
+        $pwd = md5($this->input->post('password'));
+
+        if(check_pass_username($uid,$pwd)) {
+          if(check_status_of_username($uid) == 'approved') {
+            $data['USERID'] = $uid;
+            $data['USERROLE'] = check_role_by_username($uid);
+          }
+        }
       }
-      // var_dump($data);
+
       if(isset($_POST)) {
         if(isset($data)) {
-          // $this->session->set_userdata('user', $_userData);
-          // echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Đăng nhập thành công! ID: ".$data['USERID']." - Tên: ".$data['USERFULLNAME']." - Email: ".$data['USEREMAIL']));
-          echo json_encode(array("STATUS"=>"success","MESSAGE"=>"ID: ".$data['USERID']." - Tên: ".$data['USERFULLNAME']." - Email: ".$data['USEREMAIL']));
+          $this->session->set_userdata('user', $data);
+          echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Đăng nhập thành công! ID: ".$data['USERID']));
         } else {
           echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Đăng nhập thất bại!"));
         }
@@ -79,7 +95,7 @@ class Home extends CI_Controller {
     public function logout() {
       //code
       $this->session->unset_userdata('user');	// Unset session of user
-      $this->session->unset_userdata('access');	// Unset session of user
+      // $this->session->unset_userdata('access');	// Unset session of user
       redirect(base_url(), 'refresh');
     }
 
@@ -93,9 +109,10 @@ class Home extends CI_Controller {
 
         if(isset($_POST['test'])) {
           // var_dump(get_resource($_POST['txt_test']));
-          var_dump(check_domain($_POST['txt_test']));
+          // var_dump(check_email($_POST['txt_test']));
+          var_dump(check_status($_POST['txt_test']));
+          // var_dump($this->Musers->getNumRowsByEmail($_POST['txt_test']));
         }
-
       } else var_dump($_SESSION);
     }
 }

@@ -48,3 +48,111 @@ if (!function_exists('get_username'))
       return $explode_string[0];
     }
 }
+
+if (!function_exists('check_status_of_email'))
+{
+    function check_status_of_email($email_string)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      $get_status = $CI->Musers->getStatusByEmail($email_string);
+      return $get_status['USERSTATUS'];
+    }
+}
+
+if (!function_exists('check_status_of_username'))
+{
+    function check_status_of_username($user_string)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      $get_status = $CI->Musers->getStatusByUsername($user_string);
+      return $get_status['USERSTATUS'];
+    }
+}
+
+if (!function_exists('check_pass_username'))
+{
+    function check_pass_username($username_string,$password_string)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      $user_by_pass = $CI->Musers->checkUserWithPass($username_string,$password_string);
+      return ($user_by_pass > 0) ? TRUE : FALSE;
+    }
+}
+
+if (!function_exists('check_email'))
+{
+    function check_email($email_string)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      $num_rows = $CI->Musers->getNumRowsByEmail($email_string);
+      return ($num_rows > 0) ? TRUE : FALSE;
+    }
+}
+
+if (!function_exists('check_role_by_email'))
+{
+    function check_role_by_email($email_string)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      $get_role = $CI->Musers->getRoleByEmail($email_string);
+      return $get_role['USERROLE'];
+    }
+}
+
+if (!function_exists('check_role_by_username'))
+{
+    function check_role_by_username($user_string)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      $get_role = $CI->Musers->getRoleByUsername($user_string);
+      return $get_role['USERROLE'];
+    }
+}

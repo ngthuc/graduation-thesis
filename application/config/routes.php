@@ -57,6 +57,7 @@ $route['~(:any)'] = 'profile/user/$1';
 $route['~(:any)/admin'] = 'admin/checkRole/$1';
 $route['admin'] = 'admin/dashboard';
 $route['login'] = 'home/login';
+$route['logout'] = 'home/logout';
 $route['google'] = 'home/login_google';
 $route['auth'] = 'home/auth';
 $route['reg'] = 'home/reg';

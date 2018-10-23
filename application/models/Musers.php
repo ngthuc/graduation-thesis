@@ -24,14 +24,47 @@ class Musers extends CI_Model{
         return $this->db->get($this->_table)->row_array();
     }
 
-    public function getNameById($id){
-        $this->db->select('USERFULLNAME');
-        $this->db->where("USERID", $id);
+    public function getByEmail($email){
+        $this->db->where("USEREMAIL", $email);
+        return $this->db->get($this->_table)->row_array();
+    }
+
+    public function getNumRowsByEmail($email){
+        $this->db->where("USEREMAIL", $email);
+        return $this->db->get($this->_table)->num_rows();
+    }
+
+    public function getStatusByEmail($email){
+        $this->db->select('USERSTATUS');
+        $this->db->where("USEREMAIL", $email);
+        return $this->db->get($this->_table)->row_array();
+    }
+
+    public function getStatusByUsername($username){
+        $this->db->select('USERSTATUS');
+        $this->db->where("USERID", $username);
+        return $this->db->get($this->_table)->row_array();
+    }
+
+    public function getRoleByEmail($email){
+        $this->db->select('USERROLE');
+        $this->db->where("USEREMAIL", $email);
+        return $this->db->get($this->_table)->row_array();
+    }
+
+    public function getRoleByUsername($username){
+        $this->db->select('USERROLE');
+        $this->db->where("USERID", $username);
         return $this->db->get($this->_table)->row_array();
     }
 
     public function getByRole($role){
         $this->db->where("USERROLE", $role);
+        return $this->db->get($this->_table)->result_array();
+    }
+
+    public function getByStatus($status){
+        $this->db->where("USERSTATUS", $status);
         return $this->db->get($this->_table)->result_array();
     }
 
@@ -55,14 +88,11 @@ class Musers extends CI_Model{
         return $this->db->delete($this->_table);
     }
 
-    public function CheckUser( $UserInfo )
+    public function checkUserWithPass($username,$password)
     {
-      $User	=	$this->db->select()
-                ->where('USERID', $UserInfo['USERID'])
-                ->where('USERPASSWORD', $UserInfo['USERPASSWORD'])
-                ->get($this->_table)
-                ->row_array();
-      return (count($User) > 0) ? $User : false;
+      $this->db->where('USERID', $username);
+      $this->db->where('USERPASSWORD', $password);
+      return $this->db->get($this->_table)->num_rows();
     }
 
     public function CheckRole( $UserInfo )
