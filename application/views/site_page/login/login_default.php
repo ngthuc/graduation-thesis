@@ -1,3 +1,4 @@
+<?php (isset($_SESSION['user'])) ? redirect(base_url('canbo')) : ''; ?>
 <!DOCTYPE html>
 <html lang="en" >
   <head>
@@ -40,7 +41,7 @@
       function callAjaxReg(email) {
         $.ajax({
             type: "post",
-            url: "<?php echo base_url('reg');?>",
+            url: "<?php echo base_url('canbo/reg');?>",
             cache: false,
             data : {
                 email : email
@@ -56,7 +57,7 @@
       function callAjaxAuth(name,email) {
         $.ajax({
             type: "post",
-            url: "<?php echo base_url('auth');?>",
+            url: "<?php echo base_url('canbo/auth');?>",
             cache: false,
             data : {
                 name : name,
@@ -79,7 +80,7 @@
       function callAjaxLogin(){
         $.ajax({
           type: "post",
-          url: "<?php echo base_url('auth')?>",
+          url: "<?php echo base_url('canbo/auth')?>",
           cache: false,
           data: $("#signinform").serialize(),
           success: function(json){

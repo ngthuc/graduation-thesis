@@ -10,7 +10,7 @@ class Home extends CI_Controller {
 
     public function index() {
       //code
-      $this->load->view('site_page/login/login');
+      (isset($_SESSION['user'])) ? redirect(base_url('canbo/test')) : redirect(base_url('canbo/login'));
     }
 
     public function language($lang = "") {
@@ -19,9 +19,8 @@ class Home extends CI_Controller {
         redirect(base_url());
     }
 
-    public function login_google() {
+    public function login() {
       $this->load->view('site_page/login/login_default');
-      // $this->load->view('site_page/login/login_google');
     }
 
     public function auth() {
@@ -66,29 +65,18 @@ class Home extends CI_Controller {
 
     public function reg() {
       $email = $this->input->post('email');
+      $uid = get_username($email);
 
-      // var_dump($_UserInput);
-      // $_userData = $this->Musers->CheckUser($_UserInput);
-      //
-      echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Success Register! Email: ".$email." will be approved by admin!"));
-    }
-
-    public function login() {
-      $uid = $this->input->post('username');
-			$pwd = md5($this->input->post('password'));
-
-      $_UserInput = array(
-        'USERID' => $uid,
-        'USERPASSWORD' => $pwd
-      );
-      var_dump($_UserInput);
-      // $_userData = $this->Musers->CheckUser($_UserInput);
-      //
-      if(isset($_UserInput)) {
-        // $this->session->set_userdata('user', $_userData);
-        echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Đăng nhập thành công!"));
+      if(check_domain($email)) {
+        $data['USERID'] = $uid;
+        $data['USEREMAIL'] = $email;
+        $data['USERPASSWORD'] = null;
+        $data['USERROLE'] = 'user';
+        $data['USERSTATUS'] = 'pending';
+        $this->Musers->insertUser($data);
+        echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Success register! Email: ".$email." will be approved by admin!"));
       } else {
-        echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Đăng nhập thất bại!"));
+        echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Failure register! The domain of email not approved by the system!"));
       }
     }
 
@@ -96,7 +84,7 @@ class Home extends CI_Controller {
       //code
       $this->session->unset_userdata('user');	// Unset session of user
       // $this->session->unset_userdata('access');	// Unset session of user
-      redirect(base_url(), 'refresh');
+      redirect(base_url());
     }
 
     public function test($str = null) {

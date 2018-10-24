@@ -55,12 +55,15 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['~(:any)'] = 'profile/user/$1';
 $route['~(:any)/admin'] = 'admin/checkRole/$1';
-$route['admin'] = 'admin/dashboard';
-$route['login'] = 'home/login';
-$route['logout'] = 'home/logout';
-$route['google'] = 'home/login_google';
-$route['auth'] = 'home/auth';
-$route['reg'] = 'home/reg';
+
+// Route for Auth
+$route['canbo/login'] = 'home/login';
+$route['canbo/logout'] = 'home/logout';
+$route['canbo/auth'] = 'home/auth';
+$route['canbo/reg'] = 'home/reg';
+
+// Route for Admin
 $route['canbo'] = 'home';
+$route['canbo/admin'] = 'admin/dashboard';
 $route['canbo/test'] = 'home/test';
 $route['canbo/test/(:any)'] = 'home/test/$1';
