@@ -64,6 +64,6 @@ $route['canbo/reg'] = 'home/reg';
 
 // Route for Admin
 $route['canbo'] = 'home';
-$route['canbo/admin'] = 'admin/dashboard';
+$route['canbo/admin'] = 'admin/index';
 $route['canbo/test'] = 'home/test';
 $route['canbo/test/(:any)'] = 'home/test/$1';
