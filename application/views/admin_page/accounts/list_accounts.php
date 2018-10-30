@@ -59,7 +59,7 @@
               }
               echo '</td>
               <td>
-                <a href="'.base_url('admin/accounts/edit_account/'.$row['USERID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
+                <a href="'.base_url('canbo/admin/accounts/edit_account/'.$row['USERID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
                 <button href="#" class="btn btn-danger"><b class="fa fa-trash"></b></button>
               </td>
             </tr>';

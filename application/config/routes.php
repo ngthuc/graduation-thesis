@@ -69,6 +69,7 @@ $route['canbo/admin'] = 'admin/index';
 // Route for Admin: Accounts
 $route['canbo/admin/accounts'] = 'accounts/index';
 $route['canbo/admin/accounts/add_new'] = 'accounts/add_new';
+$route['canbo/admin/accounts/edit_account/(:any)'] = 'accounts/edit_account/$1';
 $route['canbo/admin/accounts/add_new_processing'] = 'accounts/add_new_processing';
 
 // Route for Admin: File Manager

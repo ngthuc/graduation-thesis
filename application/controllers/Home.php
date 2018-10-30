@@ -29,8 +29,7 @@ class Home extends CI_Controller {
       if(isset($_POST['email'])) {
         $email = $this->input->post('email');
         $name = $this->input->post('name');
-  			$uid = get_username($email);
-        $user_data = $this->Musers->getById($uid);
+        $user_data = $this->Musers->getByEmail($email);
 
         if(check_domain($email)) {
           if(check_email($email)) {
