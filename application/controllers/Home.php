@@ -67,11 +67,13 @@ class Home extends CI_Controller {
     }
 
     public function reg() {
+      $name = $this->input->post('name');
       $email = $this->input->post('email');
       $uid = get_username($email);
 
       if(check_domain($email)) {
         $data['USERID'] = $uid;
+        $data['USERFULLNAME'] = $name;
         $data['USEREMAIL'] = $email;
         $data['USERPASSWORD'] = null;
         $data['USERROLE'] = 'user';

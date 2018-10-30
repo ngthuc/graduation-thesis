@@ -50,12 +50,12 @@
               }
               echo '</td>
               <td>';
-              if($row['USERSTATUS'] == 'pending') {
-                echo '<button type="button" class="btn bg-maroon">Đang chờ</button>';
+              if($row['USERSTATUS'] == 'deny') {
+                echo '<button type="button" class="btn bg-maroon">Bị từ chối</button>';
               } else if($row['USERSTATUS'] == 'approved') {
-                echo '<button type="button" class="btn bg-olive">Chấp thuận</button>';
+                echo '<button type="button" class="btn bg-olive">Được cấp phép</button>';
               } else {
-                echo '<button type="button" class="btn bg-navy">Chưa xác định</button>';
+                echo '<button type="button" class="btn bg-navy">Đang chờ</button>';
               }
               echo '</td>
               <td>

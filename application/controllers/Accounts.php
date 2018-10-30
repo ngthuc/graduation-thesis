@@ -55,10 +55,12 @@ class Accounts extends CI_Controller {
       //code
       $uid = $this->input->post('uid');
       $pwd = $this->Musers->getPasswordById($uid);
-      $data['USERID'] = $this->input->post('user_id');
-      $data['USERPASSWORD'] = $pwd['USERPASSWORD'];
+      $data['USERID'] = $uid;
       $data['USERFULLNAME'] = $this->input->post('fullname');
+      $data['USEREMAIL'] = $this->input->post('email');
+      $data['USERPASSWORD'] = $pwd['USERPASSWORD'];
       $data['USERROLE'] = $this->input->post('permissions');
+      $data['USERSTATUS'] = $this->input->post('status');
 
       $status = $this->Musers->updateUser($data,$uid);
 			// Thông báo

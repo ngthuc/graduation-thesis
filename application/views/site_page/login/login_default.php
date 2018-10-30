@@ -38,12 +38,13 @@
             });
       }
 
-      function callAjaxReg(email) {
+      function callAjaxReg(name,email) {
         $.ajax({
             type: "post",
             url: "<?php echo base_url('canbo/reg');?>",
             cache: false,
             data : {
+                name : name,
                 email : email
             },
             success: function(json){
@@ -70,7 +71,7 @@
                 $("#alert-info").html('<span>'+obj['MESSAGE']+'</span>');
                 window.setTimeout(function(){location.reload()},2000);
               } else {
-                string_alert = '<span>Anonymous account. <a href="#" onclick="'+"callAjaxReg('"+email+"'"+');">Submit an identity request now!</a></span>';
+                string_alert = '<span>Anonymous account. <a href="#" onclick="'+"callAjaxReg('"+name+"','"+email+"'"+');">Submit an identity request now!</a></span>';
                 $("#alert-info").html(string_alert);
               }
             }

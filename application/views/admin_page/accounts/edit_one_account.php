@@ -29,12 +29,15 @@
             </div>
             <div class="form-group">
               <label for="user_id">Tên tài khoản</label>
-              <input type="hidden" class="hidden" name="uid" id="uid" value="<?php echo $account['USERID']; ?>" placeholder="Nhập tên tài khoản" readonly>
-              <input type="text" class="form-control" name="user_id" id="user_id" value="<?php echo $account['USERID']; ?>" placeholder="Nhập tên tài khoản">
+              <input type="text" class="form-control" name="uid" id="uid" value="<?php echo $account['USERID']; ?>" placeholder="Nhập tên tài khoản" readonly>
             </div>
             <div class="form-group">
               <label for="fullname">Tên đầy đủ</label>
               <input type="text" class="form-control" name="fullname" id="fullname" value="<?php echo $account['USERFULLNAME']; ?>" placeholder="Nhập tên đầy đủ">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="email" id="email" value="<?php echo $account['USEREMAIL']; ?>" placeholder="Nhập địa chỉ email">
             </div>
             <div class="form-group">
               <label for="permissions">Quyền hạn</label>
@@ -42,6 +45,12 @@
                 <option value="admin"<?php echo ($account['USERROLE']=='admin') ? ' selected' : ''; ?>>Quản trị viên</option>
                 <option value="user"<?php echo ($account['USERROLE']=='user') ? ' selected' : ''; ?>>Người dùng</option>
               </select>
+            </div>
+            <div class="form-group">
+              <label for="status">Trạng thái</label><br>
+              <input type="radio" name="status" value="pending"<?php if($account['USERSTATUS']=='pending') echo ' checked'; ?>> Đang chờ <br>
+              <input type="radio" name="status" value="approved"<?php if($account['USERSTATUS']=='approved') echo ' checked'; ?>> Được cấp phép <br>
+              <input type="radio" name="status" value="deny"<?php if($account['USERSTATUS']=='deny') echo ' checked'; ?>> Bị từ chối
             </div>
           </div>
           <!-- /.box-body -->
@@ -62,7 +71,7 @@
   $(document).ready(function(){
     $("form").submit(function(){
       // alert($("#add-category").serialize());
-      var url="<?php echo base_url('admin/accounts/edit_account_processing')?>";
+      var url="<?php echo base_url('canbo/admin/accounts/edit_account_processing')?>";
       var form="#edit-account";
       var callback="#alert-ajax";
       makeAjaxCall(url, form, callback);
