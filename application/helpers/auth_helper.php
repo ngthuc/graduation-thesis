@@ -120,39 +120,3 @@ if (!function_exists('check_email'))
       return ($num_rows > 0) ? TRUE : FALSE;
     }
 }
-
-if (!function_exists('check_role_by_email'))
-{
-    function check_role_by_email($email_string)
-    {
-      // Get a reference to the controller object
-      //$CI = get_instance();
-      // use this below
-      $CI = &get_instance();
-
-      // You may need to load the model if it hasn't been pre-loaded
-      $CI->load->model('Musers');
-
-      // Call a function of the model
-      $get_role = $CI->Musers->getRoleByEmail($email_string);
-      return $get_role['USERROLE'];
-    }
-}
-
-if (!function_exists('check_role_by_username'))
-{
-    function check_role_by_username($user_string)
-    {
-      // Get a reference to the controller object
-      //$CI = get_instance();
-      // use this below
-      $CI = &get_instance();
-
-      // You may need to load the model if it hasn't been pre-loaded
-      $CI->load->model('Musers');
-
-      // Call a function of the model
-      $get_role = $CI->Musers->getRoleByUsername($user_string);
-      return $get_role['USERROLE'];
-    }
-}

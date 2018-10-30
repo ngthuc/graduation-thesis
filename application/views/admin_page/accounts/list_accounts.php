@@ -25,7 +25,9 @@
               <th>STT</th>
               <th>Tên tài khoản</th>
               <th>Tên đầy đủ</th>
+              <th>Email</th>
               <th>Quyền hạn</th>
+              <th>Trạng thái</th>
               <th>Cập nhật</th>
             </tr>
             </thead>
@@ -37,6 +39,7 @@
               <td>'.$stt.'</td>
               <td>'.$row['USERID'].'</td>
               <td>'.$row['USERFULLNAME'].'</td>
+              <td>'.$row['USEREMAIL'].'</td>
               <td>';
               if($row['USERROLE'] == 'admin') {
                 echo 'Quản trị viên';
@@ -44,6 +47,15 @@
                 echo 'Người dùng';
               } else {
                 echo '<i>Chưa xác định</i>';
+              }
+              echo '</td>
+              <td>';
+              if($row['USERSTATUS'] == 'pending') {
+                echo '<button type="button" class="btn bg-maroon">Đang chờ</button>';
+              } else if($row['USERSTATUS'] == 'approved') {
+                echo '<button type="button" class="btn bg-olive">Chấp thuận</button>';
+              } else {
+                echo '<button type="button" class="btn bg-navy">Chưa xác định</button>';
               }
               echo '</td>
               <td>

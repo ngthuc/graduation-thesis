@@ -65,5 +65,15 @@ $route['canbo/reg'] = 'home/reg';
 // Route for Admin
 $route['canbo'] = 'home';
 $route['canbo/admin'] = 'admin/index';
+
+// Route for Admin: Accounts
+$route['canbo/admin/accounts'] = 'accounts/index';
+$route['canbo/admin/accounts/add_new'] = 'accounts/add_new';
+$route['canbo/admin/accounts/add_new_processing'] = 'accounts/add_new_processing';
+
+// Route for Admin: File Manager
+$route['canbo/admin/filemanager'] = 'filemanager/index';
+
+// Route test
 $route['canbo/test'] = 'home/test';
 $route['canbo/test/(:any)'] = 'home/test/$1';

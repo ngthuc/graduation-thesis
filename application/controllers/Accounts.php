@@ -5,26 +5,25 @@ class Accounts extends CI_Controller {
     public function __construct(){
       parent::__construct();
       $this->_theme = get_media('theme','theme');
-      $this->load->helper($this->_theme);
     }
 
     public function index() {
       //code
-      $_data['subview'] = 'mp_admin/accounts/list_accounts';
+      $_data['subview'] = 'admin_page/accounts/list_accounts';
       $_data['data_subview'] = array(
         'accounts' => $this->Musers->getUsers()
       );
-      $this->load->view('mp_admin/main_layout',$_data);
+      $this->load->view('admin_page/main_layout',$_data);
     }
 
     public function add_new() {
       //code
-      $_data['subview'] = 'mp_admin/accounts/add_new_account';
+      $_data['subview'] = 'admin_page/accounts/add_new_account';
       $_data['data_subview'] = array(
         'categories' => $this->Mcategory->returnCategories()
         // 'parent_cate' => $this->Mcategory->getRecursive()
       );
-      $this->load->view('mp_admin/main_layout',$_data);
+      $this->load->view('admin_page/main_layout',$_data);
     }
 
     public function add_new_processing() {
@@ -45,11 +44,11 @@ class Accounts extends CI_Controller {
 
     public function edit_account($id = null) {
       //code
-      $_data['subview'] = 'mp_admin/accounts/edit_one_account';
+      $_data['subview'] = 'admin_page/accounts/edit_one_account';
       $_data['data_subview'] = array(
         'account' => $this->Musers->getById($id)
       );
-      $this->load->view('mp_admin/main_layout',$_data);
+      $this->load->view('admin_page/main_layout',$_data);
     }
 
     public function edit_account_processing() {

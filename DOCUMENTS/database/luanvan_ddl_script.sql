@@ -60,6 +60,7 @@ CREATE TABLE MEDIA (
 
 CREATE TABLE USERS (
   USERID varchar(30) COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  USERFULLNAME varchar(254) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   USEREMAIL varchar(100) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   USERPASSWORD varchar(50) COLLATE utf8mb4_vietnamese_ci DEFAULT NULL,
   USERROLE varchar(255) COLLATE utf8mb4_vietnamese_ci DEFAULT NULL,
@@ -67,9 +68,9 @@ CREATE TABLE USERS (
   PRIMARY KEY (USERID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
-INSERT INTO USERS (USERID, USEREMAIL, USERPASSWORD, USERROLE, USERSTATUS) VALUES
-('ngthuc', 'ngthuc@lapvo3.tk', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'approved'),
-('ngthuc.hrm', 'ngthuc.hrm@lapvo3.tk', null, 'user', 'approved');
+INSERT INTO USERS (USERID, USERFULLNAME, USEREMAIL, USERPASSWORD, USERROLE, USERSTATUS) VALUES
+('ngthuc', '', 'ngthuc@lapvo3.tk', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'approved'),
+('ngthuc.hrm', '', 'ngthuc.hrm@lapvo3.tk', null, 'user', 'approved');
 
 CREATE TABLE SYSTEM (
   SYSTEMID int(11) NOT NULL AUTO_INCREMENT,

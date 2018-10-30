@@ -30,25 +30,29 @@ class Home extends CI_Controller {
         $email = $this->input->post('email');
         $name = $this->input->post('name');
   			$uid = get_username($email);
+        $user_data = $this->Musers->getById($uid);
 
         if(check_domain($email)) {
           if(check_email($email)) {
             if(check_status_of_email($email) == 'approved') {
-              $data['USERID'] = $uid;
-              $data['USERFULLNAME'] = $name;
-              $data['USEREMAIL'] = $email;
-              $data['USERROLE'] = check_role_by_email($email);
+              $data['USERID'] = $user_data['USERID'];
+              $data['USERFULLNAME'] = $user_data['USERFULLNAME'];
+              $data['USEREMAIL'] = $user_data['USEREMAIL'];
+              $data['USERROLE'] = $user_data['USERROLE'];
             }
           }
         }
       } else if(isset($_POST['username'])) {
         $uid = $this->input->post('username');
         $pwd = md5($this->input->post('password'));
+        $user_data = $this->Musers->getById($uid);
 
         if(check_pass_username($uid,$pwd)) {
           if(check_status_of_username($uid) == 'approved') {
-            $data['USERID'] = $uid;
-            $data['USERROLE'] = check_role_by_username($uid);
+            $data['USERID'] = $user_data['USERID'];
+            $data['USERFULLNAME'] = $user_data['USERFULLNAME'];
+            $data['USEREMAIL'] = $user_data['USEREMAIL'];
+            $data['USERROLE'] = $user_data['USERROLE'];
           }
         }
       }
