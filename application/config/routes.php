@@ -53,14 +53,12 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['~(:any)'] = 'profile/user/$1';
-$route['~(:any)/admin'] = 'admin/checkRole/$1';
-
 // Route for Auth
 $route['canbo/login'] = 'home/login';
 $route['canbo/logout'] = 'home/logout';
 $route['canbo/auth'] = 'home/auth';
 $route['canbo/reg'] = 'home/reg';
+$route['canbo/language/(:any)'] = 'home/language/$1';
 
 // Route for Admin
 $route['canbo'] = 'home';
@@ -68,13 +66,68 @@ $route['canbo/admin'] = 'admin/index';
 
 // Route for Admin: Accounts
 $route['canbo/admin/accounts'] = 'accounts/index';
+$route['canbo/admin/accounts/profile'] = 'accounts/profile';
 $route['canbo/admin/accounts/add_new'] = 'accounts/add_new';
-$route['canbo/admin/accounts/edit_account/(:any)'] = 'accounts/edit_account/$1';
 $route['canbo/admin/accounts/add_new_processing'] = 'accounts/add_new_processing';
 $route['canbo/admin/accounts/edit_account_processing'] = 'accounts/edit_account_processing';
+$route['canbo/admin/accounts/delete_account'] = 'accounts/delete_account';
+$route['canbo/admin/accounts/edit_account/(:any)'] = 'accounts/edit_account/$1';
+$route['canbo/admin/accounts/profile/change_password'] = 'accounts/change_password';
+
+// Route for Admin: Article
+$route['canbo/admin/article'] = 'article/index';
+$route['canbo/admin/article/add_new_article'] = 'article/add_new_article';
+$route['canbo/admin/article/add_new_page'] = 'article/add_new_page';
+$route['canbo/admin/article/(:num)'] = 'article/edit_article/$1';
+$route['canbo/admin/article/add_new_processing'] = 'article/add_new_processing';
+$route['canbo/admin/article/edit_article_processing'] = 'article/edit_article_processing';
+$route['canbo/admin/article/delete_post'] = 'article/delete_article';
+
+// Route for Admin: Category
+$route['canbo/admin/category'] = 'category/index';
+$route['canbo/admin/category/add_new'] = 'category/add_new';
+$route['canbo/admin/category/edit_category/(:num)'] = 'category/edit_category/$1';
+$route['canbo/admin/category/add_new_processing'] = 'category/add_new_processing';
+$route['canbo/admin/category/edit_category_processing'] = 'category/edit_category_processing';
+$route['canbo/admin/category/delete_category'] = 'category/delete_category';
 
 // Route for Admin: File Manager
 $route['canbo/admin/filemanager'] = 'filemanager/index';
+
+// Route for Admin: Infomation
+$route['canbo/admin/infomation'] = 'infomation/index';
+$route['canbo/admin/infomation/add_new'] = 'infomation/add_new';
+$route['canbo/admin/infomation/edit_info/(:any)'] = 'infomation/edit_info/$1';
+$route['canbo/admin/infomation/add_new_processing'] = 'infomation/add_new_processing';
+$route['canbo/admin/infomation/edit_info_processing'] = 'infomation/edit_info_processing';
+$route['canbo/admin/infomation/delete_info'] = 'infomation/delete_info';
+
+// Settings
+$route['admin/settings'] = 'mp_admin/settings';
+$route['admin/settings/options'] = 'mp_admin/settings/options';
+$route['admin/settings/update_options'] = 'mp_admin/settings/update_options';
+$route['admin/settings/menu'] = 'mp_admin/settings/menu';
+$route['admin/settings/update_menu'] = 'mp_admin/settings/update_menu';
+$route['admin/settings/themes'] = 'mp_admin/settings/themes';
+$route['admin/settings/update_theme'] = 'mp_admin/settings/update_theme';
+$route['admin/settings/pictures'] = 'mp_admin/settings/pictures';
+$route['admin/settings/add_picture'] = 'mp_admin/settings/add_picture';
+$route['admin/settings/delete_picture'] = 'mp_admin/settings/delete_picture';
+
+// Route for public site
+$route['~(:any)'] = 'profile/user/$1';
+$route['~(:any)/admin'] = 'admin/checkRole/$1';
+
+$route['article'] = 'mp_site/article';
+$route['article/(:num)'] = 'mp_site/article/home/$1';
+$route['article/post/(:any).html'] = 'mp_site/article/post/$1';
+$route['article/author/(:any)'] = 'mp_site/article/author/$1';
+$route['article/author/(:any)/(:num)'] = 'mp_site/article/author/$1/$2';
+$route['article/category/(:any)'] = 'mp_site/article/category/$1';
+$route['article/category/(:any)/(:num)'] = 'mp_site/article/category/$1/$2';
+$route['article/gallery/'] = 'mp_site/article/gallery';
+$route['article/gallery/(:num)'] = 'mp_site/article/gallery/$1';
+$route['article/count_view/(:num)'] = 'mp_site/article/count_view/$1';
 
 // Route test
 $route['canbo/test'] = 'home/test';
