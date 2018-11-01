@@ -5,7 +5,6 @@ class Category extends CI_Controller {
     public function __construct(){
       parent::__construct();
       $this->_theme = get_media('theme','theme');
-      $this->load->helper($this->_theme);
     }
 
     public function index() {
