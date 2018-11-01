@@ -53,6 +53,16 @@
                 ?>
               </select>
             </div>
+            <div class="form-group">
+              <label for="type_cate">Kiểu thể loại</label><br>
+                <input type="radio" name="type_cate" value="News" checked> Tin tức
+                <input type="radio" name="type_cate" value="Conservation"> Bảo tồn
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="show_cate">Nổi bật</label><br>
+              <input type="checkbox" name="show_cate"> Hiển thị ra trang chủ
+            </div>
           </div>
           <!-- /.box-body -->
 

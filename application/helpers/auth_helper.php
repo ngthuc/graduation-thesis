@@ -17,6 +17,36 @@ if (!function_exists('has_role'))
     }
 }
 
+if (!function_exists('get_role_logged'))
+{
+    function get_role_logged()
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // Call a function of the model
+      $user_data = $CI->session->userdata('user');
+      return $user_data['USERROLE'];
+    }
+}
+
+if (!function_exists('get_id_logged'))
+{
+    function get_id_logged()
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // Call a function of the model
+      $user_data = $CI->session->userdata('user');
+      return $user_data['USERID'];
+    }
+}
+
 if (!function_exists('check_domain'))
 {
     function check_domain($email_string)

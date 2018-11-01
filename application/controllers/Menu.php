@@ -35,7 +35,8 @@ class Category extends CI_Controller {
       $data['CATENAME'] = $this->input->post('name_cate');
       $data['CATENAME_ENGLISH'] = $this->input->post('eng_name_cate');
       $data['CATELEVEL'] = ($_parent == 0) ? 1 : $this->Mcategory->findNodeLevel($_parent)+1;
-      $data['CATEPOLICY'] = $this->input->post('policy');
+      $data['CATESHOWMENU'] = ($this->input->post('show_cate') == 'on') ? 1 : 0;
+      $data['CATEPOSITION'] = 1;
       $data['CATETYPE'] = $this->input->post('type_cate');
 
       $status = $this->Mcategory->insertCate($data);

@@ -24,7 +24,6 @@ CREATE TABLE CATEGORY (
   CATENAME_ENGLISH text COLLATE utf8mb4_vietnamese_ci NOT NULL,
   CATELEVEL int(11) DEFAULT NULL,
   CATEPOLICY text COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  CATETYPE text COLLATE utf8mb4_vietnamese_ci NOT NULL,
   PRIMARY KEY (CATEID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 

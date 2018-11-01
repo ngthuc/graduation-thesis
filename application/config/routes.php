@@ -58,7 +58,9 @@ $route['canbo/login'] = 'home/login';
 $route['canbo/logout'] = 'home/logout';
 $route['canbo/auth'] = 'home/auth';
 $route['canbo/reg'] = 'home/reg';
-$route['canbo/language/(:any)'] = 'home/language/$1';
+$route['canbo/check_ssid'] = 'home/checkFileSSID';
+$route['canbo/send_ssid'] = 'home/sendFileSSID';
+$route['canbo/destroy_ssid'] = 'home/destroyFileSSID';
 
 // Route for Admin
 $route['canbo'] = 'home';
@@ -102,7 +104,10 @@ $route['canbo/admin/infomation/add_new_processing'] = 'infomation/add_new_proces
 $route['canbo/admin/infomation/edit_info_processing'] = 'infomation/edit_info_processing';
 $route['canbo/admin/infomation/delete_info'] = 'infomation/delete_info';
 
-// Settings
+// Route for Language
+$route['canbo/language/(:any)'] = 'home/language/$1';
+
+// Route for Settings
 $route['admin/settings'] = 'mp_admin/settings';
 $route['admin/settings/options'] = 'mp_admin/settings/options';
 $route['admin/settings/update_options'] = 'mp_admin/settings/update_options';

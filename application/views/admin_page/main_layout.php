@@ -12,7 +12,8 @@ $this->load->view('seo',$data_header);
 
 $this->load->view('admin_page/header_site');
 
-// (isset($_SESSION['user']) && has_role($_SESSION['user'],'admin')) ? '' : redirect(base_url(), 'refresh');
+// (isset($_SESSION['user']) && has_role($_SESSION['user'],'admin')) ? '' : redirect(base_url());
+(isset($_SESSION['user'])) ? '' : redirect(base_url());
 ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

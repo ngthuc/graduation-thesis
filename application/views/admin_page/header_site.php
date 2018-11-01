@@ -127,6 +127,7 @@
           		external_plugins: { "filemanager" : "<?=base_url();?>public/filemanager/plugin.min.js"},
               // external_filemanager_path:"<?php echo base_url('filemanager/'); ?>",
               filemanager_title:"Responsive Filemanager" ,
+              filemanager_access_key:"spsimct594",
               // external_plugins: { "filemanager" : "<?php echo base_url('filemanager/plugin.min.js'); ?>"}
             });
           }

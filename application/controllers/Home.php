@@ -56,6 +56,14 @@ class Home extends CI_Controller {
         }
       }
 
+      if(isset($user_data)) {
+        if($user_data['USERROLE'] == 'admin') {
+          $subfolder = '';
+        } else {
+          $subfolder = $user_data['USERID'];
+        }
+      }
+
       if(isset($_POST)) {
         if(isset($data)) {
           $this->session->set_userdata('user', $data);
@@ -88,8 +96,27 @@ class Home extends CI_Controller {
     public function logout() {
       //code
       $this->session->unset_userdata('user');	// Unset session of user
-      // $this->session->unset_userdata('access');	// Unset session of user
       redirect(base_url());
+    }
+
+    public function checkFileSSID() {
+      // code...
+      $this->load->view('site_page/login/check_file_ssid');
+    }
+
+    public function sendFileSSID() {
+      // code...
+      if(get_role_logged() == 'admin') {
+        $data['sub_folder'] = '';
+      } else {
+        $data['sub_folder'] = get_id_logged();
+      }
+      $this->load->view('site_page/login/send_file_ssid',$data);
+    }
+
+    public function destroyFileSSID() {
+      // code...
+      $this->load->view('site_page/login/destroy_file_ssid');
     }
 
     public function test($str = null) {

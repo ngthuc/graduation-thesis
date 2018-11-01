@@ -1,4 +1,4 @@
-<?php (isset($_SESSION['user'])) ? redirect(base_url('canbo')) : ''; ?>
+<?php (isset($_SESSION['user'])) ? redirect(base_url('canbo/check_ssid')) : ''; ?>
 <!DOCTYPE html>
 <html lang="en" >
   <head>

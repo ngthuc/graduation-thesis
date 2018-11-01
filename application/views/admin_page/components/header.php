@@ -103,7 +103,8 @@ function confirmLogout() {
         cache: false,
         data:{},
         success: function(){
-          location.reload();
+          // location.reload();
+          window.location.replace("<?=base_url('canbo/destroy_ssid'); ?>");
         }
     });
     // });
