@@ -145,7 +145,7 @@
   $(document).ready(function(){
     $("form").submit(function(){
       // alert($("#add-post").serialize());
-      var url="<?php echo base_url('admin/posts/edit_post_processing')?>";
+      var url="<?php echo base_url('admin/article/edit_post_processing')?>";
       var form="#edit-post";
       var callback="#alert-ajax";
       makeAjaxCall(url, form, callback);

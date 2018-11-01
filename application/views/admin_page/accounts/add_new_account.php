@@ -29,15 +29,19 @@
             </div>
             <div class="form-group">
               <label for="user_id">Tên tài khoản</label>
-              <input type="text" class="form-control" name="user_id" id="user_id" placeholder="Nhập tên tài khoản">
+              <input type="text" class="form-control" name="user_id" id="user_id" placeholder="Nhập tên tài khoản" required>
             </div>
             <div class="form-group">
               <label for="password">Mật khẩu</label>
-              <input type="password" class="form-control" name="password" id="password" placeholder="Nhập mật khẩu">
+              <input type="password" class="form-control" name="password" id="password" placeholder="Nhập mật khẩu" required>
             </div>
             <div class="form-group">
               <label for="fullname">Tên đầy đủ</label>
               <input type="text" class="form-control" name="fullname" id="fullname" placeholder="Nhập tên đầy đủ">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="email" id="email" placeholder="Nhập địa chỉ email" required>
             </div>
             <div class="form-group">
               <label for="permissions">Quyền hạn</label>
@@ -65,7 +69,7 @@
   $(document).ready(function(){
     $("form").submit(function(){
       // alert($("#add-category").serialize());
-      var url="<?php echo base_url('admin/accounts/add_new_processing')?>";
+      var url="<?php echo base_url('canbo/admin/accounts/add_new_processing')?>";
       var form="#add-account";
       var callback="#alert-ajax";
       makeAjaxCall(url, form, callback);

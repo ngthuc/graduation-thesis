@@ -19,6 +19,9 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
+          <div id="alert-ajax">
+            <!-- Alert by Ajax -->
+          </div>
           <table class="table table-bordered table-striped" id="datatables">
             <thead>
             <tr>
@@ -60,7 +63,7 @@
               echo '</td>
               <td>
                 <a href="'.base_url('canbo/admin/accounts/edit_account/'.$row['USERID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
-                <button href="#" class="btn btn-danger"><b class="fa fa-trash"></b></button>
+                <button type="button" value="'.$row['USERID'].'" class="btn btn-danger ondelete"><b class="fa fa-trash"></b></button>
               </td>
             </tr>';
             $stt++;
@@ -95,3 +98,35 @@
     </script>
   <!-- Using DataTables -->
 <!-- DataTable 1.10.16 -->
+
+<!-- load ajax to delete -->
+<script type="text/javascript">
+$(function(){
+  $('.ondelete').on('click', function(){
+    // alert($(this).attr('value'));
+    var url = "<?php echo base_url('canbo/admin/accounts/delete_account')?>";
+    var id = $(this).attr('value');
+    var callback = "#alert-ajax";
+    load_ajax(url,id,callback);
+  });
+});
+
+function load_ajax(url,id,callback){
+    $.ajax({
+        url : url,
+        type : "post",
+        dateType:"text",
+        data : {
+            uid : id
+        },
+    success : function (result){
+      //alert(result);
+      var obj = jQuery.parseJSON(result);
+      $(callback).html(
+        '<div class="alert alert-'+obj['STATUS']+'" id="alert-out">'+obj['MESSAGE']+'</div>'
+      );
+      location.reload(true);
+    }
+  });
+}
+</script>

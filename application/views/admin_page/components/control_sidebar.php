@@ -146,12 +146,12 @@
 
         <div class="form-group">
           <label class="control-sidebar-subheading">
-            Expose author name in posts
+            Expose author name in article
             <input type="checkbox" class="pull-right" checked>
           </label>
 
           <p>
-            Allow the user to show his name in blog posts
+            Allow the user to show his name in blog article
           </p>
         </div>
         <!-- /.form-group -->

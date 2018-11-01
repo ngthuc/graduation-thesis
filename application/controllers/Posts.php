@@ -4,36 +4,36 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Posts extends CI_Controller {
     public function __construct(){
       parent::__construct();
-      $this->_theme = get_media('theme','theme');      
+      $this->_theme = get_media('theme','theme');
     }
 
     public function index() {
       //code
-      $_data['subview'] = 'mp_admin/post_type/list_posts';
+      $_data['subview'] = 'admin_page/post_type/list_posts';
       $_data['data_subview'] = array(
         'articles' => $this->Mposts->getLatestList()
       );
-      $this->load->view('mp_admin/main_layout',$_data);
+      $this->load->view('admin_page/main_layout',$_data);
     }
 
     public function add_new_article() {
       //code
-      $_data['subview'] = 'mp_admin/post_type/add_new_post';
+      $_data['subview'] = 'admin_page/post_type/add_new_post';
       $_data['data_subview'] = array(
         'parent_cate' => $this->Mcategory->returnCategories()
         // 'parent_cate' => $this->Mcategory->getRecursive()
       );
-      $this->load->view('mp_admin/main_layout',$_data);
+      $this->load->view('admin_page/main_layout',$_data);
     }
 
     public function add_new_page() {
       //code
-      $_data['subview'] = 'mp_admin/post_type/add_new_page';
+      $_data['subview'] = 'admin_page/post_type/add_new_page';
       $_data['data_subview'] = array(
         'parent_cate' => $this->Mcategory->returnCategories()
         // 'parent_cate' => $this->Mcategory->getRecursive()
       );
-      $this->load->view('mp_admin/main_layout',$_data);
+      $this->load->view('admin_page/main_layout',$_data);
     }
 
     public function add_new_processing() {
@@ -61,12 +61,12 @@ class Posts extends CI_Controller {
 
     public function edit_post($id = null) {
       //code
-      $_data['subview'] = 'mp_admin/post_type/edit_one_post_type';
+      $_data['subview'] = 'admin_page/post_type/edit_one_post_type';
       $_data['data_subview'] = array(
         'content' => $this->Mposts->getById($id),
         'categories' => $this->Mcategory->returnCategories()
       );
-      $this->load->view('mp_admin/main_layout',$_data);
+      $this->load->view('admin_page/main_layout',$_data);
     }
 
     public function edit_post_processing() {

@@ -9,21 +9,21 @@ class Category extends CI_Controller {
 
     public function index() {
       //code
-      $_data['subview'] = 'mp_admin/category/list_category';
+      $_data['subview'] = 'admin_page/category/list_category';
       $_data['data_subview'] = array(
         'categories' => $this->Mcategory->returnCategories()
       );
-      $this->load->view('mp_admin/main_layout',$_data);
+      $this->load->view('admin_page/main_layout',$_data);
     }
 
     public function add_new() {
       //code
-      $_data['subview'] = 'mp_admin/category/add_new_category';
+      $_data['subview'] = 'admin_page/category/add_new_category';
       $_data['data_subview'] = array(
         'categories' => $this->Mcategory->returnCategories()
         // 'parent_cate' => $this->Mcategory->getRecursive()
       );
-      $this->load->view('mp_admin/main_layout',$_data);
+      $this->load->view('admin_page/main_layout',$_data);
     }
 
     public function add_new_processing() {
@@ -51,12 +51,12 @@ class Category extends CI_Controller {
 
     public function edit_category($id = null) {
       //code
-      $_data['subview'] = 'mp_admin/category/edit_one_category';
+      $_data['subview'] = 'admin_page/category/edit_one_category';
       $_data['data_subview'] = array(
         'category' => $this->Mcategory->getById($id),
         'categories' => $this->Mcategory->returnCategories()
       );
-      $this->load->view('mp_admin/main_layout',$_data);
+      $this->load->view('admin_page/main_layout',$_data);
     }
 
     public function edit_category_processing() {

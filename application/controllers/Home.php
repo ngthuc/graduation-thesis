@@ -10,7 +10,7 @@ class Home extends CI_Controller {
 
     public function index() {
       //code
-      (isset($_SESSION['user'])) ? redirect(base_url('canbo/test')) : redirect(base_url('canbo/login'));
+      (isset($_SESSION['user'])) ? redirect(base_url('canbo/admin')) : redirect(base_url('canbo/login'));
     }
 
     public function language($lang = "") {

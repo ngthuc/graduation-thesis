@@ -29,16 +29,18 @@ class Accounts extends CI_Controller {
     public function add_new_processing() {
       //code
       $data['USERID'] = $this->input->post('user_id');
+      $data['USERFULLNAME'] = ($this->input->post('fullname')) ? $this->input->post('fullname') : '';
+      $data['USEREMAIL'] = $this->input->post('email');
       $data['USERPASSWORD'] = md5($this->input->post('password'));
-      $data['USERFULLNAME'] = $this->input->post('fullname');
       $data['USERROLE'] = $this->input->post('permissions');
+      $data['USERSTATUS'] = 'approved';
 
       $status = $this->Musers->insertUser($data);
 			// Thông báo
 			if(!$status) {
-				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Thêm thể loại thành công!"));
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Thêm tài khoản thành công!"));
 			} else {
-				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Thêm thể loại thất bại!"));
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Thêm tài khoản thất bại!"));
 			}
     }
 
@@ -71,15 +73,15 @@ class Accounts extends CI_Controller {
 			}
     }
 
-    public function delete_category($id) {
+    public function delete_account() {
       //code
       if(isset($_POST)) {
-        $status = $this->Mcategory->deleteCate($id);
+        $status = $this->Musers->deleteUser($this->input->post('uid'));
   			// Thông báo
-  			if(!$status) {
-  				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa thể loại thành công!"));
+  			if($status) {
+  				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa tài khoản thành công!"));
   			} else {
-  				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Xóa thể loại thất bại!"));
+  				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Xóa tài khoản thất bại!"));
   			}
         redirect(base_url(), 'refresh');
       } else {

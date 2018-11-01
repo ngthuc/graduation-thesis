@@ -34,7 +34,7 @@
           </li>
         </ul>
       </li>
-      <li class="<?php echo ($this->uri->segment(2) == 'posts') ? 'active ' : ''; ?>treeview">
+      <li class="<?php echo ($this->uri->segment(2) == 'article') ? 'active ' : ''; ?>treeview">
         <a href="#">
           <i class="fa fa-pencil-square-o"></i> <span>Bài viết</span>
           <span class="pull-right-container">
@@ -43,17 +43,17 @@
         </a>
         <ul class="treeview-menu">
           <li<?php echo ($this->uri->segment(3) == '') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/posts/'); ?>">
+            <a href="<?php echo base_url('canbo/admin/article/'); ?>">
               <i class="fa fa-circle-o"></i> Danh sách bài viết
             </a>
           </li>
           <li<?php echo ($this->uri->segment(3) == 'add_new_article') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/posts/add_new_article'); ?>">
+            <a href="<?php echo base_url('canbo/admin/article/add_new_article'); ?>">
               <i class="fa fa-circle-o"></i> Thêm bài viết
             </a>
           </li>
           <li<?php echo ($this->uri->segment(3) == 'add_new_page') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/posts/add_new_page'); ?>">
+            <a href="<?php echo base_url('canbo/admin/article/add_new_page'); ?>">
               <i class="fa fa-circle-o"></i> Thêm trang mới
             </a>
           </li>

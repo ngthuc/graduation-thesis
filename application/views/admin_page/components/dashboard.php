@@ -18,14 +18,14 @@
       <!-- small box -->
       <div class="small-box bg-aqua">
         <div class="inner">
-          <h3><?php //echo $this->Mposts->getCountPost();?></h3>
+          <h3><?php //echo $this->Marticle->getCountPost();?></h3>
 
           <p>Bài viết</p>
         </div>
         <div class="icon">
           <i class="ion ion-compose"></i><ion-icon name="paper"></ion-icon>
         </div>
-        <a href="<?php echo base_url('admin/posts/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?php echo base_url('admin/article/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -63,14 +63,14 @@
       <!-- small box -->
       <div class="small-box bg-red">
         <div class="inner">
-          <h3><?php //echo $this->Mposts->getCountView();?></h3>
+          <h3><?php //echo $this->Marticle->getCountView();?></h3>
 
           <p>Lượt xem</p>
         </div>
         <div class="icon">
           <i class="ion ion-eye"></i>
         </div>
-        <a href="<?php echo base_url('admin/posts/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?php echo base_url('admin/article/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -110,9 +110,9 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $posts = $this->Mposts->getFiveLatestPosts();
+            // $article = $this->Marticle->getFiveLatestarticle();
             // $i = 1;
-            // foreach ($posts as $key => $post) {
+            // foreach ($article as $key => $post) {
             //   // code...
             //   echo '<li>
             //     <span class="handle">'.$i.'</span>
@@ -125,7 +125,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix no-border">
-          <a type="button" href="<?php echo base_url('admin/posts/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
+          <a type="button" href="<?php echo base_url('admin/article/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
         </div>
       </div>
 
@@ -141,9 +141,9 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $posts = $this->Mposts->getFiveMostView();
+            // $article = $this->Marticle->getFiveMostView();
             // $i = 1;
-            // foreach ($posts as $key => $post) {
+            // foreach ($article as $key => $post) {
             //   // code...
             //   echo '<li>
             //     <span class="handle">'.$i.'</span>
@@ -156,7 +156,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix no-border">
-          <a type="button" href="<?php echo base_url('admin/posts/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
+          <a type="button" href="<?php echo base_url('admin/article/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
         </div>
       </div>
       <!-- /.box -->
@@ -178,7 +178,7 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $authors = $this->Mposts->getPopularOfAuthor();
+            // $authors = $this->Marticle->getPopularOfAuthor();
             // $i = 1;
             // foreach ($authors as $key => $author) {
             //   // code...
@@ -194,7 +194,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix no-border">
-          <a type="button" href="<?php echo base_url('admin/posts/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
+          <a type="button" href="<?php echo base_url('admin/article/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
         </div>
       </div>
 
@@ -210,7 +210,7 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $categories = $this->Mposts->getPopularOfCategory();
+            // $categories = $this->Marticle->getPopularOfCategory();
             // $i = 1;
             // foreach ($categories as $key => $category) {
             //   // code...

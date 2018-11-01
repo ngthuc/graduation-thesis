@@ -83,7 +83,7 @@
   $(document).ready(function(){
     $("form").submit(function(){
       // alert($("#add-post").serialize());
-      var url="<?php echo base_url('admin/posts/add_new_processing')?>";
+      var url="<?php echo base_url('admin/article/add_new_processing')?>";
       var form="#add-post";
       var callback="#alert-ajax";
       makeAjaxCall(url, form, callback);

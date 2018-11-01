@@ -4,7 +4,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Settings extends CI_Controller {
     public function __construct(){
       parent::__construct();
-      $this->_theme = get_media('theme','theme');    
+      $this->_theme = get_media('theme','theme');
     }
 
     public function index() {
@@ -14,8 +14,8 @@ class Settings extends CI_Controller {
     }
 
     public function options() {
-      $data['subview'] = 'mp_admin/settings/options';
-      $this->load->view('mp_admin/main_layout',$data);
+      $data['subview'] = 'admin_page/settings/options';
+      $this->load->view('admin_page/main_layout',$data);
     }
 
     public function update_options() {
@@ -43,11 +43,11 @@ class Settings extends CI_Controller {
     }
 
     public function menu() {
-      $data['subview'] = 'mp_admin/settings/menu';
+      $data['subview'] = 'admin_page/settings/menu';
       $data['data_subview'] = array(
         'cate_menu' => $this->Mcategory->getSortByParent(0,'CATEPOSITION','ASC',1)
       );
-      $this->load->view('mp_admin/main_layout',$data);
+      $this->load->view('admin_page/main_layout',$data);
     }
 
     public function update_menu() {
@@ -79,11 +79,11 @@ class Settings extends CI_Controller {
         }
       }
 
-      $data['subview'] = 'mp_admin/settings/themes_list';
+      $data['subview'] = 'admin_page/settings/themes_list';
       $data['data_subview'] = array(
         'themes_info' => $themes_info
       );
-      $this->load->view('mp_admin/main_layout',$data);
+      $this->load->view('admin_page/main_layout',$data);
     }
 
     public function update_theme() {
@@ -101,24 +101,24 @@ class Settings extends CI_Controller {
     }
 
     public function slideshow_default() {
-      $data['subview'] = 'mp_admin/settings/slideshow_default';
-      $this->load->view('mp_admin/main_layout',$data);
+      $data['subview'] = 'admin_page/settings/slideshow_default';
+      $this->load->view('admin_page/main_layout',$data);
     }
 
     public function slideshow_latestpost() {
-      $data['subview'] = 'mp_admin/settings/slideshow_latestpost';
+      $data['subview'] = 'admin_page/settings/slideshow_latestpost';
       $data['data_subview'] = array(
         'latestpost' => $this->Mposts->getFiveLatestPosts()
       );
-      $this->load->view('mp_admin/main_layout',$data);
+      $this->load->view('admin_page/main_layout',$data);
     }
 
     public function slideshow_mostview() {
-      $data['subview'] = 'mp_admin/settings/slideshow_mostview';
+      $data['subview'] = 'admin_page/settings/slideshow_mostview';
       $data['data_subview'] = array(
         'mostview' => $this->Mposts->getFiveMostView()
       );
-      $this->load->view('mp_admin/main_layout',$data);
+      $this->load->view('admin_page/main_layout',$data);
     }
 
     public function update_slideshow() {
@@ -134,11 +134,11 @@ class Settings extends CI_Controller {
     }
 
     public function pictures() {
-      $data['subview'] = 'mp_admin/settings/pictures';
+      $data['subview'] = 'admin_page/settings/pictures';
       $data['data_subview'] = array(
         'lastupdate' => $this->Media->getLatestUpdate('pictures')
       );
-      $this->load->view('mp_admin/main_layout',$data);
+      $this->load->view('admin_page/main_layout',$data);
     }
 
     public function add_picture() {
@@ -169,8 +169,8 @@ class Settings extends CI_Controller {
     }
 
     public function videos() {
-      $data['subview'] = 'mp_admin/settings/videos';
-      $this->load->view('mp_admin/main_layout',$data);
+      $data['subview'] = 'admin_page/settings/videos';
+      $this->load->view('admin_page/main_layout',$data);
     }
 
     public function update_videos() {
