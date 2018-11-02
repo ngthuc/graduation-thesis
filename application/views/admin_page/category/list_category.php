@@ -28,6 +28,7 @@
               <th>STT</th>
               <th>Tên thể loại</th>
               <th>English</th>
+              <th>Loại</th>
               <th>Quyền xem</th>
               <th>Cập nhật</th>
             </tr>
@@ -45,9 +46,10 @@
               }
               echo $row['CATENAME'].'</td>
               <td>'.$row['CATENAME_ENGLISH'].'</td>
+              <td>'.(($row['CATETYPE'] == 'info') ? 'Thông tin' : (($row['CATETYPE'] == 'article') ? 'Bài viết' : 'Khác')).'</td>
               <td>'.(($row['CATEPOLICY'] == 'public') ? 'Công cộng' : (($row['CATEPOLICY'] == 'only_me') ? 'Chỉ mình tôi' : 'Khác')).'</td>
               <td>
-                <a href="'.base_url('admin/category/edit_category/'.$row['CATEID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
+                <a href="'.base_url('canbo/admin/category/edit_category/'.$row['CATEID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
                 <button type="button" value="'.$row['CATEID'].'" class="btn btn-danger ondelete"><b class="fa fa-trash"></b></button>
               </td>
             </tr>';
@@ -89,7 +91,7 @@
 $(function(){
   $('.ondelete').on('click', function(){
     // alert($(this).attr('value'));
-    var url = "<?php echo base_url('admin/category/delete_category')?>";
+    var url = "<?php echo base_url('canbo/admin/category/delete_category')?>";
     var id = $(this).attr('value');
     var callback = "#alert-ajax";
     load_ajax(url,id,callback);

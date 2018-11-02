@@ -57,6 +57,11 @@
               <input type="radio" name="policy" value="public" checked> Công cộng <br>
               <input type="radio" name="policy" value="only_me"> Chỉ mình tôi <br>
             </div>
+            <div class="form-group">
+              <label for="type">Kiểu</label><br>
+              <input type="radio" name="type" value="info" checked> Thông tin <br>
+              <input type="radio" name="type" value="article"> Bài viết <br>
+            </div>
           </div>
           <!-- /.box-body -->
 

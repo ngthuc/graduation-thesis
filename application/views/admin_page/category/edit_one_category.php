@@ -64,14 +64,14 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="type_cate">Kiểu thể loại</label><br>
-                <input type="radio" name="type_cate" value="News"<?php echo ($category['CATETYPE']=='News') ? ' checked' : ''; ?>> Tin tức
-                <input type="radio" name="type_cate" value="Conservation"<?php echo ($category['CATETYPE']=='Conservation') ? ' checked' : ''; ?>> Bảo tồn
-              </label>
+              <label for="policy">Quyền xem</label><br>
+              <input type="radio" name="policy" value="public"<?php echo ($category['CATEPOLICY']=='public') ? ' checked' : ''; ?>> Công cộng <br>
+              <input type="radio" name="policy" value="only_me"<?php echo ($category['CATEPOLICY']=='only_me') ? ' checked' : ''; ?>> Chỉ mình tôi <br>
             </div>
             <div class="form-group">
-              <label for="show_cate">Nổi bật</label><br>
-              <input type="checkbox" name="show_cate"<?php echo ($category['CATESHOWMENU']=='1') ? ' checked' : ''; ?>> Hiển thị ra trang chủ
+              <label for="type">Kiểu thể loại</label><br>
+              <input type="radio" name="type" value="info"<?php echo ($category['CATETYPE']=='info') ? ' checked' : ''; ?>> Thông tin <br>
+              <input type="radio" name="type" value="article"<?php echo ($category['CATETYPE']=='article') ? ' checked' : ''; ?>> Bài viết <br>
             </div>
           </div>
           <!-- /.box-body -->
@@ -92,7 +92,7 @@
   $(document).ready(function(){
     $("form").submit(function(){
       // alert($("#add-category").serialize());
-      var url="<?php echo base_url('admin/category/edit_category_processing')?>";
+      var url="<?php echo base_url('canbo/admin/category/edit_category_processing')?>";
       var form="#edit-category";
       var callback="#alert-ajax";
       makeAjaxCall(url, form, callback);
