@@ -9,12 +9,12 @@
           <i class="fa fa-home"></i> <span>Xem trang chủ</span>
         </a>
       </li>
-      <li<?php echo ($this->uri->segment(2) == '') ? ' class="active"' : ''; ?>>
+      <li<?php echo ($this->uri->segment(3) == '') ? ' class="active"' : ''; ?>>
         <a href="<?php echo base_url('canbo/admin'); ?>">
           <i class="fa fa-dashboard"></i> <span>Bảng điều khiển</span>
         </a>
       </li>
-      <li class="<?php echo ($this->uri->segment(2) == 'category') ? 'active ' : ''; ?>treeview">
+      <li class="<?php echo ($this->uri->segment(3) == 'category') ? 'active ' : ''; ?>treeview">
         <a href="#">
           <i class="fa fa-tags"></i> <span>Thể loại</span>
           <span class="pull-right-container">
@@ -22,19 +22,19 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li<?php echo ($this->uri->segment(3) == '') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == '') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/category/'); ?>">
               <i class="fa fa-circle-o"></i> Danh sách thể loại
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(3) == 'add_new') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == 'add_new') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/category/add_new'); ?>">
               <i class="fa fa-circle-o"></i> Thêm thể loại
             </a>
           </li>
         </ul>
       </li>
-      <li class="<?php echo ($this->uri->segment(2) == 'article') ? 'active ' : ''; ?>treeview">
+      <li class="<?php echo ($this->uri->segment(3) == 'article') ? 'active ' : ''; ?>treeview">
         <a href="#">
           <i class="fa fa-pencil-square-o"></i> <span>Bài viết</span>
           <span class="pull-right-container">
@@ -42,29 +42,29 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li<?php echo ($this->uri->segment(3) == '') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == '') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/article/'); ?>">
               <i class="fa fa-circle-o"></i> Danh sách bài viết
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(3) == 'add_new_article') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == 'add_new_article') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/article/add_new_article'); ?>">
               <i class="fa fa-circle-o"></i> Thêm bài viết
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(3) == 'add_new_page') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == 'add_new_page') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/article/add_new_page'); ?>">
               <i class="fa fa-circle-o"></i> Thêm trang mới
             </a>
           </li>
         </ul>
       </li>
-      <li<?php echo ($this->uri->segment(2) == 'filemanager') ? ' class="active"' : ''; ?>>
+      <li<?php echo ($this->uri->segment(3) == 'filemanager') ? ' class="active"' : ''; ?>>
         <a href="<?php echo base_url('canbo/admin/filemanager'); ?>">
           <i class="fa fa-file"></i> <span>Quản lý tệp</span>
         </a>
       </li>
-      <li class="<?php echo ($this->uri->segment(2) == 'accounts') ? 'active ' : ''; ?>treeview">
+      <li class="<?php echo ($this->uri->segment(3) == 'accounts') ? 'active ' : ''; ?>treeview">
         <a href="#">
           <i class="fa fa-users"></i> <span>Quản lý tài khoản</span>
           <span class="pull-right-container">
@@ -72,19 +72,19 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li<?php echo ($this->uri->segment(3) == '') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == '') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/accounts/'); ?>">
               <i class="fa fa-users"></i> Danh sách tài khoản
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(3) == 'add_new') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == 'add_new') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/accounts/add_new'); ?>">
               <i class="fa fa-user-plus"></i> Thêm tài khoản
             </a>
           </li>
         </ul>
       </li>
-      <li class="<?php echo ($this->uri->segment(2) == 'settings') ? 'active ' : ''; ?>treeview">
+      <li class="<?php echo ($this->uri->segment(3) == 'settings') ? 'active ' : ''; ?>treeview">
         <a href="#">
           <i class="fa fa-cogs"></i> <span>Quản lý chung</span>
           <span class="pull-right-container">
@@ -92,32 +92,32 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li<?php echo ($this->uri->segment(3) == 'options') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == 'options') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/settings/options'); ?>">
               <i class="fa fa-cog"></i> Các thiết lập cơ bản
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(3) == 'menu') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == 'menu') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/settings/menu'); ?>">
               <i class="fa fa-navicon "></i> Thiết lập điều hướng
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(3) == 'themes') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == 'themes') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/settings/themes'); ?>">
               <i class="fa fa-television"></i> Giao diện
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(3) == 'slideshow') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == 'slideshow') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/settings/slideshow'); ?>">
               <i class="fa fa-file-powerpoint-o"></i> Trình chiếu
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(3) == 'pictures') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == 'pictures') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/settings/pictures'); ?>">
               <i class="fa fa-file-picture-o"></i> Thư viện ảnh
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(3) == 'videos') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == 'videos') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/settings/videos'); ?>">
               <i class="fa fa-youtube-play"></i> Thư viện video
             </a>

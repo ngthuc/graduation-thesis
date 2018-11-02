@@ -18,7 +18,7 @@
       <!-- small box -->
       <div class="small-box bg-aqua">
         <div class="inner">
-          <h3><?php //echo $this->Marticle->getCountPost();?></h3>
+          <h3><?php echo $this->Marticle->getCountPost();?></h3>
 
           <p>Bài viết</p>
         </div>
@@ -33,7 +33,7 @@
       <!-- small box -->
       <div class="small-box bg-green">
         <div class="inner">
-          <h3><?php //echo $this->Mcategory->countAll();?><!--sup style="font-size: 20px"></sup--></h3>
+          <h3><?php echo $this->Mcategory->countAll();?><!--sup style="font-size: 20px"></sup--></h3>
 
           <p>Thể loại</p>
         </div>
@@ -48,7 +48,7 @@
       <!-- small box -->
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h3><?php //echo $this->Musers->countAll();?></h3>
+          <h3><?php echo $this->Musers->countAll();?></h3>
 
           <p>Thành viên</p>
         </div>
@@ -63,7 +63,7 @@
       <!-- small box -->
       <div class="small-box bg-red">
         <div class="inner">
-          <h3><?php //echo $this->Marticle->getCountView();?></h3>
+          <h3><?php echo ($this->Marticle->getCountView() > 0) ? $this->Marticle->getCountView() : 0;?></h3>
 
           <p>Lượt xem</p>
         </div>
@@ -110,16 +110,16 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $article = $this->Marticle->getFiveLatestarticle();
-            // $i = 1;
-            // foreach ($article as $key => $post) {
-            //   // code...
-            //   echo '<li>
-            //     <span class="handle">'.$i.'</span>
-            //     <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_vi($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
-            //   </li>';
-            //   $i++;
-            // }
+            $article = $this->Marticle->getFiveLatestArticle();
+            $i = 1;
+            foreach ($article as $key => $post) {
+              // code...
+              echo '<li>
+                <span class="handle">'.$i.'</span>
+                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_vi($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
+              </li>';
+              $i++;
+            }
           ?>
           </ul>
         </div>
@@ -141,16 +141,16 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $article = $this->Marticle->getFiveMostView();
-            // $i = 1;
-            // foreach ($article as $key => $post) {
-            //   // code...
-            //   echo '<li>
-            //     <span class="handle">'.$i.'</span>
-            //     <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_vi($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
-            //   </li>';
-            //   $i++;
-            // }
+            $article = $this->Marticle->getFiveMostView();
+            $i = 1;
+            foreach ($article as $key => $post) {
+              // code...
+              echo '<li>
+                <span class="handle">'.$i.'</span>
+                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_vi($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
+              </li>';
+              $i++;
+            }
           ?>
           </ul>
         </div>
@@ -178,17 +178,17 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $authors = $this->Marticle->getPopularOfAuthor();
-            // $i = 1;
-            // foreach ($authors as $key => $author) {
-            //   // code...
-            //   $user = get_user_by_id($author['USERID']);
-            //   echo '<li>
-            //     <span class="handle">'.$i.'</span>
-            //     <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('user').'/'.convert_vi($author['USERID']))).'"><span class="text">'.$user['USERFULLNAME'].'</span></a>
-            //   </li>';
-            //   $i++;
-            // }
+            $authors = $this->Marticle->getPopularOfAuthor();
+            $i = 1;
+            foreach ($authors as $key => $author) {
+              // code...
+              $user = get_user_by_id($author['USERID']);
+              echo '<li>
+                <span class="handle">'.$i.'</span>
+                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('user').'/'.convert_vi($author['USERID']))).'"><span class="text">'.$user['USERFULLNAME'].'</span></a>
+              </li>';
+              $i++;
+            }
           ?>
           </ul>
         </div>
@@ -210,17 +210,17 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $categories = $this->Marticle->getPopularOfCategory();
-            // $i = 1;
-            // foreach ($categories as $key => $category) {
-            //   // code...
-            //   $cate = get_category_by_id($category['CATEID']);
-            //   echo '<li>
-            //     <span class="handle">'.$i.'</span>
-            //     <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('category').'/'.convert_vi($cate['CATENAME']))).'"><span class="text">'.$cate['CATENAME'].'</span></a>
-            //   </li>';
-            //   $i++;
-            // }
+            $categories = $this->Marticle->getPopularOfCategory();
+            $i = 1;
+            foreach ($categories as $key => $category) {
+              // code...
+              $cate = get_category_by_id($category['CATEID']);
+              echo '<li>
+                <span class="handle">'.$i.'</span>
+                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('category').'/'.convert_vi($cate['CATENAME']))).'"><span class="text">'.$cate['CATENAME'].'</span></a>
+              </li>';
+              $i++;
+            }
           ?>
           </ul>
         </div>

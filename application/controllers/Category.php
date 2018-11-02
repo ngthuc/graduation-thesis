@@ -29,14 +29,12 @@ class Category extends CI_Controller {
       //code
       $_user_logged = $this->session->userdata('user');
       $_parent = intval($this->input->post('parent_cate'));
-      $data['CATEID'] = intval($this->input->post('id'));
       $data['USERID'] = $_user_logged['USERID'];
       $data['CAT_CATEID'] = $_parent;
       $data['CATENAME'] = $this->input->post('name_cate');
       $data['CATENAME_ENGLISH'] = $this->input->post('eng_name_cate');
       $data['CATELEVEL'] = ($_parent == 0) ? 1 : $this->Mcategory->findNodeLevel($_parent)+1;
       $data['CATEPOLICY'] = $this->input->post('policy');
-      $data['CATETYPE'] = $this->input->post('type_cate');
 
       $status = $this->Mcategory->insertCate($data);
 			// Thông báo

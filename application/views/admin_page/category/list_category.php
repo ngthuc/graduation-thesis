@@ -28,7 +28,7 @@
               <th>STT</th>
               <th>Tên thể loại</th>
               <th>English</th>
-              <th>Kiểu thể loại</th>
+              <th>Quyền xem</th>
               <th>Cập nhật</th>
             </tr>
             </thead>
@@ -45,7 +45,7 @@
               }
               echo $row['CATENAME'].'</td>
               <td>'.$row['CATENAME_ENGLISH'].'</td>
-              <td>'.$row['CATETYPE'].'</td>
+              <td>'.$row['CATEPOLICY'].'</td>
               <td>
                 <a href="'.base_url('admin/category/edit_category/'.$row['CATEID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
                 <button type="button" value="'.$row['CATEID'].'" class="btn btn-danger ondelete"><b class="fa fa-trash"></b></button>

@@ -29,7 +29,6 @@
             </div>
             <div class="form-group">
               <label for="name_cate">Tên thể loại</label>
-              <input type="hidden" name="id" id="id" value="<?php echo time(); ?>">
               <input type="text" class="form-control" name="name_cate" id="name_cate" placeholder="Nhập tên thể loại">
             </div>
             <div class="form-group">
@@ -53,6 +52,11 @@
                 ?>
               </select>
             </div>
+            <div class="form-group">
+              <label for="policy">Quyền xem</label><br>
+              <input type="radio" name="policy" value="public" checked> Công cộng <br>
+              <input type="radio" name="policy" value="only_me"> Chỉ mình tôi <br>
+            </div>
           </div>
           <!-- /.box-body -->
 
@@ -72,7 +76,7 @@
   $(document).ready(function(){
     $("form").submit(function(){
       // alert($("#add-category").serialize());
-      var url="<?php echo base_url('admin/category/add_new_processing')?>";
+      var url="<?php echo base_url('canbo/admin/category/add_new_processing')?>";
       var form="#add-category";
       var callback="#alert-ajax";
       makeAjaxCall(url, form, callback);

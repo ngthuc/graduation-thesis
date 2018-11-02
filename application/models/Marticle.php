@@ -1,5 +1,5 @@
 <?php
-class Mposts extends CI_Model{
+class Marticle extends CI_Model{
     protected $_table = 'ARTICLE';
     protected $_arr = array();
 
@@ -41,7 +41,7 @@ class Mposts extends CI_Model{
         return $this->db->get($this->_table)->result_array();
     }
 
-    public function getFiveLatestPosts(){
+    public function getFiveLatestArticle(){
         $this->db->select('*');
         $this->db->where('ARTICLETYPE', 'article');
         $this->db->order_by('ARTICLEID', 'DESC');
