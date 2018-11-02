@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Posts extends CI_Controller {
+class Article extends CI_Controller {
     public function __construct(){
       parent::__construct();
       $this->_theme = get_media('theme','theme');
@@ -11,7 +11,7 @@ class Posts extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/post_type/list_posts';
       $_data['data_subview'] = array(
-        'articles' => $this->Mposts->getLatestList()
+        'articles' => $this->Marticle->getLatestList()
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
@@ -50,7 +50,7 @@ class Posts extends CI_Controller {
       $data['ARTICLECOUNT'] = 0;
       $data['ARTICLETYPE'] = $this->input->post('type');
 
-      $status = $this->Mposts->insertArticle($data);
+      $status = $this->Marticle->insertArticle($data);
 			// Thông báo
 			if(!$status) {
 				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Thêm bài viết thành công!"));
@@ -63,7 +63,7 @@ class Posts extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/post_type/edit_one_post_type';
       $_data['data_subview'] = array(
-        'content' => $this->Mposts->getById($id),
+        'content' => $this->Marticle->getById($id),
         'categories' => $this->Mcategory->returnCategories()
       );
       $this->load->view('admin_page/main_layout',$_data);
@@ -83,7 +83,7 @@ class Posts extends CI_Controller {
       $data['ARTICLECOUNT'] = $this->input->post('count');
       $data['ARTICLETYPE'] = $this->input->post('type');
 
-      $status = $this->Mposts->updateArticle($data,$ID);
+      $status = $this->Marticle->updateArticle($data,$ID);
 			// Thông báo
 			if(!$status) {
 				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật bài viết thành công!"));
@@ -95,7 +95,7 @@ class Posts extends CI_Controller {
     public function delete_post() {
       //code
       if(isset($_POST)) {
-        $status = $this->Mposts->deleteArticle(intval($this->input->post('post_id')));
+        $status = $this->Marticle->deleteArticle(intval($this->input->post('post_id')));
   			// Thông báo
   			if($status) {
   				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa bài viết thành công!"));

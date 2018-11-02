@@ -47,9 +47,14 @@
               <i class="fa fa-circle-o"></i> Danh mục thông tin
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(4) == 'add_new_info') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/article/add_new_article'); ?>">
-              <i class="fa fa-circle-o"></i> Thêm thông tin
+          <li<?php echo ($this->uri->segment(4) == 'add_person') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/infomation/add_person'); ?>">
+              <i class="fa fa-circle-o"></i> Thêm thông tin cá nhân
+            </a>
+          </li>
+          <li<?php echo ($this->uri->segment(4) == 'add_other') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/article/add_other'); ?>">
+              <i class="fa fa-circle-o"></i> Thêm thông tin khác
             </a>
           </li>
         </ul>
