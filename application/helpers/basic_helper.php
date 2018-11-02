@@ -49,13 +49,13 @@ if (!function_exists('get_media'))
       // Call a function of the model
       if(isset($key)) {
         $value = $CI->Media->getMediaWithTitle($type,$key);
-        return $value['MEDIAEMBEDDEDLINK'];
+        return $value['MEDIALINK'];
       } else if(isset($limit)) {
         $value = $CI->Media->getMediaByType($type,$limit,$start);
         return $value;
       } else {
         $value = $CI->Media->getMediaByType($type);
-        return $value['MEDIAEMBEDDEDLINK'];
+        return $value['MEDIALINK'];
       }
     }
 }
@@ -79,7 +79,7 @@ if (!function_exists('get_media_id'))
       } else if($data == 'data') {
         return $value['MEDIADATA'];
       } else if($data == 'link') {
-        return $value['MEDIAEMBEDDEDLINK'];
+        return $value['MEDIALINK'];
       } else {
         return 'Error: Missing an argument!';
       }
@@ -200,6 +200,16 @@ if (!function_exists('convert_vi'))
         $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", "Y", $str);
         $str = preg_replace("/(Đ)/", "D", $str);
         $str = str_replace(" ","-",$str);
+        return $str;
+    }
+}
+
+if (!function_exists('replace_url_media'))
+{
+    function replace_url_media($str)
+    {
+        //Your code here
+        $str = str_replace("//spsim_media","/spsim_media",$str);
         return $str;
     }
 }

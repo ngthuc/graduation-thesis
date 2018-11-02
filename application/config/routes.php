@@ -93,9 +93,6 @@ $route['canbo/admin/category/add_new_processing'] = 'category/add_new_processing
 $route['canbo/admin/category/edit_category_processing'] = 'category/edit_category_processing';
 $route['canbo/admin/category/delete_category'] = 'category/delete_category';
 
-// Route for Admin: File Manager
-$route['canbo/admin/filemanager'] = 'filemanager/index';
-
 // Route for Admin: Infomation
 $route['canbo/admin/infomation'] = 'infomation/index';
 $route['canbo/admin/infomation/add_new'] = 'infomation/add_new';
@@ -107,17 +104,23 @@ $route['canbo/admin/infomation/delete_info'] = 'infomation/delete_info';
 // Route for Language
 $route['canbo/language/(:any)'] = 'home/language/$1';
 
+// Route for Multimedia
+$route['canbo/admin/multimedia'] = 'multimedia/index';
+$route['canbo/admin/multimedia/pictures'] = 'multimedia/pictures';
+$route['canbo/admin/multimedia/add_picture'] = 'multimedia/add_picture';
+$route['canbo/admin/multimedia/delete_picture'] = 'multimedia/delete_picture';
+
 // Route for Settings
-$route['admin/settings'] = 'mp_admin/settings';
-$route['admin/settings/options'] = 'mp_admin/settings/options';
-$route['admin/settings/update_options'] = 'mp_admin/settings/update_options';
-$route['admin/settings/menu'] = 'mp_admin/settings/menu';
-$route['admin/settings/update_menu'] = 'mp_admin/settings/update_menu';
-$route['admin/settings/themes'] = 'mp_admin/settings/themes';
-$route['admin/settings/update_theme'] = 'mp_admin/settings/update_theme';
-$route['admin/settings/pictures'] = 'mp_admin/settings/pictures';
-$route['admin/settings/add_picture'] = 'mp_admin/settings/add_picture';
-$route['admin/settings/delete_picture'] = 'mp_admin/settings/delete_picture';
+$route['canbo/admin/settings'] = 'settings/index';
+$route['canbo/admin/settings/update_options'] = 'settings/update_options';
+
+// Route for Themes
+$route['canbo/admin/themes'] = 'themes/index';
+$route['canbo/admin/themes/menu'] = 'themes/menu';
+$route['canbo/admin/themes/add_menu'] = 'themes/add_menu';
+$route['canbo/admin/themes/update_themes'] = 'themes/update_themes';
+$route['canbo/admin/themes/update_menu'] = 'themes/update_menu';
+$route['canbo/admin/themes/delete_menu'] = 'themes/delete_menu';
 
 // Route for public site
 $route['~(:any)'] = 'profile/user/$1';

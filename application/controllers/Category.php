@@ -35,6 +35,7 @@ class Category extends CI_Controller {
       $data['CATENAME_ENGLISH'] = $this->input->post('eng_name_cate');
       $data['CATELEVEL'] = ($_parent == 0) ? 1 : $this->Mcategory->findNodeLevel($_parent)+1;
       $data['CATEPOLICY'] = $this->input->post('policy');
+      $data['CATETYPE'] = $this->input->post('type');
 
       $status = $this->Mcategory->insertCate($data);
 			// Thông báo
@@ -64,8 +65,8 @@ class Category extends CI_Controller {
       $data['CATENAME'] = $this->input->post('name_cate');
       $data['CATENAME_ENGLISH'] = $this->input->post('eng_name_cate');
       $data['CATELEVEL'] = $this->input->post('level_cate');
-      $data['CATESHOWMENU'] = ($this->input->post('show_cate') == 'on') ? 1 : 0;
-      $data['CATETYPE'] = $this->input->post('type_cate');
+      $data['CATEPOLICY'] = $this->input->post('policy');
+      $data['CATETYPE'] = $this->input->post('type');
 
       $status = $this->Mcategory->updateCate($data,$ID);
 			// Thông báo

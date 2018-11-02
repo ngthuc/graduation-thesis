@@ -36,11 +36,14 @@ label.checked {
           <div class="box-body">
             <div class="form-group">
               <label for="picture">Thêm ảnh</label>
-              <input type="hidden" name="id" id="id" value="<?php echo time(); ?>">
-              <input type="hidden" name="category" id="category" value="1537843174">
               <input type="hidden" name="user" id="user" value="<?php echo $_SESSION['user']['USERID']; ?>">
               <input type="text" class="form-control image" name="picture" id="picture" value="" placeholder="Chọn ảnh hoặc nhập liên kết ảnh"/>
               <button type="button" id="fancybox" class="form-control" data-toggle="modal" data-target="#selectFile">Duyệt ảnh</button>
+            </div>
+            <div class="form-group">
+              <label for="policy">Quyền xem</label><br>
+              <input type="radio" name="policy" value="public" checked> Công cộng <br>
+              <input type="radio" name="policy" value="only_me"> Chỉ mình tôi <br>
             </div>
           </div>
           <!-- /.box-body -->
@@ -70,7 +73,7 @@ label.checked {
                   echo '<div class="col-md-3">
                     <input type="checkbox" name="field[]" value="'.$pic['MEDIAID'].'" id="img'.$i.'" name="img'.$i.'" />
                     <label for="img'.$i.'">
-                      <img class="img" src="'.$pic['MEDIAEMBEDDEDLINK'].'" alt="Picture" style="width: 98%; height: 196px"/>
+                      <img class="img" src="'.$pic['MEDIALINK'].'" alt="Picture" style="width: 98%; height: 196px"/>
                     </label>
                   </div>';
                   $i++;
@@ -141,39 +144,17 @@ label.checked {
    // });
    $("#customize_picture").submit(function(){
      // alert($("#customize_picture").serialize());
-     var url="<?php echo base_url('admin/settings/add_picture')?>";
+     var url="<?php echo base_url('canbo/admin/multimedia/add_picture');?>";
      var form="#customize_picture";
      var callback="#alert-ajax";
      makeAjaxCall(url, form, callback);
-     // $.ajax({
-     //     type: "post",
-     //     url: "<?php echo base_url('admin/settings/add_picture')?>",
-     //     cache: false,
-     //     data: $("#customize_picture").serialize(),
-     //     success: function(json){
-     //       var obj = jQuery.parseJSON(json);
-     //       $("#alert-ajax").html('<div class="alert alert-'+obj['STATUS']+'" id="alert-out">'+obj['MESSAGE']+'</div>');
-     //       location.reload();
-     //     }
-     // });
    });
    $("#delete_picture").submit(function(){
      // alert($("#delete_picture").serialize());
-     var url="<?php echo base_url('admin/settings/delete_picture')?>";
+     var url="<?php echo base_url('canbo/admin/multimedia/delete_picture');?>";
      var form="#delete_picture";
      var callback="#alert-ajax";
      makeAjaxCall(url, form, callback);
-     // $.ajax({
-     //     type: "post",
-     //     url: "<?php echo base_url('admin/settings/delete_picture')?>",
-     //     cache: false,
-     //     data: $("#delete_picture").serialize(),
-     //     success: function(json){
-     //       var obj = jQuery.parseJSON(json);
-     //       $("#alert-ajax").html('<div class="alert alert-'+obj['STATUS']+'" id="alert-out">'+obj['MESSAGE']+'</div>');
-     //       location.reload();
-     //     }
-     // });
    });
   });
 </script>

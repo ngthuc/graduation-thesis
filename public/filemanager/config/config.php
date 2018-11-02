@@ -69,8 +69,8 @@ $config = array(
 	| without final / (DON'T TOUCH)
 	|
 	*/
-	//'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ! in_array(strtolower($_SERVER['HTTPS']), array( 'off', 'no' ))) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'],
-	'base_url'=>'http://localhost/luanvan/',
+	'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ! in_array(strtolower($_SERVER['HTTPS']), array( 'off', 'no' ))) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'],
+	// 'base_url'=>'http://spsimct594.tk/',
 
 	/*
 	|--------------------------------------------------------------------------

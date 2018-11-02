@@ -34,6 +34,26 @@
           </li>
         </ul>
       </li>
+      <li class="<?php echo ($this->uri->segment(3) == 'infomation') ? 'active ' : ''; ?>treeview">
+        <a href="#">
+          <i class="fa fa-user"></i> <span>Thông tin cán bộ</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li<?php echo ($this->uri->segment(4) == '') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/infomation/'); ?>">
+              <i class="fa fa-circle-o"></i> Danh mục thông tin
+            </a>
+          </li>
+          <li<?php echo ($this->uri->segment(4) == 'add_new_info') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/article/add_new_article'); ?>">
+              <i class="fa fa-circle-o"></i> Thêm thông tin
+            </a>
+          </li>
+        </ul>
+      </li>
       <li class="<?php echo ($this->uri->segment(3) == 'article') ? 'active ' : ''; ?>treeview">
         <a href="#">
           <i class="fa fa-pencil-square-o"></i> <span>Bài viết</span>
@@ -59,10 +79,45 @@
           </li>
         </ul>
       </li>
-      <li<?php echo ($this->uri->segment(3) == 'filemanager') ? ' class="active"' : ''; ?>>
-        <a href="<?php echo base_url('canbo/admin/filemanager'); ?>">
-          <i class="fa fa-file"></i> <span>Quản lý tệp</span>
+      <li class="<?php echo ($this->uri->segment(3) == 'multimedia') ? 'active ' : ''; ?>treeview">
+        <a href="#">
+          <i class="fa fa-file"></i> <span>Đa phương tiện</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
         </a>
+        <ul class="treeview-menu">
+          <li<?php echo ($this->uri->segment(4) == '') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/multimedia/'); ?>">
+              <i class="fa fa-file"></i> Trình quản lý tệp tin
+            </a>
+          </li>
+          <li<?php echo ($this->uri->segment(4) == 'pictures') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/multimedia/pictures'); ?>">
+              <i class="fa fa-file-picture-o"></i> Thư viện ảnh
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="<?php echo ($this->uri->segment(3) == 'themes') ? 'active ' : ''; ?>treeview">
+        <a href="#">
+          <i class="fa fa-television"></i> <span>Giao diện</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li<?php echo ($this->uri->segment(4) == '') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/themes/'); ?>">
+              <i class="fa fa-list"></i> Danh sách giao diện
+            </a>
+          </li>
+          <li<?php echo ($this->uri->segment(4) == 'menu') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/themes/menu'); ?>">
+              <i class="fa fa-navicon"></i> Thanh điều hướng
+            </a>
+          </li>
+        </ul>
       </li>
       <li class="<?php echo ($this->uri->segment(3) == 'accounts') ? 'active ' : ''; ?>treeview">
         <a href="#">
@@ -92,34 +147,9 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li<?php echo ($this->uri->segment(4) == 'options') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/settings/options'); ?>">
+          <li<?php echo ($this->uri->segment(4) == '') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/settings'); ?>">
               <i class="fa fa-cog"></i> Các thiết lập cơ bản
-            </a>
-          </li>
-          <li<?php echo ($this->uri->segment(4) == 'menu') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/settings/menu'); ?>">
-              <i class="fa fa-navicon "></i> Thiết lập điều hướng
-            </a>
-          </li>
-          <li<?php echo ($this->uri->segment(4) == 'themes') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/settings/themes'); ?>">
-              <i class="fa fa-television"></i> Giao diện
-            </a>
-          </li>
-          <li<?php echo ($this->uri->segment(4) == 'slideshow') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/settings/slideshow'); ?>">
-              <i class="fa fa-file-powerpoint-o"></i> Trình chiếu
-            </a>
-          </li>
-          <li<?php echo ($this->uri->segment(4) == 'pictures') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/settings/pictures'); ?>">
-              <i class="fa fa-file-picture-o"></i> Thư viện ảnh
-            </a>
-          </li>
-          <li<?php echo ($this->uri->segment(4) == 'videos') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/settings/videos'); ?>">
-              <i class="fa fa-youtube-play"></i> Thư viện video
             </a>
           </li>
         </ul>

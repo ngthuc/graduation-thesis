@@ -15,3 +15,14 @@
 		src="<?php echo base_url('public/filemanager/dialog.php?type=0');?>">
 	</iframe>
 </section>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    window.onload = function() {
+        if(!window.location.hash) {
+            window.location = window.location + '#/';
+            window.location.reload();
+        }
+    }
+  });
+</script>
