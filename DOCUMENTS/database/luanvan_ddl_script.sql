@@ -23,7 +23,9 @@ CREATE TABLE CATEGORY (
   CATENAME text COLLATE utf8mb4_vietnamese_ci NOT NULL,
   CATENAME_ENGLISH text COLLATE utf8mb4_vietnamese_ci NOT NULL,
   CATELEVEL int(11) DEFAULT NULL,
+  CATESHOWMENU tinyint(1) DEFAULT NULL,
   CATEPOLICY text COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  CATETYPE text COLLATE utf8mb4_vietnamese_ci NOT NULL,
   PRIMARY KEY (CATEID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
@@ -67,8 +69,8 @@ CREATE TABLE USERS (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 INSERT INTO USERS (USERID, USERFULLNAME, USEREMAIL, USERPASSWORD, USERROLE, USERSTATUS) VALUES
-('ngthuc', '', 'ngthuc@lapvo3.tk', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'approved'),
-('ngthuc.hrm', '', 'ngthuc.hrm@lapvo3.tk', null, 'user', 'approved');
+('ngthuc', 'Nguyên Thức', 'ngthuc@lapvo3.tk', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'approved'),
+('ngthuc.hrm', 'HRM Nguyen Thuc', 'ngthuc.hrm@lapvo3.tk', NULL, 'user', 'pending');
 
 CREATE TABLE SYSTEM (
   SYSTEMID int(11) NOT NULL AUTO_INCREMENT,
