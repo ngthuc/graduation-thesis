@@ -15,17 +15,32 @@ class Minfo extends CI_Model{
         return $this->db->get($this->_table)->result_array();
     }
 
+    public function getPersonInfoByUser($user = null){
+        $this->db->select('*');
+        $this->db->where('USERID', $user);
+        $this->db->where('INFOTYPE', 'person');
+        return $this->db->get($this->_table)->result_array();
+    }
+
+    public function getScienceResearhByUser($user = null){
+        $this->db->select('*');
+        $this->db->where('USERID', $user);
+        $this->db->where('INFOTYPE', 'research');
+        $this->db->order_by('INFOID', 'DESC');
+        return $this->db->get($this->_table)->result_array();
+    }
+
     public function getLatestList(){
         $this->db->select('*');
-        $this->db->order_by('ARTICLEID', 'DESC');
+        $this->db->order_by('INFOID', 'DESC');
         return $this->db->get($this->_table)->result_array();
     }
 
     public function getPageByCategory($cate_id){
         $this->db->select('*');
         $this->db->where('CATEID', $cate_id);
-        $this->db->where('ARTICLETYPE', 'page');
-        $this->db->order_by('ARTICLEID', 'DESC');
+        $this->db->where('INFOTYPE', 'page');
+        $this->db->order_by('INFOID', 'DESC');
         $this->db->limit(1,0);
         return $this->db->get($this->_table)->row_array();
     }
@@ -58,7 +73,7 @@ class Minfo extends CI_Model{
     }
 
     public function getById($id){
-        $this->db->where("ARTICLEID", $id);
+        $this->db->where("INFOID", $id);
         return $this->db->get($this->_table)->row_array();
     }
 

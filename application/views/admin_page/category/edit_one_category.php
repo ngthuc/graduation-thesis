@@ -35,10 +35,10 @@
               <input type="hidden" name="level_cate" id="level_cate" value="<?php echo $category['CATELEVEL']; ?>">
               <input type="text" class="form-control" name="name_cate" id="name_cate" value="<?php echo $category['CATENAME']; ?>" placeholder="Nhập tên thể loại">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="eng_name_cate">Tên thể loại (English)</label>
               <input type="text" class="form-control" name="eng_name_cate" id="eng_name_cate" value="<?php echo $category['CATENAME_ENGLISH']; ?>" placeholder="Nhập tên thể loại bằng tiếng Anh">
-            </div>
+            </div> -->
             <div class="form-group">
               <label for="parent_cate">Lớp cha</label>
               <select class="form-control select2" style="width: 100%;" name="parent_cate">

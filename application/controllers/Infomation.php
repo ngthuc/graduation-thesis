@@ -25,6 +25,28 @@ class Infomation extends CI_Controller {
       $this->load->view('admin_page/main_layout',$_data);
     }
 
+    public function add_person_processing() {
+      //code
+      $_user_logged = $this->session->userdata('user');
+      $data['USERID'] = $_user_logged['USERID'];
+      $data['CATEID'] = null;
+      $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
+      $data['INFODATE'] = ($this->input->post('date')) ? $this->input->post('date') : null;
+      $data['INFOTITLE'] = $this->input->post('title');
+      $data['INFODESCRIPTION'] = null;
+      $data['INFOCONTENT'] = $this->input->post('content');
+      $data['INFOPOLICY'] = $this->input->post('policy');
+      $data['INFOTYPE'] = $this->input->post('type');
+
+      $status = $this->Minfo->insertInfo($data);
+			// Thông báo
+			if(!$status) {
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Thêm thông tin thành công!"));
+			} else {
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Thêm thông tin thất bại!"));
+			}
+    }
+
     public function add_other() {
       //code
       $_data['subview'] = 'admin_page/post_type/add_other';
@@ -42,11 +64,8 @@ class Infomation extends CI_Controller {
       $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
       $data['INFODATE'] = ($this->input->post('date')) ? $this->input->post('date') : null;
       $data['INFOTITLE'] = ($this->input->post('title')) ? $this->input->post('title') : null;
-      $data['INFOTITLE_ENGLISH'] = ($this->input->post('title_eng')) ? $this->input->post('title_eng') : null;
       $data['INFODESCRIPTION'] = ($this->input->post('description')) ? $this->input->post('description') : null;
-      $data['INFODESCRIPTION_ENGLISH'] = ($this->input->post('description_eng')) ? $this->input->post('description_eng') : null;
       $data['INFOCONTENT'] = ($this->input->post('content')) ? $this->input->post('content') : null;
-      $data['INFOCONTENT_ENGLISH'] = ($this->input->post('content_eng')) ? $this->input->post('content_eng') : null;
       $data['INFOPOLICY'] = $this->input->post('policy');
       $data['INFOTYPE'] = $this->input->post('type');
 

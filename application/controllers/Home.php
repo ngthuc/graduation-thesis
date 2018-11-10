@@ -13,11 +13,11 @@ class Home extends CI_Controller {
       (isset($_SESSION['user'])) ? redirect(base_url('canbo/admin')) : redirect(base_url('canbo/login'));
     }
 
-    public function language($lang = "") {
-        $language = ($lang != "") ? $lang : "vietnamese";
-        $this->session->set_userdata('lang', $language);
-        redirect(base_url());
-    }
+    // public function language($lang = "") {
+    //     $language = ($lang != "") ? $lang : "vietnamese";
+    //     $this->session->set_userdata('lang', $language);
+    //     redirect(base_url());
+    // }
 
     public function login() {
       $this->load->view('site_page/login/login_default');

@@ -51,7 +51,6 @@ class Mcategory extends CI_Model{
 
     public function getArticleCateNameById($id){
         $this->db->select('CATENAME');
-        $this->db->select('CATENAME_ENGLISH');
         $this->db->where("CATEID", $id);
         $this->db->where("CATETYPE", 'article');
         return $this->db->get($this->_table)->row_array();
@@ -59,7 +58,6 @@ class Mcategory extends CI_Model{
 
     public function getInfoCateNameById($id){
         $this->db->select('CATENAME');
-        $this->db->select('CATENAME_ENGLISH');
         $this->db->where("CATEID", $id);
         $this->db->where("CATETYPE", 'info');
         return $this->db->get($this->_table)->row_array();

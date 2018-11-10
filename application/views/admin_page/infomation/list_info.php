@@ -26,12 +26,13 @@
             <thead>
             <tr>
               <th>STT</th>
-              <th>Tên thông tin</th>
-              <th>Mô tả</th>
+              <th>Hình ảnh</th>
               <th>Thông tin</th>
+              <th>Ngày</th>
+              <th>Mô tả</th>
+              <th>Nội dung</th>
               <th>Thể loại</th>
-              <th>Kiểu</th>
-              <th>Quyền xem</th>
+              <th>Kiểu & Quyền xem</th>
               <th>Cập nhật</th>
             </tr>
             </thead>
@@ -42,13 +43,14 @@
               // code...
               $name_category = $this->Mcategory->getInfoCateNameById($info['CATEID']);
               echo '<tr>
-                <td>'.$stt.'</td>
-                <td>'.$info['INFOTITLE'].'</td>
-                <td>'.(($info['INFOTYPE'] == 'person') ? '<i class="fa fa-fw '.$info['INFODESCRIPTION'].'"></i>' : $info['INFODESCRIPTION']).'</td>
-                <td>'.$info['INFOCONTENT'].'</td>
-                <td>'.$name_category['CATENAME'].'</td>
-                <td>'.$info['INFOTYPE'].'</td>
-                <td>'.$info['INFOPOLICY'].'</td>
+                <td>'.$stt.'</td>';
+              echo (isset($info['INFOIMAGE'])) ? '<td><img src="'.$info['INFOIMAGE'].'" width="100px" height="150px" /></td>' : '<td></td>';
+              echo '<td>'.$info['INFOTITLE'].'</td>';
+              echo (isset($info['INFODATE'])) ? '<td>'.date('d/m/Y',strtotime($info['INFODATE'])).'</td>' : '<td>-</td>';
+              echo (isset($info['INFODESCRIPTION'])) ? '<td>'.$info['INFODESCRIPTION'].'</td>' : '<td>-</td>';
+              echo (isset($info['INFOCONTENT'])) ? '<td>'.$info['INFOCONTENT'].'</td>' : '<td>-</td>';
+              echo (isset($name_category['CATENAME'])) ? '<td>'.$name_category['CATENAME'].'</td>' : '<td>-</td>';
+              echo '<td>'.$info['INFOTYPE'].'/'.$info['INFOPOLICY'].'</td>
                 <td>
                   <a href="'.base_url('canbo/admin/infomation/'.$info['INFOID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
                   <button type="button" value="'.$info['INFOID'].'" class="btn btn-danger ondelete"><b class="fa fa-trash"></b></button>

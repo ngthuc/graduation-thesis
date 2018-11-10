@@ -27,7 +27,7 @@
             <tr>
               <th>STT</th>
               <th>Tên thể loại</th>
-              <th>English</th>
+              <!-- <th>English</th> -->
               <th>Loại</th>
               <th>Quyền xem</th>
               <th>Cập nhật</th>
@@ -45,7 +45,7 @@
                 else echo '|---';
               }
               echo $row['CATENAME'].'</td>
-              <td>'.$row['CATENAME_ENGLISH'].'</td>
+              <!--td>'.$row['CATENAME_ENGLISH'].'</td-->
               <td>'.(($row['CATETYPE'] == 'info') ? 'Thông tin' : (($row['CATETYPE'] == 'article') ? 'Bài viết' : 'Khác')).'</td>
               <td>'.(($row['CATEPOLICY'] == 'public') ? 'Công cộng' : (($row['CATEPOLICY'] == 'only_me') ? 'Chỉ mình tôi' : 'Khác')).'</td>
               <td>

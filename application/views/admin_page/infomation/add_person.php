@@ -28,46 +28,32 @@
               <!-- Alert by Ajax -->
             </div>
             <div class="form-group">
-              <label for="title">Tên thông tin</label>
+              <label for="content">Thông tin</label>
               <input type="hidden" name="type" id="type" value="person">
               <input type="hidden" name="policy" id="policy" value="public">
-              <input type="text" class="form-control" name="title" id="title" placeholder="Nhập tên thông tin">
-            </div>
-            <div class="form-group">
-              <label for="title_eng">Tên thông tin (English)</label>
-              <input type="text" class="form-control" name="title_eng" id="title_eng" placeholder="Nhập tên thông tin">
-            </div>
-            <div class="form-group">
-              <label for="category">Thể loại</label>
-              <select class="form-control select2" style="width: 100%;" name="category" required>
-                <?php
-                  foreach ($parent_cate as $key => $row) {
-                  echo '<option value="'.$row['CATEID'].'">';
-                    for($i=1;$i<=$row['CATELEVEL'];$i++) {
-                      if($i==1) echo '';
-                      else echo '|---';
-                    }
-                    echo $row['CATENAME'].'</option>
-                    ';
-                  }
-                ?>
+              <select name="title" id="title" class="form-control" onchange="remove_class();">
+                <option>-- Chọn một thông tin --</option>
+                <option value="name">Họ tên</option>
+                <option value="position">Vị trí công tác</option>
+                <option value="birthday">Ngày sinh</option>
+                <option value="gender">Giới tính</option>
+                <option value="email">Email</option>
+                <option value="phone">Điện thoại</option>
+                <option value="address">Địa chỉ</option>
+                <option value="website">Website</option>
+                <option value="avatar">Hình ảnh</option>
               </select>
-            </div>
-            <div class="form-group">
-              <label for="description">Icon hiển thị</label>
-              <input type="text" class="form-control" name="description" id="description" placeholder="Nhập icon hiển thị (nhập class css)">
-            </div>
-            <div class="form-group">
-              <label for="content">Thông tin</label>
-              <input type="text" class="form-control" name="content" id="content" placeholder="Nhập thông tin">
-            </div>
-            <div class="form-group">
-              <label for="content_eng">Thông tin (English)</label>
-              <input type="text" class="form-control" name="content_eng" id="content_eng" placeholder="Nhập thông tin">
-            </div>
-            <div class="form-group">
-              <label for="image">Ảnh đại diện</label>
-              <div class="row">
+              <div id="normal" class="hidden">
+                <input type="text" class="form-control" name="content" placeholder="Nhập thông tin">
+              </div>
+              <div id="birthday" class="hidden">
+                <input type="date" class="form-control" name="date">
+              </div>
+              <div id="gender" class="hidden">
+                <input type="radio" name="content" value="Male"> Nam <br>
+                <input type="radio" name="content" value="Female"> Nữ <br>
+              </div>
+              <div class="row hidden" id="avatar">
                 <div class="col-md-6">
                   <input type="text" class="form-control" name="image" id="image" placeholder="Chọn ảnh hoặc nhập url ảnh"/>
                 </div>
@@ -80,7 +66,7 @@
           <!-- /.box-body -->
 
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Lưu & xuất bản</button>
+            <button type="submit" class="btn btn-primary">Lưu</button>
           </div>
         </form>
       </div>
@@ -123,6 +109,23 @@
   //   $("#review").attr("src", imageData);
   // });
 
+  function remove_class() {
+    $('#normal').addClass('hidden');
+    $('#birthday').addClass('hidden');
+    $('#gender').addClass('hidden');
+    $('#avatar').addClass('hidden');
+    var x = document.getElementById("title").value;
+    if(x==='birthday') {
+      $('#birthday').removeClass('hidden');
+    } else if(x==='gender') {
+      $('#gender').removeClass('hidden');
+    } else if(x==='avatar') {
+      $('#avatar').removeClass('hidden');
+    } else {
+      $('#normal').removeClass('hidden');
+    }
+  }
+
   function responsive_filemanager_callback(field_id){
   	// console.log(field_id);
     var url=jQuery('#'+field_id).val();
@@ -132,7 +135,7 @@
   $(document).ready(function(){
     $("form").submit(function(){
       // alert($("#add-post").serialize());
-      var url="<?php echo base_url('canbo/admin/infomation/add_new_processing'); ?>";
+      var url="<?php echo base_url('canbo/admin/infomation/add_person_processing'); ?>";
       var form="#add-post";
       var callback="#alert-ajax";
       makeAjaxCall(url, form, callback);

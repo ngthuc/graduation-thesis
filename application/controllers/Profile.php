@@ -1,6 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profile extends CI_Controller {
+	public function __construct(){
+		parent::__construct();
+		// $this->_theme = get_media('theme','theme');
+		$this->template = 'basic_template';
+	}
 
 	/**
 	 * Index Page for this controller.
@@ -18,10 +23,25 @@ class Profile extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()	{
-		echo 'Hello';
+		echo '<!DOCTYPE html>
+		<html>
+		<head>
+			<title>403 Forbidden</title>
+		</head>
+		<body>
+
+		<p>Directory access is forbidden.</p>
+
+		</body>
+		</html>';
 	}
 
 	public function user($username) {
-		echo isset($username) ? 'Hello, '.$username.'!' : 'User not found!';
+		$data['data_subview'] = array(
+			'person_info' => $this->Minfo->getPersonInfoByUser($username),
+			'person_research' =>  $this->Minfo->getScienceResearhByUser($username)
+		);
+		$this->load->view('site_page/themes/'.$this->template.'/main_layout',$data);
+		// var_dump($data);
 	}
 }
