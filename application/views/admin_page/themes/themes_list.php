@@ -35,35 +35,36 @@
               </thead>
               <tbody>
               <?php
-              // $stt = 1;
-              // foreach ($themes_info as $key => $info) {
-              //   // code...
-              //   echo '<tr>
-              //     <td>'.$stt.'</td>
-              //     <td>'.$info['themes_dir'].'</td>
-              //     <td>
-              //       <a href="#imageReview" class="openImageDialog" data-toggle="modal" data-picture="'.base_url(theme_url($info['themes_screenshot'])).'">
-              //         <img src="'.base_url(theme_url($info['themes_screenshot'])).'" width="200px" />
-              //       </a>
-              //     </td>
-              //     <td>
-              //       <button class="onchange btn ';
-              //       if(get_media('theme','theme') == $info['themes_dir']) {
-              //         echo 'btn-default';
-              //       } else {
-              //         echo 'btn-primary';
-              //       }
-              //       echo '" name="theme" type="submit" value="'.$info['themes_dir'].'"><b class="fa fa-check-square-o"></b> ';
-              //       if(get_media('theme','theme') == $info['themes_dir']) {
-              //         echo 'Đang k';
-              //       } else {
-              //         echo 'K';
-              //       }
-              //       echo 'ích hoạt</button>
-              //     </td>
-              //   </tr>';
-              //   $stt++;
-              // }
+              $stt = 1;
+              $template = 'public/themes/';
+              foreach ($themes_info as $key => $info) {
+                // code...
+                echo '<tr>
+                  <td>'.$stt.'</td>
+                  <td>'.$info['themes_dir'].'</td>
+                  <td>
+                    <a href="#imageReview" class="openImageDialog" data-toggle="modal" data-picture="'.base_url($template.$info['themes_screenshot']).'">
+                      <img src="'.base_url($template.$info['themes_screenshot']).'" width="200px" />
+                    </a>
+                  </td>
+                  <td>
+                    <button class="onchange btn btn-primary';
+                    // if(get_media('theme','theme') == $info['themes_dir']) {
+                    //   echo 'btn-default';
+                    // } else {
+                    //   echo 'btn-primary';
+                    // }
+                    echo '" name="theme" type="submit" value="'.$info['themes_dir'].'"><b class="fa fa-check-square-o"></b> ';
+                    // if(get_media('theme','theme') == $info['themes_dir']) {
+                    //   echo 'Đang k';
+                    // } else {
+                    //   echo 'K';
+                    // }
+                    echo 'Đang kích hoạt</button>
+                  </td>
+                </tr>';
+                $stt++;
+              }
               ?>
               </tfoot>
             </table>

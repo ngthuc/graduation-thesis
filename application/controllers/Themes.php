@@ -8,23 +8,23 @@ class Themes extends CI_Controller {
     }
 
     public function index() {
-      // $directory = 'application/views/mp_site/themes';
-      // $list = scandir($directory);
-      // $themes_info = array();
-      // // print_r($entries);
-      // foreach ($list as $key => $dir) {
-      //   // code...
-      //   if(!(($dir == '.') || ($dir == '..') || ($dir == 'theme_notes.txt'))) {
-      //     $themes_info[] = array(
-      //       'themes_dir' => $dir,
-      //       'themes_screenshot' => $dir.'/screenshot.png'
-      //     );
-      //   }
-      // }
+      $directory = 'application/views/site_page/themes';
+      $list = scandir($directory);
+      $themes_info = array();
+      // print_r($entries);
+      foreach ($list as $key => $dir) {
+        // code...
+        if(!(($dir == '.') || ($dir == '..') || ($dir == 'theme_notes.txt'))) {
+          $themes_info[] = array(
+            'themes_dir' => $dir,
+            'themes_screenshot' => $dir.'/screenshot.png'
+          );
+        }
+      }
 
       $data['subview'] = 'admin_page/themes/themes_list';
       $data['data_subview'] = array(
-        // 'themes_info' => $themes_info
+        'themes_info' => $themes_info
       );
       $this->load->view('admin_page/main_layout',$data);
     }
