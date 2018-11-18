@@ -23,12 +23,12 @@
             <img class="icon" src="<?=base_url($template.'/images/dob.png'); ?>"> <?=$data['dob'] ;?>
           </td>
           <td class="sex">
-            <img class="icon" src="<?=base_url($template.'/images/sex.png'); ?>"> <?=$data['gender'] ;?>
+            <img class="icon" src="<?=base_url($template.'/images/sex.png'); ?>"><?=$data['gender'] ;?>
           </td>
         </tr>
         <tr>
           <td class="email">
-            <img class="icon" src="<?=base_url($template.'/images/mail.png'); ?>"> <?=$data['email'] ;?>
+            <img class="icon" src="<?=base_url($template.'/images/mail.png'); ?>"><?=$data['email'] ;?>
           </td>
           <td class="phone">
             <img class="icon" src="<?=base_url($template.'/images/phone.png'); ?>"> <?=$data['phone'] ;?>
@@ -36,7 +36,7 @@
         </tr>
         <tr>
           <td class="email">
-            <img class="icon" src="<?=base_url($template.'/images/www.png'); ?>"><?=$data['website'] ;?>
+            <img class="icon" src="<?=base_url($template.'/images/www.png'); ?>"> <?=$data['website'] ;?>
           </td>
         </tr>
         <tr>

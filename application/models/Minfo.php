@@ -15,6 +15,17 @@ class Minfo extends CI_Model{
         return $this->db->get($this->_table)->result_array();
     }
 
+    public function getInfoByUser($user,$type,$title=null){
+        $this->db->select('*');
+        $this->db->where('USERID', $user);
+        $this->db->where('INFOTYPE', $type);
+        if(isset($title)) {
+            $this->db->where('INFOTITLE', $title);
+            return $this->db->get($this->_table)->row_array();
+        }
+        return $this->db->get($this->_table)->result_array();
+    }
+
     public function getPersonInfoByUser($user = null){
         $this->db->select('*');
         $this->db->where('USERID', $user);
@@ -111,9 +122,10 @@ class Minfo extends CI_Model{
         return $this->db->count_all($this->_table);
     }
 
-    public function getCountView() {
-        $this->db->select_sum('ARTICLECOUNT');
-        return $this->db->get($this->_table)->row()->ARTICLECOUNT;
+    public function countPersonInfo() {
+        $this->db->select('*');
+        $this->db->where('INFOTYPE', 'person');
+        return $this->db->get($this->_table)->num_rows();
     }
 
     public function getCountPost() {
@@ -176,6 +188,21 @@ class Minfo extends CI_Model{
     public function updateInfo($data_update, $id){
         $this->db->where("INFOID", $id);
         $this->db->update($this->_table, $data_update);
+    }
+
+    public function updateMultiInfo($data_update){
+      $uid = $data_update[0]['USERID']; // require minimize 1 row
+      $num_rows = $this->countPersonInfo();
+      foreach ($data_update as $key => $data) {
+        // code...
+        if($num_rows > 0) {
+          // code...
+          $this->updateInfo($data,$uid);
+        } else {
+          // code...
+          $this->insertInfo($data);
+        }
+      }
     }
 
     public function deleteInfo($id){

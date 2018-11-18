@@ -34,6 +34,36 @@ if (!function_exists('create_pagination'))
     }
 }
 
+if (!function_exists('get_info'))
+{
+    function get_info($user, $type, $key = null)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Minfo');
+
+      // Call a function of the model
+      if(isset($key)) {
+        $value = $CI->Minfo->getInfoByUser($user,$type,$key);
+        if(count($value) > 0) {
+          if(($type == 'person') && ($key == 'avatar')) {
+            return $value['INFOIMAGE'];
+          } else if(($type == 'person') && ($key == 'birthday')) {
+            return $value['INFODATE'];
+          } else {
+            return $value['INFOCONTENT'];
+          }
+        } else null;
+      } else {
+        return $CI->Minfo->getInfoByUser($user,$type);
+      }
+    }
+}
+
 if (!function_exists('get_media'))
 {
     function get_media($type, $key = null, $limit = null, $start = 0)

@@ -16,34 +16,47 @@ class Infomation extends CI_Controller {
       $this->load->view('admin_page/main_layout',$_data);
     }
 
-    public function add_person() {
+    public function update_person() {
       //code
-      $_data['subview'] = 'admin_page/infomation/add_person';
+      $_data['subview'] = 'admin_page/infomation/update_person';
       $_data['data_subview'] = array(
         'parent_cate' => $this->Mcategory->returnCategoriesInfo()
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
 
-    public function add_person_processing() {
+    public function update_person_processing() {
       //code
-      $_user_logged = $this->session->userdata('user');
-      $data['USERID'] = $_user_logged['USERID'];
-      $data['CATEID'] = null;
-      $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
-      $data['INFODATE'] = ($this->input->post('date')) ? $this->input->post('date') : null;
-      $data['INFOTITLE'] = $this->input->post('title');
-      $data['INFODESCRIPTION'] = null;
-      $data['INFOCONTENT'] = $this->input->post('content');
-      $data['INFOPOLICY'] = $this->input->post('policy');
-      $data['INFOTYPE'] = $this->input->post('type');
+      $_user = $this->session->userdata('user');
+      $titles = $this->input->post('title[]');
+      $keys = $this->input->post('key[]');
+      $contents = $this->input->post('content[]');
+      for($i = 0; $i < count($contents); $i++) {
+        $key = ($keys[$i] == $titles[$i]) ? 'INFOCONTENT' : $keys[$i];
+        $content = $contents[$i];
+        $data[$i]['USERID'] = $_user['USERID'];
+        $data[$i]['INFOTITLE'] = $titles[$i];
+        $data[$i][$key] = $content;
+        $data[$i]['INFOPOLICY'] = 'public';
+        $data[$i]['INFOTYPE'] = 'person';
+      }
 
-      $status = $this->Minfo->insertInfo($data);
+      // $data['USERID'] = $_user_logged['USERID'];
+      // $data['CATEID'] = null;
+      // $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
+      // $data['INFODATE'] = ($this->input->post('date')) ? $this->input->post('date') : null;
+      // $data['INFOTITLE'] = $this->input->post('title');
+      // $data['INFODESCRIPTION'] = null;
+      // $data['INFOCONTENT'] = $this->input->post('content');
+      // $data['INFOPOLICY'] = $this->input->post('policy');
+      // $data['INFOTYPE'] = $this->input->post('type');
+
+      $status = $this->Minfo->updateMultiInfo($data);
 			// Thông báo
 			if(!$status) {
-				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Thêm thông tin thành công!"));
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật thông tin thành công!"));
 			} else {
-				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Thêm thông tin thất bại!"));
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật thông tin thất bại!"));
 			}
     }
 

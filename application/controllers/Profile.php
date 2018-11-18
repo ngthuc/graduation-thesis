@@ -42,6 +42,13 @@ class Profile extends CI_Controller {
 			'person_research' =>  $this->Minfo->getScienceResearhByUser($username)
 		);
 		$this->load->view('site_page/themes/'.$this->template.'/main_layout',$data);
+		// $data = $this->Minfo->getPersonInfoByUser($username);
+		// foreach ($data as $key => $value) {
+		// 	// code...
+		// 	// $sql_query = "UPDATE `INFO` SET `MEDIAEMBEDDEDLINK`='$value' WHERE `MEDIATITLE`='$key';";
+		// 	// $this->db->query($sql_query);
+		// 	var_dump($data[$key]);
+		// }
 		// var_dump($data);
 	}
 }
