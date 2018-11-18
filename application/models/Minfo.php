@@ -185,19 +185,26 @@ class Minfo extends CI_Model{
         $this->db->insert($this->_table,$data_insert);
     }
 
-    public function updateInfo($data_update, $id){
+    public function updateInfoById($data_update, $id){
         $this->db->where("INFOID", $id);
         $this->db->update($this->_table, $data_update);
     }
 
+    public function updatePersonInfoByUserAndKey($data_update, $uid, $key){
+        $this->db->where("USERID", $uid);
+        $this->db->where("INFOTITLE", $key);
+        $this->db->update($this->_table, $data_update);
+    }
+
     public function updateMultiInfo($data_update){
-      $uid = $data_update[0]['USERID']; // require minimize 1 row
       $num_rows = $this->countPersonInfo();
       foreach ($data_update as $key => $data) {
         // code...
         if($num_rows > 0) {
           // code...
-          $this->updateInfo($data,$uid);
+          $uid = $data['USERID'];
+          $key = $data['INFOTITLE'];
+          $this->updateInfoById($data,get_person_info_id($uid,$key));
         } else {
           // code...
           $this->insertInfo($data);

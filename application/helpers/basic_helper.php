@@ -64,6 +64,24 @@ if (!function_exists('get_info'))
     }
 }
 
+if (!function_exists('get_info_id'))
+{
+    function get_person_info_id($user, $key)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Minfo');
+
+      // Call a function of the model
+      $result = $CI->Minfo->getInfoByUser($user,'person',$key);
+      return $result['INFOID'];
+    }
+}
+
 if (!function_exists('get_media'))
 {
     function get_media($type, $key = null, $limit = null, $start = 0)

@@ -22,7 +22,7 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" id="add-info" method="post" action="<?php echo base_url('canbo/admin/infomation/update_person_processing'); ?>">
+        <form role="form" id="add-info" method="post">
           <div class="box-body">
             <div class="form-group" id="alert-ajax">
               <!-- Alert by Ajax -->
@@ -146,10 +146,10 @@
   $(document).ready(function(){
     $("form").submit(function(){
       // alert($("#add-info").serialize());
-      // var url="<?php echo base_url('canbo/admin/infomation/update_person_processing'); ?>";
-      // var form="#add-post";
-      // var callback="#alert-ajax";
-      // makeAjaxCall(url, form, callback);
+      var url="<?php echo base_url('canbo/admin/infomation/update_person_processing'); ?>";
+      var form="#add-info";
+      var callback="#alert-ajax";
+      makeAjaxCall(url, form, callback);
     });
   });
 </script>
