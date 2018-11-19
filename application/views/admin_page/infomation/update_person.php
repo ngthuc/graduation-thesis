@@ -18,7 +18,7 @@
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Thêm mới thông tin cá nhân</h3>
+          <h3 class="box-title">Cập nhật thông tin cá nhân</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
@@ -37,44 +37,55 @@
               <label>Vị trí công tác</label>
               <input type="hidden" class="form-control" name="title[]" value="position">
               <input type="hidden" class="form-control" name="key[]" value="position">
-              <input type="text" class="form-control" name="content[]" value="<?php echo get_info(get_id_logged(),'person','position');?>" placeholder="Nhập vị trí công tác">
+              <input type="text" class="form-control" name="content[]" value="<?php echo get_info(get_id_logged(),'person','position');?>" placeholder="Nhập vị trí công tác. Ví dụ: Lecturer at Department of Software Engineering">
             </div>
             <div class="form-group">
-              <label>Ngày sinh</label>
-              <input type="hidden" class="form-control" name="title[]" value="birthday">
-              <input type="hidden" class="form-control" name="key[]" value="INFODATE">
-              <input type="date" class="form-control" name="content[]" value="<?php echo get_info(get_id_logged(),'person','birthday');?>">
-            </div>
-            <div class="form-group">
-              <label>Giới tính</label>
-              <input type="hidden" class="form-control" name="title[]" value="gender">
-              <input type="hidden" class="form-control" name="key[]" value="gender"><br>
-              <input type="radio" name="content[]" value="Male"<?php echo (get_info(get_id_logged(),'person','gender') == 'Male') ? ' checked' : '';?>> Nam <br>
-              <input type="radio" name="content[]" value="Female"<?php echo (get_info(get_id_logged(),'person','gender') == 'Female') ? ' checked' : '';?>> Nữ <br>
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="hidden" class="form-control" name="title[]" value="email">
-              <input type="hidden" class="form-control" name="key[]" value="email">
-              <input type="text" class="form-control" name="content[]" value="<?php echo get_info(get_id_logged(),'person','email');?>" placeholder="Nhập địa chỉ email">
-            </div>
-            <div class="form-group">
-              <label>Điện thoại</label>
-              <input type="hidden" class="form-control" name="title[]" value="phone">
-              <input type="hidden" class="form-control" name="key[]" value="phone">
-              <input type="text" class="form-control" name="content[]" value="<?php echo get_info(get_id_logged(),'person','phone');?>" placeholder="Nhập số điện thoại">
-            </div>
-            <div class="form-group">
-              <label>Địa chỉ</label>
+              <label>Địa chỉ nhà riêng hoặc cơ quan</label>
               <input type="hidden" class="form-control" name="title[]" value="address">
               <input type="hidden" class="form-control" name="key[]" value="address">
               <input type="text" class="form-control" name="content[]" value="<?php echo get_info(get_id_logged(),'person','address');?>" placeholder="Nhập địa chỉ">
             </div>
             <div class="form-group">
-              <label>Website</label>
-              <input type="hidden" class="form-control" name="title[]" value="website">
-              <input type="hidden" class="form-control" name="key[]" value="website">
-              <input type="text" class="form-control" name="content[]" value="<?php echo get_info(get_id_logged(),'person','website');?>" placeholder="Nhập địa chỉ website">
+              <div class="row">
+                <div class="col-sm-4">
+                  <label>Ngày sinh</label>
+                  <input type="hidden" class="form-control" name="title[]" value="birthday">
+                  <input type="hidden" class="form-control" name="key[]" value="INFODATE">
+                  <input type="date" class="form-control" name="content[]" value="<?php echo get_info(get_id_logged(),'person','birthday');?>">
+                </div>
+                <div class="col-sm-4">
+                  <label>Giới tính</label>
+                  <input type="hidden" class="form-control" name="title[]" value="gender">
+                  <input type="hidden" class="form-control" name="key[]" value="gender">
+                  <select class="form-control" name="content[]">
+                    <option value="Male"<?php echo (get_info(get_id_logged(),'person','gender') == 'Male') ? ' selected' : '';?>> Nam </option>
+                    <option value="Female"<?php echo (get_info(get_id_logged(),'person','gender') == 'Female') ? ' selected' : '';?>> Nữ </option>
+                    <option value="Other"<?php echo (get_info(get_id_logged(),'person','gender') == 'Other') ? ' selected' : '';?>> Khác </option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <label>Điện thoại</label>
+                  <input type="hidden" class="form-control" name="title[]" value="phone">
+                  <input type="hidden" class="form-control" name="key[]" value="phone">
+                  <input type="text" class="form-control" name="content[]" value="<?php echo get_info(get_id_logged(),'person','phone');?>" placeholder="Nhập số điện thoại">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>Email</label>
+                  <input type="hidden" class="form-control" name="title[]" value="email">
+                  <input type="hidden" class="form-control" name="key[]" value="email">
+                  <input type="text" class="form-control" name="content[]" value="<?php echo get_info(get_id_logged(),'person','email');?>" placeholder="Nhập địa chỉ email">
+                </div>
+                <div class="col-sm-6">
+                  <label>Website</label>
+                  <input type="hidden" class="form-control" name="title[]" value="website">
+                  <input type="hidden" class="form-control" name="key[]" value="website">
+                  <input type="text" class="form-control" name="content[]" value="<?php echo get_info(get_id_logged(),'person','website');?>" placeholder="Nhập địa chỉ website">
+                </div>
+              </div>
             </div>
             <div class="form-group" id="avatar">
               <label>Hình ảnh</label>

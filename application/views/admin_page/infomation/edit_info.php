@@ -1,12 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Bài viết
-    <small>Chỉnh sửa bài viết</small>
+    Thông tin
+    <small>Chỉnh sửa thông tin</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-    <li class="active">Chỉnh sửa bài viết</li>
+    <li class="active">Chỉnh sửa thông tin</li>
   </ol>
 </section>
 
@@ -18,7 +18,7 @@
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Chỉnh sửa bài viết: <?php echo '<a href="'.base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_vi($content['ARTICLETITLE']).'.html').'" target="_blank">'.$content['ARTICLETITLE'].'</a>'; ?></h3>
+          <h3 class="box-title">Chỉnh sửa thông tin: <?php echo $content['INFOTITLE']; ?></h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->

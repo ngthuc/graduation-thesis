@@ -41,16 +41,6 @@ class Infomation extends CI_Controller {
         $data[$i]['INFOTYPE'] = 'person';
       }
 
-      // $data['USERID'] = $_user_logged['USERID'];
-      // $data['CATEID'] = null;
-      // $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
-      // $data['INFODATE'] = ($this->input->post('date')) ? $this->input->post('date') : null;
-      // $data['INFOTITLE'] = $this->input->post('title');
-      // $data['INFODESCRIPTION'] = null;
-      // $data['INFOCONTENT'] = $this->input->post('content');
-      // $data['INFOPOLICY'] = $this->input->post('policy');
-      // $data['INFOTYPE'] = $this->input->post('type');
-
       $status = $this->Minfo->updateMultiInfo($data);
 			// Thông báo
 			if(!$status) {
@@ -60,9 +50,27 @@ class Infomation extends CI_Controller {
 			}
     }
 
-    public function add_other() {
+    public function add_time() {
       //code
-      $_data['subview'] = 'admin_page/post_type/add_other';
+      $_data['subview'] = 'admin_page/infomation/add_time';
+      $_data['data_subview'] = array(
+        'parent_cate' => $this->Mcategory->returnCategoriesInfo()
+      );
+      $this->load->view('admin_page/main_layout',$_data);
+    }
+
+    public function add_timeline() {
+      //code
+      $_data['subview'] = 'admin_page/infomation/add_timeline';
+      $_data['data_subview'] = array(
+        'parent_cate' => $this->Mcategory->returnCategoriesInfo()
+      );
+      $this->load->view('admin_page/main_layout',$_data);
+    }
+
+    public function add_decentralization() {
+      //code
+      $_data['subview'] = 'admin_page/infomation/add_decentralization';
       $_data['data_subview'] = array(
         'parent_cate' => $this->Mcategory->returnCategoriesInfo()
       );
@@ -75,8 +83,8 @@ class Infomation extends CI_Controller {
       $data['USERID'] = $_user_logged['USERID'];
       $data['CATEID'] = intval($this->input->post('category'));
       $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
-      $data['INFODATE'] = ($this->input->post('date')) ? $this->input->post('date') : null;
-      $data['INFOTITLE'] = ($this->input->post('title')) ? $this->input->post('title') : null;
+      $data['INFODATE'] = ($this->input->post('to_year')) ? ($this->input->post('time').' - '.$this->input->post('to_year')) : $this->input->post('time');
+      $data['INFOTITLE'] = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
       $data['INFODESCRIPTION'] = ($this->input->post('description')) ? $this->input->post('description') : null;
       $data['INFOCONTENT'] = ($this->input->post('content')) ? $this->input->post('content') : null;
       $data['INFOPOLICY'] = $this->input->post('policy');

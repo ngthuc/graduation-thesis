@@ -52,9 +52,19 @@
               <i class="fa fa-circle-o"></i> Thông tin cá nhân
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(4) == 'add_other') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/article/add_other'); ?>">
-              <i class="fa fa-circle-o"></i> Thêm thông tin khác
+          <li<?php echo ($this->uri->segment(4) == 'add_timeline') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/infomation/add_timeline'); ?>">
+              <i class="fa fa-circle-o"></i> Thông tin loại 1
+            </a>
+          </li>
+          <li<?php echo ($this->uri->segment(4) == 'add_time') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/infomation/add_time'); ?>">
+              <i class="fa fa-circle-o"></i> Thông tin loại 2
+            </a>
+          </li>
+          <li<?php echo ($this->uri->segment(4) == 'add_decentralization') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/infomation/add_decentralization'); ?>">
+              <i class="fa fa-circle-o"></i> Thông tin loại 3
             </a>
           </li>
         </ul>
@@ -120,6 +130,11 @@
           <li<?php echo ($this->uri->segment(4) == 'menu') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/themes/menu'); ?>">
               <i class="fa fa-navicon"></i> Thanh điều hướng
+            </a>
+          </li>
+          <li<?php echo ($this->uri->segment(4) == 'list_info') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/themes/menu'); ?>">
+              <i class="fa fa-user"></i> Thông tin hiển thị
             </a>
           </li>
         </ul>

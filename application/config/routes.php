@@ -96,7 +96,9 @@ $route['canbo/admin/category/delete_category'] = 'category/delete_category';
 // Route for Admin: Infomation
 $route['canbo/admin/infomation'] = 'infomation/index';
 $route['canbo/admin/infomation/update_person'] = 'infomation/update_person';
-$route['canbo/admin/infomation/add_other'] = 'infomation/add_other';
+$route['canbo/admin/infomation/add_time'] = 'infomation/add_time';
+$route['canbo/admin/infomation/add_timeline'] = 'infomation/add_timeline';
+$route['canbo/admin/infomation/add_decentralization'] = 'infomation/add_decentralization';
 $route['canbo/admin/infomation/edit_info/(:any)'] = 'infomation/edit_info/$1';
 $route['canbo/admin/infomation/update_person_processing'] = 'infomation/update_person_processing';
 $route['canbo/admin/infomation/add_new_processing'] = 'infomation/add_new_processing';

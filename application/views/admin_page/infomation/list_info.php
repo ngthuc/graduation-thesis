@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Bài viết
+    Thông tin
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
@@ -51,10 +51,14 @@
               echo (isset($info['INFOCONTENT'])) ? '<td>'.$info['INFOCONTENT'].'</td>' : '<td>-</td>';
               echo (isset($name_category['CATENAME'])) ? '<td>'.$name_category['CATENAME'].'</td>' : '<td>-</td>';
               echo '<td>'.$info['INFOTYPE'].'/'.$info['INFOPOLICY'].'</td>
-                <td>
-                  <a href="'.base_url('canbo/admin/infomation/'.$info['INFOID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
-                  <button type="button" value="'.$info['INFOID'].'" class="btn btn-danger ondelete"><b class="fa fa-trash"></b></button>
-                </td>
+                <td>';
+              if($info['INFOTYPE'] == 'person') {
+                echo '<a href="'.base_url('canbo/admin/infomation/update_person').'" class="btn btn-primary"><b class="fa fa-edit"></b></a>';
+              } else {
+                echo '<a href="'.base_url('canbo/admin/infomation/'.$info['INFOID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
+                <button type="button" value="'.$info['INFOID'].'" class="btn btn-danger ondelete"><b class="fa fa-trash"></b></button>';
+              }
+              echo '</td>
               </tr>';
               $stt++;
             }
