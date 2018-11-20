@@ -116,7 +116,7 @@
               // code...
               echo '<li>
                 <span class="handle">'.$i.'</span>
-                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_vi($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
+                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_url($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
               </li>';
               $i++;
             }
@@ -147,7 +147,7 @@
               // code...
               echo '<li>
                 <span class="handle">'.$i.'</span>
-                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_vi($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
+                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_url($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
               </li>';
               $i++;
             }
@@ -185,7 +185,7 @@
               $user = get_user_by_id($author['USERID']);
               echo '<li>
                 <span class="handle">'.$i.'</span>
-                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('user').'/'.convert_vi($author['USERID']))).'"><span class="text">'.$user['USERFULLNAME'].'</span></a>
+                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('user').'/'.convert_url($author['USERID']))).'"><span class="text">'.$user['USERFULLNAME'].'</span></a>
               </li>';
               $i++;
             }
@@ -217,7 +217,7 @@
               $cate = get_category_by_id($category['CATEID']);
               echo '<li>
                 <span class="handle">'.$i.'</span>
-                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('category').'/'.convert_vi($cate['CATENAME']))).'"><span class="text">'.$cate['CATENAME'].'</span></a>
+                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('category').'/'.convert_url($cate['CATENAME']))).'"><span class="text">'.$cate['CATENAME'].'</span></a>
               </li>';
               $i++;
             }

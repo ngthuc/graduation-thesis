@@ -31,7 +31,7 @@
         <hr>
         <?php foreach ($articles as $key => $row): ?>
           <h4>
-            <a href="<?php echo base_url('~'.get_id_logged().'/'.convert_vi($row['ARTICLETITLE']).'.html'); ?>">
+            <a href="<?php echo base_url('~'.get_id_logged().'/'.convert_url($row['ARTICLETITLE']).'.html'); ?>">
               <?php echo $row['ARTICLETITLE']; ?>
             </a>
             <br>
@@ -64,7 +64,7 @@
       </div>
 
       <div class="col-lg-3 content">
-        <h2><a href="'.base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_vi($row['ARTICLETITLE']).'.html').'">'.$row['ARTICLETITLE'].'</a></h2>
+        <h2><a href="'.base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_url($row['ARTICLETITLE']).'.html').'">'.$row['ARTICLETITLE'].'</a></h2>
         <h3>'.$row['ARTICLEDESCRIPTION'].'</h3>
         <hr />
         <p>
@@ -78,7 +78,7 @@
       </div>';
     } else {
       echo '<div class="col-lg-3 content">
-        <h2><a href="'.base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_vi($row['ARTICLETITLE']).'.html').'">'.$row['ARTICLETITLE'].'</a></h2>
+        <h2><a href="'.base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_url($row['ARTICLETITLE']).'.html').'">'.$row['ARTICLETITLE'].'</a></h2>
         <h3>'.$row['ARTICLEDESCRIPTION'].'</h3>
         <hr />
         <p>

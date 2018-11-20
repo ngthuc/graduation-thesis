@@ -42,7 +42,7 @@ class Menu extends CI_Model{
         $list_menu = $this->getList();
         foreach ($list_menu as $key => $value) {
           // code...
-          $string_search = convert_vi($value['MENUNAME']);
+          $string_search = convert_url($value['MENUNAME']);
           if($string_search == $string_menu) {
             return $value['MENUID'];
           }

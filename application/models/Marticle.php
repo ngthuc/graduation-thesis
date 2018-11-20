@@ -137,7 +137,7 @@ class Marticle extends CI_Model{
         $list_post = $this->getLatestList($user);
         foreach ($list_post as $key => $value) {
           // code...
-          $string_search = convert_vi($value['ARTICLETITLE']);
+          $string_search = convert_url($value['ARTICLETITLE']);
           if($string_search == $string_post) {
             return $value['ARTICLEID'];
           }
@@ -148,7 +148,7 @@ class Marticle extends CI_Model{
         $list_post = $this->getLatestList($user);
         foreach ($list_post as $key => $value) {
           // code...
-          $string_search = convert_vi($value['ARTICLETITLE']);
+          $string_search = convert_url($value['ARTICLETITLE']);
           if($string_search == $string_post) {
             return $value['CATEID'];
           }

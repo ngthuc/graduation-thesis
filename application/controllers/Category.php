@@ -10,7 +10,7 @@ class Category extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/category/list_category';
       $_data['data_subview'] = array(
-        'categories' => $this->Mcategory->returnCategories()
+        'categories' => $this->Mcategory->returnCategories(get_id_logged())
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
@@ -26,13 +26,13 @@ class Category extends CI_Controller {
 
     public function add_new_processing() {
       //code
-      $_user_logged = $this->session->userdata('user');
       $_parent = intval($this->input->post('parent_cate'));
-      $data['USERID'] = $_user_logged['USERID'];
+      $data['USERID'] = get_id_logged();
       $data['CAT_CATEID'] = $_parent;
       $data['CATENAME'] = $this->input->post('name_cate');
-      // $data['CATENAME_ENGLISH'] = $this->input->post('eng_name_cate');
       $data['CATELEVEL'] = ($_parent == 0) ? 1 : $this->Mcategory->findNodeLevel($_parent)+1;
+      $data['CATEHREF'] = ($this->input->post('href')) ? $this->input->post('href') : null;
+      $data['CATEPOSITION'] = 1;
       $data['CATEPOLICY'] = $this->input->post('policy');
       $data['CATETYPE'] = $this->input->post('type');
 
@@ -62,8 +62,8 @@ class Category extends CI_Controller {
       $data['USERID'] = $this->input->post('user_id');
       $data['CAT_CATEID'] = ($this->input->post('level_cate') == 1) ? 0 : intval($this->input->post('parent_cate'));
       $data['CATENAME'] = $this->input->post('name_cate');
-      $data['CATENAME_ENGLISH'] = $this->input->post('eng_name_cate');
       $data['CATELEVEL'] = $this->input->post('level_cate');
+      $data['CATEHREF'] = $this->input->post('href');
       $data['CATEPOLICY'] = $this->input->post('policy');
       $data['CATETYPE'] = $this->input->post('type');
 

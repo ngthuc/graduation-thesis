@@ -29,7 +29,7 @@
       <hr>
       <?php foreach ($articles as $key => $row): ?>
         <h4>
-          <a href="<?php echo base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_vi($row['ARTICLETITLE']).'.html'); ?>">
+          <a href="<?php echo base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_url($row['ARTICLETITLE']).'.html'); ?>">
             <?php echo $row['ARTICLETITLE']; ?>
           </a>
           <br>
