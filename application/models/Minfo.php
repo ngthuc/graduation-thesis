@@ -128,12 +128,6 @@ class Minfo extends CI_Model{
         return $this->db->get($this->_table)->num_rows();
     }
 
-    public function getCountPost() {
-        $this->db->select('*');
-        $this->db->where('ARTICLETYPE', 'article');
-        return $this->db->get($this->_table)->num_rows();
-    }
-
     public function getNumRowsLatestPost($order_name = 'ARTICLEID',$order_type = 'DESC',$where = null, $id = null,$limit = null,$start = null) {
         $this->db->select('*');
         if ($where && $id) {

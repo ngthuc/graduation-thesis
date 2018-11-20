@@ -64,7 +64,7 @@ if (!function_exists('get_info'))
     }
 }
 
-if (!function_exists('get_info_id'))
+if (!function_exists('get_person_info_id'))
 {
     function get_person_info_id($user, $key)
     {
@@ -82,9 +82,9 @@ if (!function_exists('get_info_id'))
     }
 }
 
-if (!function_exists('get_media'))
+if (!function_exists('get_system'))
 {
-    function get_media($type, $key = null, $limit = null, $start = 0)
+    function get_system($type, $key = null, $limit = null, $start = 0)
     {
       // Get a reference to the controller object
       //$CI = get_instance();
@@ -92,18 +92,16 @@ if (!function_exists('get_media'))
       $CI = &get_instance();
 
       // You may need to load the model if it hasn't been pre-loaded
-      $CI->load->model('Media');
+      $CI->load->model('Msystem');
 
       // Call a function of the model
-      if(isset($key)) {
-        $value = $CI->Media->getMediaWithTitle($type,$key);
-        return $value['MEDIALINK'];
-      } else if(isset($limit)) {
-        $value = $CI->Media->getMediaByType($type,$limit,$start);
-        return $value;
+      if($type == 'default') {
+        $value = $CI->Msystem->getSystemWithTitle($type,$key);
+        return $value['SYSTEMDATA'];
+      } else if($type == 'domain') {
+        return $CI->Msystem->getSystemByType($type);
       } else {
-        $value = $CI->Media->getMediaByType($type);
-        return $value['MEDIALINK'];
+        return $CI->Msystem->getList();
       }
     }
 }

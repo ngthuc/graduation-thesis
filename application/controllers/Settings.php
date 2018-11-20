@@ -4,7 +4,6 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Settings extends CI_Controller {
     public function __construct(){
       parent::__construct();
-      $this->_theme = get_media('theme','theme');
     }
 
     public function index() {
@@ -12,24 +11,53 @@ class Settings extends CI_Controller {
       $this->load->view('admin_page/main_layout',$data);
     }
 
-    public function update_options() {
+    public function update_default_processing() {
       //code
-      $data['site_name'] = $this->input->post('site_name');
-      $data['short_name'] = $this->input->post('short_name');
-      $data['keywords'] = $this->input->post('keywords');
-      $data['description'] = $this->input->post('description');
-      $data['url'] = $this->input->post('url');
-      $data['version'] = $this->input->post('version');
-      $data['favicon'] = $this->input->post('favicon');
-      $data['theme'] = $this->input->post('theme');
-      $data['limit_per_page'] = $this->input->post('limit_per_page');
-      $data['phone'] = $this->input->post('phone');
-      $data['email'] = $this->input->post('email');
-      $data['address'] = $this->input->post('address');
+      $keys = $this->input->post('key[]');
+      $values = $this->input->post('value[]');
+      for($i = 0; $i < count($keys); $i++) {
+        $data[$i]['SYSTEMTITLE'] = $keys[$i];
+        $data[$i]['SYSTEMDATA'] = $values[$i];
+        $data[$i]['SYSTEMPOLICY'] = 'public';
+        $data[$i]['SYSTEMTYPE'] = 'default';
+      }
 
-      $status = $this->Media->updateMediaOptions($data);
+      $status = $this->Msystem->updateMultiSystem($data);
 			// Thông báo
 			if(!$status) {
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật thành công!"));
+			} else {
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật thất bại!"));
+			}
+    }
+
+    public function domains() {
+      $data['subview'] = 'admin_page/settings/domains';
+      $this->load->view('admin_page/main_layout',$data);
+    }
+
+    public function add_domain() {
+      //code
+      $data['SYSTEMLINK'] = $this->input->post('domain');
+      $data['SYSTEMPOLICY'] = 'protected';
+      $data['SYSTEMTYPE'] = 'domain';
+
+      $status = $this->Msystem->insertSystem($data);
+			// Thông báo
+			if(!$status) {
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật thành công!"));
+			} else {
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật thất bại!"));
+			}
+    }
+
+    public function delete_domain() {
+      //code
+      $id = $this->input->post('delete');
+
+      $status = $this->Msystem->deleteSystem($id);
+			// Thông báo
+			if($status) {
 				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật thành công!"));
 			} else {
 				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật thất bại!"));

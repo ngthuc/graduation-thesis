@@ -116,19 +116,26 @@ $route['canbo/admin/multimedia/delete_picture'] = 'multimedia/delete_picture';
 
 // Route for Settings
 $route['canbo/admin/settings'] = 'settings/index';
-$route['canbo/admin/settings/update_options'] = 'settings/update_options';
+$route['canbo/admin/settings/domains'] = 'settings/domains';
+$route['canbo/admin/settings/add_domain'] = 'settings/add_domain';
+$route['canbo/admin/settings/delete_domain'] = 'settings/delete_domain';
+$route['canbo/admin/settings/update_default_processing'] = 'settings/update_default_processing';
 
 // Route for Themes
 $route['canbo/admin/themes'] = 'themes/index';
-$route['canbo/admin/themes/menu'] = 'themes/menu';
-$route['canbo/admin/themes/add_menu'] = 'themes/add_menu';
+$route['canbo/admin/themes/menu'] = 'nav/index';
+$route['canbo/admin/themes/add_menu'] = 'nav/add_menu';
+$route['canbo/admin/themes/add_menu_processing'] = 'nav/add_menu_processing';
 $route['canbo/admin/themes/update_themes'] = 'themes/update_themes';
-$route['canbo/admin/themes/update_menu'] = 'themes/update_menu';
+$route['canbo/admin/themes/update_menu'] = 'nav/update_menu';
+$route['canbo/admin/themes/edit_menu/(:num)'] = 'nav/edit_menu/$1';
+$route['canbo/admin/themes/edit_menu_processing'] = 'nav/edit_menu_processing';
 $route['canbo/admin/themes/delete_menu'] = 'themes/delete_menu';
 
 // Route for public site
 $route['~(:any)'] = 'profile/user/$1';
-$route['~(:any)/admin'] = 'admin/checkRole/$1';
+$route['~(:any)/(:any)'] = 'profile/category/$1/$2';
+$route['~(:any)/(:any).html'] = 'profile/article/$1/$2';
 
 $route['article'] = 'mp_site/article';
 $route['article/(:num)'] = 'mp_site/article/home/$1';

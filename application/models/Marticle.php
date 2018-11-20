@@ -15,8 +15,9 @@ class Marticle extends CI_Model{
         return $this->db->get($this->_table)->result_array();
     }
 
-    public function getLatestList(){
+    public function getLatestList($user){
         $this->db->select('*');
+        $this->db->where('USERID', $user);
         $this->db->order_by('ARTICLEID', 'DESC');
         return $this->db->get($this->_table)->result_array();
     }
@@ -132,8 +133,8 @@ class Marticle extends CI_Model{
         return $this->db->get($this->_table)->num_rows();
     }
 
-    public function findId($string_post){
-        $list_post = $this->getLatestList();
+    public function findId($user,$string_post){
+        $list_post = $this->getLatestList($user);
         foreach ($list_post as $key => $value) {
           // code...
           $string_search = convert_vi($value['ARTICLETITLE']);
@@ -143,8 +144,8 @@ class Marticle extends CI_Model{
         }
     }
 
-    public function findCategory($string_post){
-        $list_post = $this->getLatestList();
+    public function findCategory($user,$string_post){
+        $list_post = $this->getLatestList($user);
         foreach ($list_post as $key => $value) {
           // code...
           $string_search = convert_vi($value['ARTICLETITLE']);

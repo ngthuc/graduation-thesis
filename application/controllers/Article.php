@@ -4,7 +4,6 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Article extends CI_Controller {
     public function __construct(){
       parent::__construct();
-      $this->_theme = get_media('theme','theme');
     }
 
     public function index() {
@@ -38,9 +37,8 @@ class Article extends CI_Controller {
 
     public function add_new_processing() {
       //code
-      $_user_logged = $this->session->userdata('user');
-      $data['ARTICLEID'] = intval($this->input->post('id'));
-      $data['USERID'] = $_user_logged['USERID'];
+      // $_user_logged = $this->session->userdata('user');
+      $data['USERID'] = get_id_logged();
       $data['CATEID'] = intval($this->input->post('category'));
       $data['ARTICLEIMAGE'] = ($this->input->post('avatar_post') != '') ? $this->input->post('avatar_post') : base_url('public/filemanager/upload/default-image.jpg');
       $data['ARTICLETITLE'] = $this->input->post('title_post');
@@ -48,6 +46,7 @@ class Article extends CI_Controller {
       $data['ARTICLECONTENT'] = $this->input->post('post_content');
       $data['ARTICLECREATIONDATE'] = $this->input->post('timestamp');
       $data['ARTICLECOUNT'] = 0;
+      $data['ARTICLEPOLICY'] = $this->input->post('policy');
       $data['ARTICLETYPE'] = $this->input->post('type');
 
       $status = $this->Marticle->insertArticle($data);
@@ -59,7 +58,7 @@ class Article extends CI_Controller {
 			}
     }
 
-    public function edit_post($id = null) {
+    public function edit_article($id = null) {
       //code
       $_data['subview'] = 'admin_page/post_type/edit_one_post_type';
       $_data['data_subview'] = array(
@@ -69,7 +68,7 @@ class Article extends CI_Controller {
       $this->load->view('admin_page/main_layout',$_data);
     }
 
-    public function edit_post_processing() {
+    public function edit_article_processing() {
       //code
       $ID = intval($this->input->post('post_id'));
       $data['ARTICLEID'] = intval($this->input->post('id'));
@@ -81,6 +80,7 @@ class Article extends CI_Controller {
       $data['ARTICLECONTENT'] = $this->input->post('post_content');
       $data['ARTICLECREATIONDATE'] = $this->input->post('timestamp');
       $data['ARTICLECOUNT'] = $this->input->post('count');
+      $data['ARTICLEPOLICY'] = $this->input->post('policy');
       $data['ARTICLETYPE'] = $this->input->post('type');
 
       $status = $this->Marticle->updateArticle($data,$ID);

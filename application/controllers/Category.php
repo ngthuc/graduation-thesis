@@ -4,7 +4,6 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Category extends CI_Controller {
     public function __construct(){
       parent::__construct();
-      $this->_theme = get_media('theme','theme');
     }
 
     public function index() {

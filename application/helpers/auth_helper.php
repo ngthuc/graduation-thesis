@@ -51,22 +51,25 @@ if (!function_exists('check_domain'))
 {
     function check_domain($email_string)
     {
+      $explode_string = explode('@',$email_string);
+      $email_domain = $explode_string[1];
+
       // Get a reference to the controller object
       //$CI = get_instance();
       // use this below
       $CI = &get_instance();
 
       // You may need to load the model if it hasn't been pre-loaded
-      // $CI->load->model('Musers');
+      $CI->load->model('Msystem');
 
       // Call a function of the model
-      // return $CI->Musers->HasRole($user,$str_role);
-
-      $explode_string = explode('@',$email_string);
-      if($explode_string[1] == 'lapvo3.tk') {
-        return TRUE;
+      $domain_list = $CI->Msystem->getSystemByType('domain');
+      foreach ($domain_list as $key => $value) {
+        // code...
+        $domain[] = $value['SYSTEMLINK'];
       }
-      return FALSE;
+
+      return in_array($email_domain,$domain);
     }
 }
 

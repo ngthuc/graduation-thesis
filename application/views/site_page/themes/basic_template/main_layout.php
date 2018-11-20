@@ -13,12 +13,7 @@
     <?php $this->load->view('site_page/themes/basic_template/components/person_info',$data_subview); ?>
 
     <hr>
-    <div align="right">
-|<a href="#rech">Research</a>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-|<a href="http://cit.ctu.edu.vn/~dtnghi/v4miner">Software</a>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-|<a href="http://cit.ctu.edu.vn/~dtnghi/images.html">Image</a>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-|<a href="http://cit.ctu.edu.vn/~dtnghi/course.html">Course.VN</a>|
-	</div>
+    <?php $this->load->view('site_page/themes/basic_template/components/menu',$data_subview); ?>
     <hr>
 
 	 <!-- education -->

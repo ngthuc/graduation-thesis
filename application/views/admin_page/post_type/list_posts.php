@@ -39,7 +39,7 @@
             $stt = 1;
             foreach ($articles as $key => $post) {
               // code...
-              $name_category = $this->Mcategory->getNameById($post['CATEID']);
+              $name_category = $this->Mcategory->getArticleCateNameById($post['CATEID']);
               $name_author = $this->Musers->getNameById($post['USERID']);
               echo '<tr>
                 <td>'.$stt.'</td>
@@ -49,7 +49,7 @@
                 <td>'.(($post['ARTICLETYPE']=='page') ? 'Trang' : 'Bài viết').'</td>
                 <td>'.$post['ARTICLECOUNT'].'</td>
                 <td>
-                  <a href="'.base_url('admin/article/'.$post['ARTICLEID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
+                  <a href="'.base_url('canbo/admin/article/'.$post['ARTICLEID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
                   <button type="button" value="'.$post['ARTICLEID'].'" class="btn btn-danger ondelete"><b class="fa fa-trash"></b></button>
                 </td>
               </tr>';
@@ -91,7 +91,7 @@
 $(function(){
   $('.ondelete').on('click', function(){
     // alert($(this).attr('value'));
-    var url = "<?php echo base_url('admin/article/delete_post')?>";
+    var url = "<?php echo base_url('canbo/admin/article/delete_post')?>";
     var id = $(this).attr('value');
     var callback = "#alert-ajax";
     load_ajax(url,id,callback);

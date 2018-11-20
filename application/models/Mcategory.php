@@ -38,8 +38,8 @@ class Mcategory extends CI_Model{
         return $this->db->get($this->_table)->row_array();
     }
 
-    public function findId($string_category){
-        $list_category = $this->getList();
+    public function findId($user,$string_category){
+        $list_category = $this->getArticleCateByUserId($user);
         foreach ($list_category as $key => $value) {
           // code...
           $string_search = convert_vi($value['CATENAME']);
@@ -47,6 +47,12 @@ class Mcategory extends CI_Model{
             return $value['CATEID'];
           }
         }
+    }
+
+    public function getArticleCateByUserId($uid){
+        $this->db->where("USERID", $uid);
+        $this->db->where("CATETYPE", 'article');
+        return $this->db->get($this->_table)->result_array();
     }
 
     public function getArticleCateNameById($id){

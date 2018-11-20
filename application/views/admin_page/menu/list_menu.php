@@ -23,29 +23,32 @@
         <!-- form start -->
         <form role="form" id="customize-options" method="post">
           <div class="box-body">
+            <a href="<?=base_url('canbo/admin/themes/add_menu');?>" class="btn btn-primary"> Thêm mới </a>
+            <hr>
             <div class="form-group" id="alert-ajax">
               <!-- Alert by Ajax -->
             </div>
             <table class="table table-bordered table-striped" id="datatables">
               <thead>
-              <tr>
-                <th>Vị trí hiện tại</th>
-                <th>Điều hướng</th>
-                <th>Navigation</th>
-                <th rowspan="2">Cập nhật</th>
-              </tr>
+                <tr>
+                  <th>Vị trí hiện tại</th>
+                  <th>Điều hướng</th>
+                  <th>Đường dẫn</th>
+                  <th>Cập nhật</th>
+                </tr>
               </thead>
               <tbody>
                 <?php
-                  foreach ($cate_menu as $key => $row_menu) {
+                  foreach ($menu as $key => $row_menu) {
                     // code...
                     echo '<tr>
-                      <td>'.$row_menu['CATEPOSITION'].'</td>
-                      <td>'.$row_menu['CATENAME'].'</td>
-                      <td>'.$row_menu['CATENAME_ENGLISH'].'</td>
+                      <td>'.$row_menu['MENUPOSITION'].'</td>
+                      <td>'.$row_menu['MENUNAME'].'</td>
+                      <td>'.$row_menu['MENULINK'].'</td>
                       <td>
-                        <button type="submit" data-id="'.$row_menu['CATEID'].'" data-position="'.(intval($row_menu['CATEPOSITION'])-1).'" class="btn btn-success"><span class="fa fa-arrow-up"></span></button>
-                        <button type="submit" data-id="'.$row_menu['CATEID'].'" data-position="'.(intval($row_menu['CATEPOSITION'])+1).'" class="btn btn-info"><span class="fa fa-arrow-down"></span></button>
+                        <button type="submit" data-id="'.$row_menu['MENUID'].'" data-position="'.(intval($row_menu['MENUPOSITION'])-1).'" class="btn btn-success"><span class="fa fa-arrow-up"></span></button>
+                        <button type="submit" data-id="'.$row_menu['MENUID'].'" data-position="'.(intval($row_menu['MENUPOSITION'])+1).'" class="btn btn-info"><span class="fa fa-arrow-down"></span></button>
+                        <a href="'.base_url('canbo/admin/themes/edit_menu/'.$row_menu['MENUID']).'" class="btn btn-primary"><span class="fa fa-cog"></span></button>
                       </td>
                     </tr>';
                   }
@@ -81,7 +84,7 @@
 
   function loadAjaxChangePosition(id,position){
     $.ajax({
-        url : "<?php echo base_url('admin/settings/update_menu')?>",
+        url : "<?php echo base_url('canbo/admin/themes/update_menu')?>",
         type : "post",
         dateType:"text",
         data : {

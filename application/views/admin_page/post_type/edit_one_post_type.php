@@ -18,7 +18,7 @@
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Chỉnh sửa bài viết: <?php echo '<a href="'.base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_vi($content['ARTICLETITLE']).'.html').'" target="_blank">'.$content['ARTICLETITLE'].'</a>'; ?></h3>
+          <h3 class="box-title">Chỉnh sửa bài viết: <?php echo '<a href="'.base_url('~'.get_id_logged().'/'.convert_vi($content['ARTICLETITLE']).'.html'.'" target="_blank">'.$content['ARTICLETITLE'].'</a>'; ?></h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
@@ -70,6 +70,14 @@
                     <?php
                       echo '<option value="article"'; echo ($content['ARTICLETYPE'] == 'article') ? ' selected' : ''; echo '>Bài viết</option>
                       <option value="page"'; echo ($content['ARTICLETYPE'] == 'page') ? ' selected' : ''; echo '>Trang</option>';
+                    ?>
+                  </select>
+                  <label for="policy">Quyền xem</label>
+                  <select class="form-control select2" style="width: 100%;" name="policy" required>
+                    <?php
+                      echo '<option value="public"'; echo ($content['ARTICLETYPE'] == 'public') ? ' selected' : ''; echo '>Công cộng</option>
+                      <option value="private"'; echo ($content['ARTICLETYPE'] == 'private') ? ' selected' : ''; echo '>Riêng tư</option>
+                      <option value="protected"'; echo ($content['ARTICLETYPE'] == 'protected') ? ' selected' : ''; echo '>Được bảo vệ</option>';
                     ?>
                   </select>
                   <label for="description">Mô tả</label>
@@ -144,8 +152,8 @@
 
   $(document).ready(function(){
     $("form").submit(function(){
-      // alert($("#add-post").serialize());
-      var url="<?php echo base_url('admin/article/edit_post_processing')?>";
+      // alert($("#edit-post").serialize());
+      var url="<?php echo base_url('canbo/admin/article/edit_article_processing')?>";
       var form="#edit-post";
       var callback="#alert-ajax";
       makeAjaxCall(url, form, callback);

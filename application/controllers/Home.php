@@ -25,7 +25,7 @@ class Home extends CI_Controller {
 
     public function auth() {
       // code
-      // var_dump($_POST);
+      // var_dump(check_domain($this->input->post('email')));
       if(isset($_POST['email'])) {
         $email = $this->input->post('email');
         $name = $this->input->post('name');
@@ -131,6 +131,7 @@ class Home extends CI_Controller {
           // var_dump(get_resource($_POST['txt_test']));
           // var_dump(check_email($_POST['txt_test']));
           var_dump(check_status($_POST['txt_test']));
+          // var_dump(check_domain($_POST['txt_test']));
           // var_dump($this->Musers->getNumRowsByEmail($_POST['txt_test']));
         }
       } else var_dump($_SESSION);

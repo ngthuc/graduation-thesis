@@ -74,6 +74,12 @@ class Musers extends CI_Model{
         return $this->db->get($this->_table)->row_array();
     }
 
+    public function getNameById($id){
+        $this->db->select('USERFULLNAME');
+        $this->db->where("USERID", $id);
+        return $this->db->get($this->_table)->row_array();
+    }
+
     public function insertUser($data_insert){
         $this->db->insert($this->_table,$data_insert);
     }

@@ -4,7 +4,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Themes extends CI_Controller {
     public function __construct(){
       parent::__construct();
-      $this->_theme = get_media('theme','theme');
+      $this->_theme = get_system('theme','theme');
     }
 
     public function index() {
@@ -35,28 +35,6 @@ class Themes extends CI_Controller {
       // var_dump($data);
 
       $status = $this->Media->updateMediaOptions($data);
-			// Thông báo
-			if(!$status) {
-				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật thành công!"));
-			} else {
-				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật thất bại!"));
-			}
-    }
-
-    public function menu() {
-      $data['subview'] = 'admin_page/themes/menu';
-      $data['data_subview'] = array(
-        'cate_menu' => $this->Mcategory->getSortByParent(0,'CATEPOSITION','ASC',1)
-      );
-      $this->load->view('admin_page/main_layout',$data);
-    }
-
-    public function update_menu() {
-      //code
-      $id = $this->input->post('id');
-      $data['CATEPOSITION'] = intval($this->input->post('position'));
-
-      $status = $this->Mcategory->updateCate($data,$id);
 			// Thông báo
 			if(!$status) {
 				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật thành công!"));

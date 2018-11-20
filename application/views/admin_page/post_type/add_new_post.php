@@ -31,7 +31,7 @@
               <div class="row">
                 <div class="col-sm-8">
                   <label for="title_post">Tiêu đề bài viết</label>
-                  <input type="hidden" name="id" id="id" value="<?php echo time(); ?>">
+                  <input type="hidden" name="policy" id="policy" value="public">
                   <input type="hidden" name="type" id="type" value="article">
                   <input type="hidden" name="timestamp" id="timestamp" value="<?php echo date('Y-m-d H:m:s'); ?>">
                   <input type="text" class="form-control" name="title_post" id="title_post" placeholder="Nhập tiêu đề bài viết">
@@ -61,7 +61,7 @@
                   <label for="avatar_post">Ảnh thu nhỏ bài viết</label>
                   <div class="row">
                     <div class="col-md-6">
-                      <img id="review" src="<?php echo base_url('media/default-image.jpg'); ?>" style="width: 150px" alt="Ảnh thu nhỏ">
+                      <img id="review" src="<?php echo base_url('spsim_media/default-image.jpg'); ?>" style="width: 150px" alt="Ảnh thu nhỏ">
                     </div>
                     <div class="col-sm-6">
                       <input type="text" class="form-control" name="avatar_post" id="avatar_post" placeholder="Chọn ảnh hoặc nhập url ảnh"/>
@@ -131,7 +131,7 @@
   $(document).ready(function(){
     $("form").submit(function(){
       // alert($("#add-post").serialize());
-      var url="<?php echo base_url('admin/article/add_new_processing')?>";
+      var url="<?php echo base_url('canbo/admin/article/add_new_processing')?>";
       var form="#add-post";
       var callback="#alert-ajax";
       makeAjaxCall(url, form, callback);

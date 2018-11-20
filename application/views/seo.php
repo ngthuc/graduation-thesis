@@ -13,17 +13,17 @@
 <!-- Tite site -->
 
 <!-- Favicon -->
-  <link rel="shortcut icon" href="<?php echo ((get_media('theme','favicon') != NULL) || (get_media('theme','favicon') != '')) ? get_media('theme','favicon') : 'https://ngthuc.github.io/src/public/resources/images/logo/logo-without-name.png'; ?>">
+  <link rel="shortcut icon" href="<?php echo ((get_system('default','favicon') != NULL) || (get_system('default','favicon') != '')) ? get_system('default','favicon') : 'https://ngthuc.github.io/src/public/resources/images/logo/logo-without-name.png'; ?>">
 <!-- Favicon -->
 
 <!-- Search Engine Optimization | SEO -->
-  <meta name="keywords" content="<?php echo ((get_media('theme','keywords') != NULL) || (get_media('theme','keywords') != '')) ? get_media('theme','keywords') : $default_name; ?>">
-  <meta name="description" content="<?php echo ((get_media('theme','description') != NULL) || (get_media('theme','description') != '')) ? get_media('theme','description') : $default_name; ?>">
-  <meta property="og:site_name" content="<?php echo ((get_media('theme','site_name') != NULL) || (get_media('theme','site_name') != '')) ? get_media('theme','site_name') : $default_name; ?>">
+  <meta name="keywords" content="<?php echo ((get_system('default','keywords') != NULL) || (get_system('default','keywords') != '')) ? get_system('default','keywords') : $default_name; ?>">
+  <meta name="description" content="<?php echo ((get_system('default','description') != NULL) || (get_system('default','description') != '')) ? get_system('default','description') : $default_name; ?>">
+  <meta property="og:site_name" content="<?php echo ((get_system('default','site_name') != NULL) || (get_system('default','site_name') != '')) ? get_system('default','site_name') : $default_name; ?>">
   <meta property="og:type" content="website">
   <meta property="og:title" content="<?php echo isset($title) ? $title : $default_name; ?>">
-  <meta property="og:description" content="<?php echo ((get_media('theme','description') != NULL) || (get_media('theme','description') != '')) ? get_media('theme','description') : $default_name; ?>">
-  <meta property="og:url" content="<?php echo ((get_media('theme','url') != NULL) || (get_media('theme','url') != '')) ? get_media('theme','url') : base_url(); ?>">
+  <meta property="og:description" content="<?php echo ((get_system('default','description') != NULL) || (get_system('default','description') != '')) ? get_system('default','description') : $default_name; ?>">
+  <meta property="og:url" content="<?php echo ((get_system('default','url') != NULL) || (get_system('default','url') != '')) ? get_system('default','url') : base_url(); ?>">
 <!-- Search Engine Optimization | SEO -->
 
 <!-- Signature -->

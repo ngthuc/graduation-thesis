@@ -172,6 +172,11 @@
               <i class="fa fa-cog"></i> Các thiết lập cơ bản
             </a>
           </li>
+          <li<?php echo ($this->uri->segment(4) == 'domains') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/settings/domains'); ?>">
+              <i class="fa fa-list-alt"></i> Tên miền được cấp phép
+            </a>
+          </li>
         </ul>
       </li>
     </ul>
