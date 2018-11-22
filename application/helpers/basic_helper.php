@@ -1,36 +1,147 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-if (!function_exists('create_pagination'))
+// if (!function_exists('create_pagination'))
+// {
+//     function create_pagination($base_url,$total_rows,$per_page,$params = null)
+//     {
+//       // Get a reference to the controller object
+//       //$CI = get_instance();
+//       // use this below
+//       $CI = &get_instance();
+//
+//       if(isset($params)) {
+//         $config['base_url'] = $base_url;
+//         $config['total_rows'] = $total_rows;
+//         $config['per_page'] = $per_page;
+//         $config['use_page_numbers'] = TRUE;
+//
+//         foreach ($params as $key => $value) {
+//           $config[$key] = $value;
+//         }
+//       } else {
+//         // default initialize
+//         $config['base_url'] = $base_url;
+//         $config['total_rows'] = $total_rows;
+//         $config['per_page'] = $per_page;
+//         $config["uri_segment"] = 3;
+//         $config['use_page_numbers'] = TRUE;
+//       }
+//
+//       $CI->pagination->initialize($config); // pagination library required
+//
+//       // build paging links
+//       return $CI->pagination->create_links();
+//     }
+// }
+
+if (!function_exists('call_info_level_2'))
 {
-    function create_pagination($base_url,$total_rows,$per_page,$params = null)
+    function call_info_level_2($user,$idparent)
+    {
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Mcategory');
+
+      $list_cate = $CI->Mcategory->getSortByParentForInfo($user,$idparent);
+
+      if(count($list_cate) > 0) {
+        foreach ($list_cate as $key => $cate) {
+          // code...
+          echo '<div class="tb">
+            <span class="year"></span>
+            <ul class="list">
+              <li>
+               <span class="title">'.$cate['CATENAME'].'</span>';
+               call_info($user,$cate['CATEID']);
+              echo '</li>
+            </ul>
+          </div>';
+        }
+      }
+    }
+}
+
+if (!function_exists('call_info'))
+{
+    function call_info($user,$idcate)
+    {
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Minfo');
+
+      $list_info = $CI->Minfo->getByCategory($user,$idcate,null,null,'INFODATE','DESC');
+
+      if(count($list_info) > 0) {
+        foreach ($list_info as $key => $info) {
+          // code...
+          if(($info['INFOTYPE'] == 'education') || ($info['INFOTYPE'] == 'timeline')) {
+            echo '<div class="tb"><span class="year">'.get_date_follow_format($info['INFODATE']).'</span>
+              <ul class="list">
+                <li><span class="title">'.$info['INFOTITLE'].'</span>
+                    <div class="info"><br />'.$info['INFOCONTENT'].'</div>
+                </li>
+              </ul>
+            </div>';
+          } else if(($info['INFOTYPE'] == 'research') || ($info['INFOTYPE'] == 'experience')) {
+            echo '<div class="tb"><span class="year">'.$info['INFODATE'].'</span>
+              <ul class="list">
+                <li><span class="title">'.$info['INFOTITLE'].'</span>
+                    <div class="info">'.$info['INFOCONTENT'].'</div>
+                </li>
+              </ul>
+            </div>';
+          } else if(($info['INFOTYPE'] == 'publication') || ($info['INFOTYPE'] == 'decentralization')) {
+            echo '<div class="info">
+              <br>'.$info['INFOTITLE'];
+              echo ($info['INFOCONTENT']) ? '. '.$info['INFOCONTENT'] : '';
+              echo ($info['INFODATE']) ? ', '.$info['INFODATE'] : '';
+            echo '</div>';
+          }
+        }
+      }
+    }
+}
+
+if (!function_exists('get_date_follow_format'))
+{
+    function get_date_follow_format($date)
     {
       // Get a reference to the controller object
       //$CI = get_instance();
       // use this below
-      $CI = &get_instance();
+      $date = date_create($date);
+      $year_from_date = date_format($date,"Y");
+      $month_from_date = date_format($date,"m");
+      $day_from_date = date_format($date,"d");
 
-      if(isset($params)) {
-        $config['base_url'] = $base_url;
-        $config['total_rows'] = $total_rows;
-        $config['per_page'] = $per_page;
-        $config['use_page_numbers'] = TRUE;
-
-        foreach ($params as $key => $value) {
-          $config[$key] = $value;
-        }
-      } else {
-        // default initialize
-        $config['base_url'] = $base_url;
-        $config['total_rows'] = $total_rows;
-        $config['per_page'] = $per_page;
-        $config["uri_segment"] = 3;
-        $config['use_page_numbers'] = TRUE;
+      if(($month_from_date == '1') || ($month_from_date == '01')) {
+        $month = 'Jan';
+      } else if(($month_from_date == '2') || ($month_from_date == '02')) {
+        $month = 'Feb';
+      } else if(($month_from_date == '3') || ($month_from_date == '03')) {
+        $month = 'Mar';
+      } else if(($month_from_date == '4') || ($month_from_date == '04')) {
+        $month = 'Apr';
+      } else if(($month_from_date == '5') || ($month_from_date == '05')) {
+        $month = 'May';
+      } else if(($month_from_date == '6') || ($month_from_date == '06')) {
+        $month = 'Jun';
+      } else if(($month_from_date == '7') || ($month_from_date == '07')) {
+        $month = 'Jul';
+      } else if(($month_from_date == '8') || ($month_from_date == '08')) {
+        $month = 'Aug';
+      } else if(($month_from_date == '9') || ($month_from_date == '09')) {
+        $month = 'Sep';
+      } else if(($month_from_date == '10') || ($month_from_date == '10')) {
+        $month = 'Oct';
+      } else if(($month_from_date == '11') || ($month_from_date == '11')) {
+        $month = 'Nov';
+      } else if(($month_from_date == '12') || ($month_from_date == '12')) {
+        $month = 'Dec';
       }
-
-      $CI->pagination->initialize($config); // pagination library required
-
-      // build paging links
-      return $CI->pagination->create_links();
+      return $month.' '.$year_from_date;
     }
 }
 
@@ -280,6 +391,17 @@ if (!function_exists('replace_url_media'))
     {
         //Your code here
         $str = str_replace("//spsim_media","/spsim_media",$str);
+        return $str;
+    }
+}
+
+if (!function_exists('replace_url_paragraph'))
+{
+    function replace_url_paragraph($str)
+    {
+        //Your code here
+        $str = ltrim($str, '<p>');
+        $str = rtrim($str, '</p>');
         return $str;
     }
 }

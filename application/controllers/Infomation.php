@@ -19,7 +19,7 @@ class Infomation extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/infomation/update_person';
       $_data['data_subview'] = array(
-        'parent_cate' => $this->Mcategory->returnCategoriesInfo()
+        'parent_cate' => $this->Mcategory->returnCategoriesInfo(get_id_logged())
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
@@ -53,7 +53,7 @@ class Infomation extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/infomation/add_time';
       $_data['data_subview'] = array(
-        'parent_cate' => $this->Mcategory->returnCategoriesInfo()
+        'parent_cate' => $this->Mcategory->returnCategoriesInfo(get_id_logged())
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
@@ -62,7 +62,7 @@ class Infomation extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/infomation/add_timeline';
       $_data['data_subview'] = array(
-        'parent_cate' => $this->Mcategory->returnCategoriesInfo()
+        'parent_cate' => $this->Mcategory->returnCategoriesInfo(get_id_logged())
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
@@ -71,21 +71,20 @@ class Infomation extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/infomation/add_decentralization';
       $_data['data_subview'] = array(
-        'parent_cate' => $this->Mcategory->returnCategoriesInfo()
+        'parent_cate' => $this->Mcategory->returnCategoriesInfo(get_id_logged())
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
 
     public function add_new_processing() {
       //code
-      $_user_logged = $this->session->userdata('user');
-      $data['USERID'] = $_user_logged['USERID'];
+      $data['USERID'] = get_id_logged();
       $data['CATEID'] = intval($this->input->post('category'));
       $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
       $data['INFODATE'] = ($this->input->post('to_year')) ? ($this->input->post('time').' - '.$this->input->post('to_year')) : $this->input->post('time');
       $data['INFOTITLE'] = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
       $data['INFODESCRIPTION'] = ($this->input->post('description')) ? $this->input->post('description') : null;
-      $data['INFOCONTENT'] = ($this->input->post('content')) ? $this->input->post('content') : null;
+      $data['INFOCONTENT'] = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
       $data['INFOPOLICY'] = $this->input->post('policy');
       $data['INFOTYPE'] = $this->input->post('type');
 
@@ -103,7 +102,7 @@ class Infomation extends CI_Controller {
       $_data['subview'] = 'admin_page/post_type/edit_one_post_type';
       $_data['data_subview'] = array(
         'content' => $this->Mposts->getById($id),
-        'categories' => $this->Mcategory->returnCategories()
+        'categories' => $this->Mcategory->returnCategories(get_id_logged())
       );
       $this->load->view('admin_page/main_layout',$_data);
     }

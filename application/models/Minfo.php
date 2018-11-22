@@ -95,10 +95,11 @@ class Minfo extends CI_Model{
         return $this->db->get($this->_table)->result_array();
     }
 
-    public function getByCategory($idcate, $limit=null, $start=null){
+    public function getByCategory($user, $idcate, $limit=null, $start=null,$order_name = null,$order_type = null){
+        $this->db->where("USERID", $user);
         $this->db->where("CATEID", $idcate);
-        $this->db->where('ARTICLETYPE', 'article');
         if(isset($limit)) $this->db->limit($limit,$start);
+        if(isset($order_name)) $this->db->order_by($order_name, $order_type);
         return $this->db->get($this->_table)->result_array();
     }
 

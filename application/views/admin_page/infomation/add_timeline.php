@@ -29,6 +29,7 @@
               <!-- Alert by Ajax -->
             </div>
             <div class="form-group">
+              <input type="hidden" name="policy" value="public">
               <label for="category">Thể loại</label>
               <select class="form-control select2" style="width: 100%;" name="category" required>
                 <?php
@@ -55,10 +56,15 @@
             <div class="form-group">
               <div class="row">
                 <div class="col-md-8">
-                  <label for="post_content">Nội dung thông tin</label>
-                  <textarea name="post_content" id="content" width="100%"></textarea>
+                  <label for="content">Nội dung thông tin</label>
+                  <textarea name="content" id="content" width="100%"></textarea>
                 </div>
                 <div class="col-md-4">
+                  <label for="type">Loại</label>
+                  <select class="form-control" name="type">
+                    <option value="education">Giáo dục/Học vị</option>
+                    <option value="timeline">Sự phân biệt</option>
+                  </select>
                   <label for="avatar_post">Ảnh minh họa (tùy chọn)</label><br>
                   <div class="col-sm-6">
                     <img id="review" src="<?php echo base_url('spsim_media/default-image.jpg'); ?>" style="width: 150px" alt="Ảnh thu nhỏ">
@@ -130,7 +136,7 @@
   $(document).ready(function(){
     $("form").submit(function(){
       // alert($("#add-timeline").serialize());
-      var url="<?php echo base_url('admin/article/add_new_processing')?>";
+      var url="<?php echo base_url('canbo/admin/infomation/add_new_processing');?>";
       var form="#add-timeline";
       var callback="#alert-ajax";
       makeAjaxCall(url, form, callback);
