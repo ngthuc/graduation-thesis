@@ -211,6 +211,9 @@ if (!function_exists('get_system'))
         return $value['SYSTEMDATA'];
       } else if($type == 'domain') {
         return $CI->Msystem->getSystemByType($type);
+      } else if($type == 'theme') {
+        $value = $CI->Msystem->getSystemWithTitle($type,$key);
+        return $value['SYSTEMDATA'];
       } else {
         return $CI->Msystem->getList();
       }

@@ -101,17 +101,17 @@ class Musers extends CI_Model{
       return $this->db->get($this->_table)->num_rows();
     }
 
-    public function CheckRole( $UserInfo )
-    {
-      $Role	=	$this->db->select()
-                ->where('USERID', $UserInfo['USERID'])
-                ->get($this->_table)
-                ->row_array();
-      return (count($Role) > 0) ? $Role['USERROLE'] : false;
-    }
-
-    public function HasRole( $User, $RoleName )
-    {
-      return ($RoleName == $this->CheckRole($User)) ? true : false;
-    }
+    // public function CheckRole( $UserInfo )
+    // {
+    //   $Role	=	$this->db->select()
+    //             ->where('USERID', $UserInfo['USERID'])
+    //             ->get($this->_table)
+    //             ->row_array();
+    //   return (count($Role) > 0) ? $Role['USERROLE'] : false;
+    // }
+    //
+    // public function HasRole( $User, $RoleName )
+    // {
+    //   return ($RoleName == $this->CheckRole($User)) ? true : false;
+    // }
 }

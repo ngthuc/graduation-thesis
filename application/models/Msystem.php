@@ -41,8 +41,20 @@ class Msystem extends CI_Model{
         return $this->db->get($this->_table)->num_rows();
     }
 
+    public function countFollowType($type) {
+        $this->db->select('*');
+        $this->db->where('SYSTEMTYPE', $type);
+        return $this->db->get($this->_table)->num_rows();
+    }
+
     public function getById($id){
         $this->db->where("SYSTEMID", $id);
+        return $this->db->get($this->_table)->row_array();
+    }
+
+    public function getByKey($key){
+        $this->db->select("*");
+        $this->db->where("SYSTEMTITLE", $key);
         return $this->db->get($this->_table)->row_array();
     }
 
@@ -52,10 +64,10 @@ class Msystem extends CI_Model{
         return $this->db->get($this->_table)->row_array();
     }
 
-    public function getSystemByType($type,$limit = 5, $start = 0){
+    public function getSystemByType($type,$limit = null, $start = 0){
         $this->db->select("*");
         $this->db->where("SYSTEMTYPE", $type);
-        $this->db->limit($limit,$start);
+        if(isset($limit)) $this->db->limit($limit,$start);
         return $this->db->get($this->_table)->result_array();
     }
 
@@ -103,6 +115,19 @@ class Msystem extends CI_Model{
           // code...
           $key = $data['SYSTEMTITLE'];
           $this->updateSystemByKey($data,$key);
+        } else {
+          // code...
+          $this->insertSystem($data);
+        }
+      }
+    }
+
+    public function updateMultiTheme($data_update){
+      foreach ($data_update as $key => $data) {
+        // code...
+        if($this->getByKey($data['SYSTEMTITLE'])) {
+          // code...
+          $this->updateSystemByKey($data,$data['SYSTEMTITLE']);
         } else {
           // code...
           $this->insertSystem($data);

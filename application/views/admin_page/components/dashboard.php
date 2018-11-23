@@ -25,28 +25,55 @@
         <div class="icon">
           <i class="ion ion-compose"></i><ion-icon name="paper"></ion-icon>
         </div>
-        <a href="<?php echo base_url('admin/article/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?php echo base_url('canbo/admin/article/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
     <div class="col-lg-3 col-xs-6">
       <!-- small box -->
-      <div class="small-box bg-green">
+      <!-- <div class="small-box bg-green">
         <div class="inner">
-          <h3><?php echo $this->Mcategory->countAll();?><!--sup style="font-size: 20px"></sup--></h3>
+          <h3><?php echo $this->Mcategory->countAll();?><sup style="font-size: 20px"></sup></h3>
 
           <p>Thể loại</p>
         </div>
         <div class="icon">
           <i class="ion-pricetags"></i>
         </div>
-        <a href="<?php echo base_url('admin/category/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?php echo base_url('canbo/admin/category/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+      </div> -->
+      <div class="small-box bg-green">
+        <div class="inner">
+          <h3><?php echo $this->Minfo->countInfo(get_id_logged());?></h3>
+
+          <p>Thông tin</p>
+        </div>
+        <div class="icon">
+          <i class="ion-person"></i>
+        </div>
+        <a href="<?php echo base_url('canbo/admin/infomation/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
     <div class="col-lg-3 col-xs-6">
       <!-- small box -->
       <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3><?php echo $this->Minfo->countPersonInfo(get_id_logged(),'publication');?></h3>
+
+          <p>Công bố</p>
+        </div>
+        <div class="icon">
+          <i class="ion-clipboard"></i>
+        </div>
+        <a href="<?php echo base_url('canbo/admin/infomation/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <?php if(has_role(get_role_logged(),'admin')): ?>
+      <div class="small-box bg-red">
         <div class="inner">
           <h3><?php echo $this->Musers->countAll();?></h3>
 
@@ -55,23 +82,22 @@
         <div class="icon">
           <i class="ion-person-stalker"></i>
         </div>
-        <a href="<?php echo base_url('admin/accounts/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?php echo base_url('canbo/admin/accounts/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
       </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-xs-6">
-      <!-- small box -->
+      <?php endif; ?>
+      <?php if(has_role(get_role_logged(),'user')): ?>
       <div class="small-box bg-red">
         <div class="inner">
-          <h3><?php echo ($this->Marticle->getCountView() > 0) ? $this->Marticle->getCountView() : 0;?></h3>
+          <h3><?php echo $this->Minfo->countPersonInfo(get_id_logged(),'research');?></h3>
 
-          <p>Lượt xem</p>
+          <p>Nghiên cứu</p>
         </div>
         <div class="icon">
-          <i class="ion ion-eye"></i>
+          <i class="ion-briefcase"></i>
         </div>
-        <a href="<?php echo base_url('admin/article/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?php echo base_url('canbo/admin/infomation/')?>" class="small-box-footer">Xem chi tiết <i class="fa fa-arrow-circle-right"></i></a>
       </div>
+      <?php endif; ?>
     </div>
     <!-- ./col -->
   </div>
@@ -85,11 +111,11 @@
         <div class="box-header">
           <i class="fa fa-comments-o"></i>
 
-          <h3 class="box-title">Giao diện đang sử dụng: <b><?php //echo get_media('theme','theme');?></b></h3>
+          <h3 class="box-title">Giao diện đang sử dụng: <b><?php echo get_system('theme','theme');?></b></h3>
 
           <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
             <div class="btn-group" data-toggle="btn-toggle">
-              <a type="button" href="<?php echo base_url('admin/settings/themes/');?>" class="btn btn-info">
+              <a type="button" href="<?php echo base_url('canbo/admin/settings/themes/');?>" class="btn btn-info">
                 <i class="fa fa-edit"></i> Thay đổi
               </a>
             </div>
@@ -116,7 +142,7 @@
               // code...
               echo '<li>
                 <span class="handle">'.$i.'</span>
-                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_url($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
+                <a href="'.(base_url('~'.get_id_logged().'/'.convert_url($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
               </li>';
               $i++;
             }
@@ -125,7 +151,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix no-border">
-          <a type="button" href="<?php echo base_url('admin/article/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
+          <a type="button" href="<?php echo base_url('canbo/admin/article/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
         </div>
       </div>
 
@@ -147,7 +173,7 @@
               // code...
               echo '<li>
                 <span class="handle">'.$i.'</span>
-                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_url($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
+                <a href="'.(base_url('~'.get_id_logged().'/'.convert_url($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
               </li>';
               $i++;
             }
@@ -156,7 +182,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix no-border">
-          <a type="button" href="<?php echo base_url('admin/article/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
+          <a type="button" href="<?php echo base_url('canbo/admin/article/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
         </div>
       </div>
       <!-- /.box -->
@@ -185,7 +211,7 @@
               $user = get_user_by_id($author['USERID']);
               echo '<li>
                 <span class="handle">'.$i.'</span>
-                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('user').'/'.convert_url($author['USERID']))).'"><span class="text">'.$user['USERFULLNAME'].'</span></a>
+                <a href="'.(base_url('~'.get_id_logged().'/'.convert_url($author['USERID']))).'"><span class="text">'.$user['USERFULLNAME'].'</span></a>
               </li>';
               $i++;
             }
@@ -194,7 +220,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix no-border">
-          <a type="button" href="<?php echo base_url('admin/article/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
+          <a type="button" href="<?php echo base_url('canbo/admin/article/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
         </div>
       </div>
 
@@ -217,7 +243,7 @@
               $cate = get_category_by_id($category['CATEID']);
               echo '<li>
                 <span class="handle">'.$i.'</span>
-                <a href="'.(base_url($this->lang->line('article').'/'.$this->lang->line('category').'/'.convert_url($cate['CATENAME']))).'"><span class="text">'.$cate['CATENAME'].'</span></a>
+                <a href="'.(base_url('~'.get_id_logged().'/'.convert_url($cate['CATENAME']))).'"><span class="text">'.$cate['CATENAME'].'</span></a>
               </li>';
               $i++;
             }
@@ -226,7 +252,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix no-border">
-          <a type="button" href="<?php echo base_url('admin/category/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
+          <a type="button" href="<?php echo base_url('canbo/admin/category/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
         </div>
       </div>
       <!-- /.box -->

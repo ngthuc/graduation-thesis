@@ -2,18 +2,9 @@
 
 if (!function_exists('has_role'))
 {
-    function has_role($user,$str_role)
+    function has_role($user_role,$role_require)
     {
-      // Get a reference to the controller object
-      //$CI = get_instance();
-      // use this below
-      $CI = &get_instance();
-
-      // You may need to load the model if it hasn't been pre-loaded
-      $CI->load->model('Musers');
-
-      // Call a function of the model
-      return $CI->Musers->HasRole($user,$str_role);
+      return ($user_role == $role_require) ? TRUE : FALSE;
     }
 }
 

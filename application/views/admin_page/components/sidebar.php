@@ -139,6 +139,7 @@
           </li>
         </ul>
       </li>
+      <?php if(has_role(get_role_logged(),'admin')): ?>
       <li class="<?php echo ($this->uri->segment(3) == 'accounts') ? 'active ' : ''; ?>treeview">
         <a href="#">
           <i class="fa fa-users"></i> <span>Quản lý tài khoản</span>
@@ -147,18 +148,20 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li<?php echo ($this->uri->segment(4) == '') ? ' class="active"' : ''; ?>>
+          <li <?php echo ($this->uri->segment(4) == '') ? 'class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/accounts/'); ?>">
               <i class="fa fa-users"></i> Danh sách tài khoản
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(4) == 'add_new') ? ' class="active"' : ''; ?>>
+          <li <?php echo ($this->uri->segment(4) == 'add_new') ? 'class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/accounts/add_new'); ?>">
               <i class="fa fa-user-plus"></i> Thêm tài khoản
             </a>
           </li>
         </ul>
       </li>
+      <?php endif; ?>
+      <?php if(has_role(get_role_logged(),'admin')): ?>
       <li class="<?php echo ($this->uri->segment(3) == 'settings') ? 'active ' : ''; ?>treeview">
         <a href="#">
           <i class="fa fa-cogs"></i> <span>Quản lý chung</span>
@@ -167,18 +170,41 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li<?php echo ($this->uri->segment(4) == '') ? ' class="active"' : ''; ?>>
+          <li <?php echo ($this->uri->segment(4) == '') ? 'class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/settings'); ?>">
               <i class="fa fa-cog"></i> Các thiết lập cơ bản
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(4) == 'domains') ? ' class="active"' : ''; ?>>
+          <li <?php echo ($this->uri->segment(4) == 'domains') ? 'class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/settings/domains'); ?>">
               <i class="fa fa-list-alt"></i> Tên miền được cấp phép
             </a>
           </li>
         </ul>
       </li>
+      <?php endif; ?>
+      <?php if(has_role(get_role_logged(),'admin')): ?>
+      <li class="<?php echo ($this->uri->segment(3) == 'analytics') ? 'active ' : ''; ?>treeview">
+        <a href="#">
+          <i class="fa fa-line-chart"></i> <span>Thống kê</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li <?php echo ($this->uri->segment(4) == '') ? 'class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/analytics'); ?>">
+              <i class="fa fa-bar-chart"></i> Các thống kê cơ bản
+            </a>
+          </li>
+          <li <?php echo ($this->uri->segment(4) == 'export') ? 'class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/analytics/export'); ?>">
+              <i class="fa fa-cloud-download"></i> Xuất báo cáo Excel
+            </a>
+          </li>
+        </ul>
+      </li>
+      <?php endif; ?>
     </ul>
   </section>
   <!-- /.sidebar -->

@@ -15,10 +15,10 @@ class Minfo extends CI_Model{
         return $this->db->get($this->_table)->result_array();
     }
 
-    public function getInfoByUser($user,$type,$title=null){
+    public function getInfoByUser($user,$type=null,$title=null){
         $this->db->select('*');
         $this->db->where('USERID', $user);
-        $this->db->where('INFOTYPE', $type);
+        if(isset($title)) $this->db->where('INFOTYPE', $type);
         if(isset($title)) {
             $this->db->where('INFOTITLE', $title);
             return $this->db->get($this->_table)->row_array();
@@ -77,8 +77,8 @@ class Minfo extends CI_Model{
 
     public function getFiveMostView(){
         $this->db->select('*');
-        $this->db->where('ARTICLETYPE', 'article');
-        $this->db->order_by('ARTICLECOUNT', 'DESC');
+        $this->db->where('INFOTYPE', 'article');
+        $this->db->order_by('INFOCOUNT', 'DESC');
         $this->db->limit(5,0);
         return $this->db->get($this->_table)->result_array();
     }
@@ -90,7 +90,7 @@ class Minfo extends CI_Model{
 
     public function getByAuthor($user, $limit=null, $start=null){
         $this->db->where("USERID", $user);
-        $this->db->where('ARTICLETYPE', 'article');
+        $this->db->where('INFOTYPE', 'article');
         if(isset($limit)) $this->db->limit($limit,$start);
         return $this->db->get($this->_table)->result_array();
     }
@@ -123,18 +123,25 @@ class Minfo extends CI_Model{
         return $this->db->count_all($this->_table);
     }
 
-    public function countPersonInfo() {
+    public function countInfo($user) {
         $this->db->select('*');
-        $this->db->where('INFOTYPE', 'person');
+        $this->db->where("USERID", $user);
         return $this->db->get($this->_table)->num_rows();
     }
 
-    public function getNumRowsLatestPost($order_name = 'ARTICLEID',$order_type = 'DESC',$where = null, $id = null,$limit = null,$start = null) {
+    public function countPersonInfo($user,$type='person') {
+        $this->db->select('*');
+        $this->db->where("USERID", $user);
+        $this->db->where('INFOTYPE', $type);
+        return $this->db->get($this->_table)->num_rows();
+    }
+
+    public function getNumRowsLatestPost($order_name = 'INFOID',$order_type = 'DESC',$where = null, $id = null,$limit = null,$start = null) {
         $this->db->select('*');
         if ($where && $id) {
             $this->db->where($where, $id);
         }
-        $this->db->where('ARTICLETYPE', 'article');
+        $this->db->where('INFOTYPE', 'article');
         $this->db->order_by($order_name, $order_type);
         if(isset($limit)) $this->db->limit($limit,$start);
         return $this->db->get($this->_table)->num_rows();
@@ -142,7 +149,7 @@ class Minfo extends CI_Model{
 
     public function getNumRowsByAuthor($user, $limit = null,$start = null){
         $this->db->where("USERID", $user);
-        $this->db->where('ARTICLETYPE', 'article');
+        $this->db->where('INFOTYPE', 'article');
         if(isset($limit)) $this->db->limit($limit,$start);
         return $this->db->get($this->_table)->num_rows();
     }
@@ -192,7 +199,7 @@ class Minfo extends CI_Model{
     }
 
     public function updateMultiInfo($data_update){
-      $num_rows = $this->countPersonInfo();
+      $num_rows = $this->countPersonInfo($data[0]['USERID']); // minimum 1 row
       foreach ($data_update as $key => $data) {
         // code...
         if($num_rows > 0) {

@@ -19,7 +19,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <!-- <form id="change-theme" method="post" action="<?php echo base_url('admin/settings/update_theme')?>"> -->
+          <!-- <form id="change-theme" method="post" action="<?php echo base_url('canbo/admin/themes/update_themes');?>"> -->
           <form id="change-theme" method="post">
             <div id="alert-ajax">
               <!-- Alert by Ajax -->
@@ -36,31 +36,30 @@
               <tbody>
               <?php
               $stt = 1;
-              $template = 'public/themes/';
               foreach ($themes_info as $key => $info) {
                 // code...
                 echo '<tr>
                   <td>'.$stt.'</td>
-                  <td>'.$info['themes_dir'].'</td>
+                  <td>'.$info['SYSTEMTITLE'].'</td>
                   <td>
-                    <a href="#imageReview" class="openImageDialog" data-toggle="modal" data-picture="'.base_url($template.$info['themes_screenshot']).'">
-                      <img src="'.base_url($template.$info['themes_screenshot']).'" width="200px" />
+                    <a href="#imageReview" class="openImageDialog" data-toggle="modal" data-picture="'.base_url($info['SYSTEMDATA']).'">
+                      <img src="'.base_url($info['SYSTEMDATA']).'" width="200px" />
                     </a>
                   </td>
                   <td>
-                    <button class="onchange btn btn-primary';
-                    // if(get_media('theme','theme') == $info['themes_dir']) {
-                    //   echo 'btn-default';
-                    // } else {
-                    //   echo 'btn-primary';
-                    // }
-                    echo '" name="theme" type="submit" value="'.$info['themes_dir'].'"><b class="fa fa-check-square-o"></b> ';
-                    // if(get_media('theme','theme') == $info['themes_dir']) {
-                    //   echo 'Đang k';
-                    // } else {
-                    //   echo 'K';
-                    // }
-                    echo 'Đang kích hoạt</button>
+                    <button class="onchange btn ';
+                    if(get_system('theme','theme') == $info['SYSTEMTITLE']) {
+                      echo 'btn-primary';
+                    } else {
+                      echo 'btn-default';
+                    }
+                    echo '" name="theme" type="submit" value="'.$info['SYSTEMTITLE'].'"><b class="fa fa-check-square-o"></b> ';
+                    if(get_system('theme','theme') == $info['SYSTEMTITLE']) {
+                      echo 'Đang kích hoạt</button>';
+                    } else {
+                      echo 'Kích hoạt</button>';
+                    }
+                    echo '
                   </td>
                 </tr>';
                 $stt++;
@@ -130,7 +129,7 @@
   $(function(){
     $('.onchange').on('click', function(){
       // alert($(this).attr('value'));
-      var url = "<?php echo base_url('admin/settings/update_theme')?>";
+      var url = "<?php echo base_url('canbo/admin/themes/update_themes');?>";
       var theme = $(this).attr('value');
       var callback = "#alert-ajax";
       // alert(url + ' - ' + theme + ' - ' + callback);
