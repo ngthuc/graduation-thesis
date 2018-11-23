@@ -91,23 +91,3 @@
     </div>
   </nav>
 </header>
-
-<script type="text/javascript">
-// Logout
-function confirmLogout() {
-  if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
-    // $('#logoutBtn').on('click', function() {
-    $.ajax({
-        type: "post",
-        url: "<?php echo base_url('canbo/logout')?>",
-        cache: false,
-        data:{},
-        success: function(){
-          // location.reload();
-          window.location.replace("<?=base_url('canbo/destroy_ssid'); ?>");
-        }
-    });
-    // });
-  }
-}
-</script>
