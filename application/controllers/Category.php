@@ -19,7 +19,7 @@ class Category extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/category/add_new_category';
       $_data['data_subview'] = array(
-        'categories' => $this->Mcategory->returnCategories()
+        'categories' => $this->Mcategory->returnCategories(get_id_logged())
       );
       $this->load->view('admin_page/main_layout',$_data);
     }

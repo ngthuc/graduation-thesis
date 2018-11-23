@@ -7,8 +7,9 @@ class Minfo extends CI_Model{
         parent::__construct();
     }
 
-    public function getInfo($where = null, $id = null){
+    public function getInfo($user,$where = null, $id = null){
         $this->db->select('*');
+        $this->db->where('USERID', $user);
         if ($where && $id) {
             $this->db->where($where, $id);
         }

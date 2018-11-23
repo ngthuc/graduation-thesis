@@ -10,7 +10,7 @@ class Infomation extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/infomation/list_info';
       $_data['data_subview'] = array(
-        'infomations' => $this->Minfo->getInfo()
+        'infomations' => $this->Minfo->getInfo(get_id_logged())
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
