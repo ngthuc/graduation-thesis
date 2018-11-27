@@ -22,14 +22,19 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li<?php echo ($this->uri->segment(4) == '') ? ' class="active"' : ''; ?>>
+          <li <?php echo ($this->uri->segment(4) == '') ? 'class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/category/'); ?>">
               <i class="fa fa-circle-o"></i> Danh sách thể loại
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(4) == 'add_new') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/category/add_new'); ?>">
-              <i class="fa fa-circle-o"></i> Thêm thể loại
+          <li <?php echo ($this->uri->segment(4) == 'add_new_info') ? 'class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/category/add_new_info'); ?>">
+              <i class="fa fa-circle-o"></i> Thêm thể loại thông tin
+            </a>
+          </li>
+          <li <?php echo ($this->uri->segment(4) == 'add_new_article') ? 'class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/category/add_new_article'); ?>">
+              <i class="fa fa-circle-o"></i> Thêm thể loại bài viết
             </a>
           </li>
         </ul>
@@ -52,7 +57,12 @@
               <i class="fa fa-circle-o"></i> Thông tin cá nhân
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(4) == 'add_timeline') ? ' class="active"' : ''; ?>>
+          <li<?php echo ($this->uri->segment(4) == 'add_info') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/infomation/add_info'); ?>">
+              <i class="fa fa-circle-o"></i> Thêm thông tin
+            </a>
+          </li>
+          <!-- <li<?php echo ($this->uri->segment(4) == 'add_timeline') ? ' class="active"' : ''; ?>>
             <a href="<?php echo base_url('canbo/admin/infomation/add_timeline'); ?>">
               <i class="fa fa-circle-o"></i> Thông tin loại 1
             </a>
@@ -66,7 +76,7 @@
             <a href="<?php echo base_url('canbo/admin/infomation/add_decentralization'); ?>">
               <i class="fa fa-circle-o"></i> Thông tin loại 3
             </a>
-          </li>
+          </li> -->
         </ul>
       </li>
       <li class="<?php echo ($this->uri->segment(3) == 'article') ? 'active ' : ''; ?>treeview">

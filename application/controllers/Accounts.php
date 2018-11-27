@@ -18,10 +18,6 @@ class Accounts extends CI_Controller {
     public function add_new() {
       //code
       $_data['subview'] = 'admin_page/accounts/add_new_account';
-      $_data['data_subview'] = array(
-        'categories' => $this->Mcategory->returnCategories()
-        // 'parent_cate' => $this->Mcategory->getRecursive()
-      );
       $this->load->view('admin_page/main_layout',$_data);
     }
 
@@ -82,9 +78,9 @@ class Accounts extends CI_Controller {
   			} else {
   				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Xóa tài khoản thất bại!"));
   			}
-        redirect(base_url(), 'refresh');
+        redirect(base_url('canbo/admin/accounts'), 'refresh');
       } else {
-        redirect(base_url(), 'refresh');
+        redirect(base_url('canbo/admin/accounts'), 'refresh');
       }
     }
 }

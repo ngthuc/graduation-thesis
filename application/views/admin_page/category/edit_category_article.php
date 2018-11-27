@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
               <label for="name_cate">Tên thể loại</label>
-              <input type="hidden" name="cate_id" id="cate_id" value="<?php echo $category['CATEID']; ?>">
+              <input type="hidden" name="type" id="type" value="article">
               <input type="hidden" name="id" id="id" value="<?php echo $category['CATEID']; ?>">
               <input type="hidden" name="user_id" id="user_id" value="<?php echo $category['USERID']; ?>">
               <input type="hidden" name="level_cate" id="level_cate" value="<?php echo $category['CATELEVEL']; ?>">
@@ -66,12 +66,7 @@
             <div class="form-group">
               <label for="policy">Quyền xem</label><br>
               <input type="radio" name="policy" value="public"<?php echo ($category['CATEPOLICY']=='public') ? ' checked' : ''; ?>> Công cộng <br>
-              <input type="radio" name="policy" value="only_me"<?php echo ($category['CATEPOLICY']=='only_me') ? ' checked' : ''; ?>> Chỉ mình tôi <br>
-            </div>
-            <div class="form-group">
-              <label for="type">Kiểu thể loại</label><br>
-              <input type="radio" name="type" value="info"<?php echo ($category['CATETYPE']=='info') ? ' checked' : ''; ?>> Thông tin <br>
-              <input type="radio" name="type" value="article"<?php echo ($category['CATETYPE']=='article') ? ' checked' : ''; ?>> Bài viết <br>
+              <!-- <input type="radio" name="policy" value="private"<?php echo ($category['CATEPOLICY']=='private') ? ' checked' : ''; ?>> Riêng tư <br> -->
             </div>
           </div>
           <!-- /.box-body -->

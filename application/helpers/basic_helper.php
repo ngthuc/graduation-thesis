@@ -43,7 +43,7 @@ if (!function_exists('call_info_level_2'))
       // You may need to load the model if it hasn't been pre-loaded
       $CI->load->model('Mcategory');
 
-      $list_cate = $CI->Mcategory->getSortByParentForInfo($user,$idparent);
+      $list_cate = $CI->Mcategory->getSortByParentForType($user,$idparent,'info');
 
       if(count($list_cate) > 0) {
         foreach ($list_cate as $key => $cate) {
@@ -74,9 +74,11 @@ if (!function_exists('call_info'))
       $list_info = $CI->Minfo->getByCategory($user,$idcate,null,null,'INFODATE','DESC');
 
       if(count($list_info) > 0) {
+        $flag = 0;
         foreach ($list_info as $key => $info) {
           // code...
-          if(($info['INFOTYPE'] == 'education') || ($info['INFOTYPE'] == 'timeline')) {
+          $type = $info['INFOTYPE'];
+          if(($type == 'education') || ($type == 'distinction')) {
             echo '<div class="tb"><span class="year">'.get_date_follow_format($info['INFODATE']).'</span>
               <ul class="list">
                 <li><span class="title">'.$info['INFOTITLE'].'</span>
@@ -84,7 +86,7 @@ if (!function_exists('call_info'))
                 </li>
               </ul>
             </div>';
-          } else if(($info['INFOTYPE'] == 'research') || ($info['INFOTYPE'] == 'experience')) {
+          } else if(($type == 'research') || ($type == 'experience')) {
             echo '<div class="tb"><span class="year">'.$info['INFODATE'].'</span>
               <ul class="list">
                 <li><span class="title">'.$info['INFOTITLE'].'</span>
@@ -92,12 +94,44 @@ if (!function_exists('call_info'))
                 </li>
               </ul>
             </div>';
-          } else if(($info['INFOTYPE'] == 'publication') || ($info['INFOTYPE'] == 'decentralization')) {
-            echo '<div class="info">
-              <br>'.$info['INFOTITLE'];
+          } else if($type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis' || $type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor') {
+            if($flag <= 0) {
+              $flag = $CI->Minfo->countInfoByType($user,$type);
+              echo '<div class="tb"><span class="year"></span>
+                <ul class="list">
+                  <li><span class="title">';
+                  if($type=='journal') echo 'Journal, book chapter';
+                  if($type=='edited') echo 'Edited book';
+                  if($type=='conference') echo 'Conference, workshop';
+                  if($type=='report') echo 'Technical report';
+                  if($type=='thesis') echo 'Thesis';
+                  if($type=='workshop') echo 'Workshop Organization';
+                  if($type=='reviewer') echo 'Program committee member, reviewer';
+                  if($type=='seminars') echo 'Invited seminars';
+                  if($type=='doctor') echo 'Ph.D. Defense Committee';
+              echo '</span>
+                    <div class="info">';
+            }
+                /*
+                  lần duyệt flag = 0 => in tiêu đề;
+                  lần duyệt flag > 0 => không làm gì cả;
+                */
+            // phần nội dung
+            echo '<br>'.$info['INFOTITLE'];
               echo ($info['INFOCONTENT']) ? '. '.$info['INFOCONTENT'] : '';
               echo ($info['INFODATE']) ? ', '.$info['INFODATE'] : '';
-            echo '</div>';
+              echo '<br>';
+            // hết phần nội dung
+            /*
+              lần duyệt, flag = 1 => in kết thúc;
+            */
+            if($flag == 1) {
+              echo '</div>
+                  </li>
+                </ul>
+              </div>';
+            }
+            $flag--;
           }
         }
       }
@@ -106,7 +140,7 @@ if (!function_exists('call_info'))
 
 if (!function_exists('get_date_follow_format'))
 {
-    function get_date_follow_format($date)
+    function get_date_follow_format($date, $format='std')
     {
       // Get a reference to the controller object
       //$CI = get_instance();
@@ -141,7 +175,24 @@ if (!function_exists('get_date_follow_format'))
       } else if(($month_from_date == '12') || ($month_from_date == '12')) {
         $month = 'Dec';
       }
-      return $month.' '.$year_from_date;
+      if($format=='std') {
+        return $month.' '.$year_from_date;
+      } else if($format=='year') {
+        return $year_from_date;
+      } else if($format=='month') {
+        return $month_from_date;
+      } else if($format=='day') {
+        return $day_from_date;
+      }
+    }
+}
+
+if (!function_exists('get_date_data'))
+{
+    function get_date_data($data,$position=0)
+    {
+      $data = explode(' - ',$data);
+      return $data[$position];
     }
 }
 

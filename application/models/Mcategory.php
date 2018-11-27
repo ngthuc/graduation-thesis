@@ -89,10 +89,10 @@ class Mcategory extends CI_Model{
         return $this->db->get($this->_table)->result_array();
     }
 
-    public function getSortByParentForInfo($user,$idparent,$where=null,$type_sort=null){
+    public function getSortByParentForType($user,$idparent,$type=null,$where=null,$type_sort=null){
         $this->db->where("USERID", $user);
         $this->db->where("CAT_CATEID", $idparent);
-        $this->db->where("CATETYPE", 'info');
+        if($type) $this->db->where("CATETYPE", $type);
         if($where && $type_sort) $this->db->order_by($where,$type_sort);
         return $this->db->get($this->_table)->result_array();
     }
@@ -151,81 +151,25 @@ class Mcategory extends CI_Model{
         }
     }
 
-    public function returnCategories($user,$type = 'arr') {
-        $query = $this->getSortByParent($user,0,'CATEID','ASC');
-        if (count($query) > 0) {
-          if($type == 'menu') {
-            // Hiển thị dữ liệu từ database
-            foreach ($query as $key => $node) {
-              // code...
-              // Trả lại tất cả menu cha
-              if($this->hasChild($node['CATEID'])) {
-                echo '<li>
-                <a href="'.base_url('article/category/'.$node['CATEID']).'" class="dropdown-toggle" data-toggle="dropdown">'.$node['CATENAME'].' <b class="caret"></b></a>';
-              } else {
-                  echo '<li><a href="'.base_url('article/category/'.$node['CATEID']).'">' . $node['CATENAME'] . '</a>';
-              }
-              $this->getSubmenu($user,$node['CATEID'],'menu'); // Nếu có menu con thì sẽ được hiển thị
-              echo '</li>';
-            }
-          } else {
-            foreach ($query as $key => $node) {
-              // code...
-              array_push($this->_arr,$query[$key]); // Trả lại tất cả menu cha
-              $this->getSubmenu($user,$node['CATEID']); // Nếu có menu con thì sẽ được hiển thị
-            }
-          }
-        }
-        if($type == 'arr') return $this->_arr;
-    }
-
-    public function getSubmenu($user,$parent_id, $type = 'arr') {
-    	$query = $this->getByParent($user,$parent_id);
-    	if (count($query) > 0) {
-        if($type == 'menu') {
-          echo '<ul class="dropdown-menu multi-level">';
-          foreach ($query as $key => $node) {
-            // code...
-            if($this->hasChild($user,$node['CATEID'])) {
-                echo '<li class="dropdown-submenu">
-                  <a href="'.base_url('article/category/'.$node['CATEID']).'">' . $node['CATENAME'] . '</a>';
-            } else {
-                echo '<li><a href="'.base_url('article/category/'.$node['CATEID']).'">' . $node['CATENAME'] . '</a>';
-            }
-      			$this->getSubmenu($user,$node['CATEID'],'menu');
-      			echo '</li>';
-          }
-      		echo '</ul>';
-        } else {
-          foreach ($query as $key => $node) {
-            // code...
-            array_push($this->_arr,$query[$key]);
-      			$this->getSubmenu($user,$node['CATEID']);
-          }
-        }
-    	}
-      if($type == 'arr') return $this->_arr;
-    }
-
-    public function returnCategoriesInfo($user) {
-        $query = $this->getSortByParentForInfo($user,0,'CATEID','ASC');
+    public function returnCategories($user,$type='info') {
+        $query = $this->getSortByParentForType($user,0,$type,'CATEID','ASC');
         if (count($query) > 0) {
           foreach ($query as $key => $node) {
             // code...
             array_push($this->_arr,$query[$key]); // Trả lại tất cả menu cha
-            $this->getSubmenuInfo($user,$node['CATEID']); // Nếu có menu con thì sẽ được hiển thị
+            $this->getSubmenu($user,$node['CATEID']); // Nếu có menu con thì sẽ được hiển thị
           }
         }
         return $this->_arr;
     }
 
-    public function getSubmenuInfo($user,$parent_id) {
+    public function getSubmenu($user,$parent_id) {
     	$query = $this->getByParent($user,$parent_id);
     	if (count($query) > 0) {
         foreach ($query as $key => $node) {
           // code...
           array_push($this->_arr,$query[$key]);
-          $this->getSubmenuInfo($user,$node['CATEID']);
+          $this->getSubmenu($user,$node['CATEID']);
         }
     	}
       return $this->_arr;

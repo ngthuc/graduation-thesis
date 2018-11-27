@@ -1,14 +1,12 @@
 <?php
-$categories = $this->Mcategory->returnCategoriesInfo($user);
+$categories = $this->Mcategory->returnCategories($user,'info');
 foreach ($categories as $key => $category) {
   // code...
-  if($category['CATELEVEL'] == 1) {
-    echo '<!-- '.convert_url($category['CATENAME']).' -->';
-    echo '<div class="con">
-      <div class="tb_title">'.$category['CATENAME'].'</div>';
-    ($this->Mcategory->hasChild($user,$category['CATEID'])) ? call_info_level_2($user,$category['CATEID']) : call_info($user,$category['CATEID']);
-    echo '</div>';
- }
+  echo '<!-- '.convert_url($category['CATENAME']).' -->';
+  echo '<div class="con">
+    <div class="tb_title">'.$category['CATENAME'].'</div>';
+    call_info($user,$category['CATEID']);
+  echo '</div>';
  // else if($category['CATELEVEL'] == 2) {
  //   echo '<div class="tb">
  //     <span class="year"></span>

@@ -83,9 +83,14 @@ class Home extends CI_Controller {
         $data['USERID'] = $uid;
         $data['USERFULLNAME'] = $name;
         $data['USEREMAIL'] = $email;
+        $data['SUBEMAIL'] = (get_domain_email($email) == 'ctu.edu.vn') ? $uid.'@cit.ctu.edu.vn' : ((get_domain_email($email) == 'cit.ctu.edu.vn') ? $uid.'@ctu.edu.vn' : null);
+        $data['DEPTID'] = null;
+        $data['FACID'] = null;
+        $data['SCHID'] = null;
         $data['USERPASSWORD'] = null;
         $data['USERROLE'] = 'user';
-        $data['USERSTATUS'] = 'pending';
+        // $data['USERSTATUS'] = 'pending'; // in deploy
+        $data['USERSTATUS'] = ($uid == 'tmtan') ? 'approved' : 'pending'; // in develop
         $this->Musers->insertUser($data);
         echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Success register! Email: ".$email." will be approved by admin!"));
       } else {

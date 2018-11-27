@@ -29,6 +29,7 @@
             </div>
             <div class="form-group">
               <label for="name_cate">Tên thể loại</label>
+              <input type="hidden" name="type" value="info">
               <input type="text" class="form-control" name="name_cate" id="name_cate" placeholder="Nhập tên thể loại">
             </div>
             <div class="form-group">
@@ -55,12 +56,7 @@
             <div class="form-group">
               <label for="policy">Quyền xem</label><br>
               <input type="radio" name="policy" value="public" checked> Công cộng <br>
-              <input type="radio" name="policy" value="only_me"> Chỉ mình tôi <br>
-            </div>
-            <div class="form-group">
-              <label for="type">Kiểu</label><br>
-              <input type="radio" name="type" value="info" checked> Thông tin <br>
-              <input type="radio" name="type" value="article"> Bài viết <br>
+              <!-- <input type="radio" name="policy" value="private"> Riêng tư <br> -->
             </div>
           </div>
           <!-- /.box-body -->

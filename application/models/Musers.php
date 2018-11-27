@@ -31,6 +31,7 @@ class Musers extends CI_Model{
 
     public function getNumRowsByEmail($email){
         $this->db->where("USEREMAIL", $email);
+        $this->db->or_where("SUBEMAIL", $email);
         return $this->db->get($this->_table)->num_rows();
     }
 

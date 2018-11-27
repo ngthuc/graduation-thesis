@@ -10,7 +10,7 @@ class Infomation extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/infomation/list_info';
       $_data['data_subview'] = array(
-        'infomations' => $this->Minfo->getInfo(get_id_logged())
+        'infomations' => $this->Minfo->getSortInfo(get_id_logged(),'INFOID','DESC')
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
@@ -19,7 +19,7 @@ class Infomation extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/infomation/update_person';
       $_data['data_subview'] = array(
-        'parent_cate' => $this->Mcategory->returnCategoriesInfo(get_id_logged())
+        'cate' => $this->Mcategory->returnCategories(get_id_logged(),'info')
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
@@ -49,44 +49,61 @@ class Infomation extends CI_Controller {
 			}
     }
 
-    public function add_time() {
+    public function add_info() {
       //code
-      $_data['subview'] = 'admin_page/infomation/add_time';
+      $_data['subview'] = 'admin_page/infomation/add_info';
       $_data['data_subview'] = array(
-        'parent_cate' => $this->Mcategory->returnCategoriesInfo(get_id_logged())
+        'cate' => $this->Mcategory->returnCategories(get_id_logged(),'info')
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
 
-    public function add_timeline() {
-      //code
-      $_data['subview'] = 'admin_page/infomation/add_timeline';
-      $_data['data_subview'] = array(
-        'parent_cate' => $this->Mcategory->returnCategoriesInfo(get_id_logged())
-      );
-      $this->load->view('admin_page/main_layout',$_data);
-    }
-
-    public function add_decentralization() {
-      //code
-      $_data['subview'] = 'admin_page/infomation/add_decentralization';
-      $_data['data_subview'] = array(
-        'parent_cate' => $this->Mcategory->returnCategoriesInfo(get_id_logged())
-      );
-      $this->load->view('admin_page/main_layout',$_data);
-    }
+    // public function add_time() {
+    //   //code
+    //   $_data['subview'] = 'admin_page/infomation/add_time';
+    //   $_data['data_subview'] = array(
+    //     'cate' => $this->Mcategory->returnCategories(get_id_logged(),'info')
+    //   );
+    //   $this->load->view('admin_page/main_layout',$_data);
+    // }
+    //
+    // public function add_timeline() {
+    //   //code
+    //   $_data['subview'] = 'admin_page/infomation/add_timeline';
+    //   $_data['data_subview'] = array(
+    //     'cate' => $this->Mcategory->returnCategories(get_id_logged(),'info')
+    //   );
+    //   $this->load->view('admin_page/main_layout',$_data);
+    // }
+    //
+    // public function add_decentralization() {
+    //   //code
+    //   $_data['subview'] = 'admin_page/infomation/add_decentralization';
+    //   $_data['data_subview'] = array(
+    //     'cate' => $this->Mcategory->returnCategories(get_id_logged(),'info')
+    //   );
+    //   $this->load->view('admin_page/main_layout',$_data);
+    // }
 
     public function add_new_processing() {
       //code
+      $type = $this->input->post('type');
+      if($type=='research' || $type=='research') {
+        $date = get_date_follow_format($this->input->post('time'),'year').' - '.$this->input->post('to_year');
+      } else if($type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis' || $type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor'){
+        $date = get_date_follow_format($this->input->post('time'),'year');
+      } else {
+        $date = $this->input->post('time');
+      }
       $data['USERID'] = get_id_logged();
       $data['CATEID'] = intval($this->input->post('category'));
       $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
-      $data['INFODATE'] = ($this->input->post('to_year')) ? ($this->input->post('time').' - '.$this->input->post('to_year')) : $this->input->post('time');
+      $data['INFODATE'] = $date;
       $data['INFOTITLE'] = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
       $data['INFODESCRIPTION'] = ($this->input->post('description')) ? $this->input->post('description') : null;
       $data['INFOCONTENT'] = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
       $data['INFOPOLICY'] = $this->input->post('policy');
-      $data['INFOTYPE'] = $this->input->post('type');
+      $data['INFOTYPE'] = $type;
 
       $status = $this->Minfo->insertInfo($data);
 			// Thông báo
@@ -97,52 +114,60 @@ class Infomation extends CI_Controller {
 			}
     }
 
-    public function edit_post($id = null) {
+    public function edit_info($id = null) {
       //code
-      $_data['subview'] = 'admin_page/post_type/edit_one_post_type';
+      $_data['subview'] = 'admin_page/infomation/edit_info';
       $_data['data_subview'] = array(
-        'content' => $this->Mposts->getById($id),
-        'categories' => $this->Mcategory->returnCategories(get_id_logged())
+        'cate' => $this->Mcategory->returnCategories(get_id_logged(),'info'),
+        'info' => $this->Minfo->getById($id)
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
 
-    public function edit_post_processing() {
+    public function edit_info_processing() {
       //code
-      $ID = intval($this->input->post('post_id'));
-      $data['INFOID'] = intval($this->input->post('id'));
-      $data['USERID'] = $this->input->post('author');
+      $ID = intval($this->input->post('id'));
+      $data['CATEID'] = intval($this->input->post('id'));
+      $data['USERID'] = $this->input->post('user_id');
+      $data['CAT_CATEID'] = ($this->input->post('level_cate') == 1) ? 0 : intval($this->input->post('parent_cate'));
+      $data['CATENAME'] = $this->input->post('name_cate');
+      $data['CATELEVEL'] = $this->input->post('level_cate');
+      $data['CATEHREF'] = $this->input->post('href');
+      $data['CATEPOLICY'] = $this->input->post('policy');
+      $data['CATETYPE'] = $this->input->post('type');
+
+      $data['USERID'] = get_id_logged();
       $data['CATEID'] = intval($this->input->post('category'));
-      $data['INFOIMAGE'] = $this->input->post('avatar_post');
-      $data['INFOTITLE'] = $this->input->post('title_post');
-      $data['INFODESCRIPTION'] = $this->input->post('description');
-      $data['INFOCONTENT'] = $this->input->post('post_content');
-      $data['INFOCREATIONDATE'] = $this->input->post('timestamp');
-      $data['INFOCOUNT'] = $this->input->post('count');
+      $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
+      $data['INFODATE'] = ($this->input->post('to_year')) ? ($this->input->post('time').' - '.$this->input->post('to_year')) : $this->input->post('time');
+      $data['INFOTITLE'] = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
+      $data['INFODESCRIPTION'] = ($this->input->post('description')) ? $this->input->post('description') : null;
+      $data['INFOCONTENT'] = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
+      $data['INFOPOLICY'] = $this->input->post('policy');
       $data['INFOTYPE'] = $this->input->post('type');
 
-      $status = $this->Mposts->updateINFO($data,$ID);
+      $status = $this->Mcategory->updateCate($data,$ID);
 			// Thông báo
 			if(!$status) {
-				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật bài viết thành công!"));
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật thể loại thành công!"));
 			} else {
-				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật bài viết thất bại!"));
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật thể loại thất bại!"));
 			}
     }
 
-    public function delete_post() {
+    public function delete_info() {
       //code
       if(isset($_POST)) {
-        $status = $this->Mposts->deleteINFO(intval($this->input->post('post_id')));
+        $status = $this->Minfo->deleteInfo(intval($this->input->post('id')));
   			// Thông báo
   			if($status) {
-  				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa bài viết thành công!"));
+  				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa thông tin thành công!"));
   			} else {
-  				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Xóa bài viết thất bại!"));
+  				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Xóa thông tin thất bại!"));
   			}
-        redirect(base_url(), 'refresh');
+        redirect(base_url('canbo/admin/infomation'), 'refresh');
       } else {
-        redirect(base_url(), 'refresh');
+        redirect(base_url('canbo/admin/infomation'), 'refresh');
       }
     }
 }

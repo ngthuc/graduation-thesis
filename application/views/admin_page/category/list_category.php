@@ -47,7 +47,7 @@
               <td>'.(($row['CATETYPE'] == 'info') ? 'Thông tin' : (($row['CATETYPE'] == 'article') ? 'Bài viết' : 'Khác')).'</td>
               <td>'.(($row['CATEPOLICY'] == 'public') ? 'Công cộng' : (($row['CATEPOLICY'] == 'only_me') ? 'Chỉ mình tôi' : 'Khác')).'</td>
               <td>
-                <a href="'.base_url('canbo/admin/category/edit_category/'.$row['CATEID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
+                <a href="'.base_url('canbo/admin/category/edit_category_'.$row['CATETYPE'].'/'.$row['CATEID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
                 <button type="button" value="'.$row['CATEID'].'" class="btn btn-danger ondelete"><b class="fa fa-trash"></b></button>
               </td>
             </tr>';
@@ -89,7 +89,7 @@
 $(function(){
   $('.ondelete').on('click', function(){
     // alert($(this).attr('value'));
-    var url = "<?php echo base_url('canbo/admin/category/delete_category')?>";
+    var url = "<?php echo base_url('canbo/admin/category/delete_category');?>";
     var id = $(this).attr('value');
     var callback = "#alert-ajax";
     load_ajax(url,id,callback);
@@ -104,8 +104,8 @@ function load_ajax(url,id,callback){
         data : {
             cate_id : id
         },
-    success : function (result){
-      //alert(result);
+      success : function (result){
+      // alert(result);
       var obj = jQuery.parseJSON(result);
       $(callback).html(
         '<div class="alert alert-'+obj['STATUS']+'" id="alert-out">'+obj['MESSAGE']+'</div>'

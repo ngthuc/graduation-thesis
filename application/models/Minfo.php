@@ -16,6 +16,13 @@ class Minfo extends CI_Model{
         return $this->db->get($this->_table)->result_array();
     }
 
+    public function getSortInfo($user,$where = 'INFOID', $sort = 'ASC'){
+        $this->db->select('*');
+        $this->db->where('USERID', $user);
+        $this->db->order_by($where, $sort);
+        return $this->db->get($this->_table)->result_array();
+    }
+
     public function getInfoByUser($user,$type=null,$title=null){
         $this->db->select('*');
         $this->db->where('USERID', $user);
@@ -104,6 +111,14 @@ class Minfo extends CI_Model{
         return $this->db->get($this->_table)->result_array();
     }
 
+    public function getByType($user, $type, $limit=null, $start=null,$order_name = null,$order_type = null){
+        $this->db->where("USERID", $user);
+        $this->db->where("INFOTYPE", $type);
+        if(isset($limit)) $this->db->limit($limit,$start);
+        if(isset($order_name)) $this->db->order_by($order_name, $order_type);
+        return $this->db->get($this->_table)->result_array();
+    }
+
     public function getPopularOfCategory(){
         $this->db->distinct();
         $this->db->select('CATEID');
@@ -134,6 +149,13 @@ class Minfo extends CI_Model{
         $this->db->select('*');
         $this->db->where("USERID", $user);
         $this->db->where('INFOTYPE', $type);
+        return $this->db->get($this->_table)->num_rows();
+    }
+
+    public function countInfoByType($user, $type){
+        $this->db->select('*');
+        $this->db->where("USERID", $user);
+        $this->db->where("INFOTYPE", $type);
         return $this->db->get($this->_table)->num_rows();
     }
 

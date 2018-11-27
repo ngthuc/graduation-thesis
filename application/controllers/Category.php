@@ -15,12 +15,18 @@ class Category extends CI_Controller {
       $this->load->view('admin_page/main_layout',$_data);
     }
 
-    public function add_new() {
+    public function add_new_article() {
       //code
-      $_data['subview'] = 'admin_page/category/add_new_category';
+      $_data['subview'] = 'admin_page/category/add_new_article';
       $_data['data_subview'] = array(
-        'categories' => $this->Mcategory->returnCategories(get_id_logged())
+        'categories' => $this->Mcategory->returnCategories(get_id_logged(),'article')
       );
+      $this->load->view('admin_page/main_layout',$_data);
+    }
+
+    public function add_new_info() {
+      //code
+      $_data['subview'] = 'admin_page/category/add_new_info';
       $this->load->view('admin_page/main_layout',$_data);
     }
 
@@ -45,19 +51,29 @@ class Category extends CI_Controller {
 			}
     }
 
-    public function edit_category($id = null) {
+    public function edit_category_article($id = null) {
       //code
-      $_data['subview'] = 'admin_page/category/edit_one_category';
+      $_data['subview'] = 'admin_page/category/edit_category_article';
       $_data['data_subview'] = array(
         'category' => $this->Mcategory->getById($id),
-        'categories' => $this->Mcategory->returnCategories()
+        'categories' => $this->Mcategory->returnCategories(get_id_logged(),'article')
+      );
+      $this->load->view('admin_page/main_layout',$_data);
+    }
+
+    public function edit_category_info($id = null) {
+      //code
+      $_data['subview'] = 'admin_page/category/edit_category_info';
+      $_data['data_subview'] = array(
+        'category' => $this->Mcategory->getById($id),
+        'categories' => $this->Mcategory->returnCategories(get_id_logged(),'info')
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
 
     public function edit_category_processing() {
       //code
-      $ID = intval($this->input->post('cate_id'));
+      $ID = intval($this->input->post('id'));
       $data['CATEID'] = intval($this->input->post('id'));
       $data['USERID'] = $this->input->post('user_id');
       $data['CAT_CATEID'] = ($this->input->post('level_cate') == 1) ? 0 : intval($this->input->post('parent_cate'));
@@ -78,18 +94,15 @@ class Category extends CI_Controller {
 
     public function delete_category() {
       //code
-      if(isset($_POST)) {
-        $status = $this->Mcategory->deleteCate(intval($this->input->post('cate_id')));
-  			// Thông báo
-  			if($status) {
-  				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa thể loại thành công!"));
-  			} else {
-  				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Xóa thể loại thất bại!"));
-  			}
-        redirect(base_url(), 'refresh');
-      } else {
-        redirect(base_url(), 'refresh');
+      $id = intval($this->input->post('cate_id'));
+      $status = $this->Mcategory->deleteCate($id);
+      // Thông báo
+      if($status) {
+        echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa thể loại thành công!"));
+        // redirect(base_url('canbo/admin/category'), 'refresh');
       }
+      echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Xóa thể loại thất bại! Vui lòng xóa thông tin hoặc bài viết có liên quan trước khi xóa thể loại."));
+      // redirect(base_url('canbo/admin/category'), 'refresh');
     }
 
     public function test() {

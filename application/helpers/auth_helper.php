@@ -73,6 +73,15 @@ if (!function_exists('get_username'))
     }
 }
 
+if (!function_exists('get_domain_email'))
+{
+    function get_domain_email($email_string)
+    {
+      $explode_string = explode('@',$email_string);
+      return $explode_string[1];
+    }
+}
+
 if (!function_exists('check_status_of_email'))
 {
     function check_status_of_email($email_string)

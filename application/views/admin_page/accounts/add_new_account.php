@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
               <label for="password">Mật khẩu</label>
-              <input type="password" class="form-control" name="password" id="password" placeholder="Nhập mật khẩu" required>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Nhập mật khẩu">
             </div>
             <div class="form-group">
               <label for="fullname">Tên đầy đủ</label>

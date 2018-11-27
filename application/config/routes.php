@@ -90,8 +90,10 @@ $route['canbo/admin/article/delete_post'] = 'article/delete_article';
 
 // Route for Admin: Category
 $route['canbo/admin/category'] = 'category/index';
-$route['canbo/admin/category/add_new'] = 'category/add_new';
-$route['canbo/admin/category/edit_category/(:num)'] = 'category/edit_category/$1';
+$route['canbo/admin/category/add_new_article'] = 'category/add_new_article';
+$route['canbo/admin/category/add_new_info'] = 'category/add_new_info';
+$route['canbo/admin/category/edit_category_article/(:num)'] = 'category/edit_category_article/$1';
+$route['canbo/admin/category/edit_category_info/(:num)'] = 'category/edit_category_info/$1';
 $route['canbo/admin/category/add_new_processing'] = 'category/add_new_processing';
 $route['canbo/admin/category/edit_category_processing'] = 'category/edit_category_processing';
 $route['canbo/admin/category/delete_category'] = 'category/delete_category';
@@ -99,10 +101,11 @@ $route['canbo/admin/category/delete_category'] = 'category/delete_category';
 // Route for Admin: Infomation
 $route['canbo/admin/infomation'] = 'infomation/index';
 $route['canbo/admin/infomation/update_person'] = 'infomation/update_person';
-$route['canbo/admin/infomation/add_time'] = 'infomation/add_time';
-$route['canbo/admin/infomation/add_timeline'] = 'infomation/add_timeline';
-$route['canbo/admin/infomation/add_decentralization'] = 'infomation/add_decentralization';
-$route['canbo/admin/infomation/edit_info/(:any)'] = 'infomation/edit_info/$1';
+$route['canbo/admin/infomation/add_info'] = 'infomation/add_info';
+// $route['canbo/admin/infomation/add_time'] = 'infomation/add_time';
+// $route['canbo/admin/infomation/add_timeline'] = 'infomation/add_timeline';
+// $route['canbo/admin/infomation/add_decentralization'] = 'infomation/add_decentralization';
+$route['canbo/admin/infomation/(:num)'] = 'infomation/edit_info/$1';
 $route['canbo/admin/infomation/update_person_processing'] = 'infomation/update_person_processing';
 $route['canbo/admin/infomation/add_new_processing'] = 'infomation/add_new_processing';
 $route['canbo/admin/infomation/edit_info_processing'] = 'infomation/edit_info_processing';
