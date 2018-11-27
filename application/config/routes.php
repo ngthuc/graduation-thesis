@@ -65,9 +65,9 @@ $route['canbo/destroy_ssid'] = 'home/destroyFileSSID';
 // Route for Admin
 $route['canbo'] = 'home';
 $route['canbo/admin'] = 'admin/index';
-$route['canbo/admin/analytics'] = 'admin/analytics';
-$route['canbo/admin/analytics/export'] = 'admin/export';
-$route['canbo/admin/analytics/export_processing'] = 'admin/export_processing';
+$route['canbo/admin/statistic'] = 'admin/statistic';
+$route['canbo/admin/statistic/export'] = 'admin/export';
+$route['canbo/admin/statistic/export_processing'] = 'admin/export_processing';
 
 // Route for Admin: Accounts
 $route['canbo/admin/accounts'] = 'accounts/index';
@@ -123,6 +123,15 @@ $route['canbo/admin/multimedia/delete_picture'] = 'multimedia/delete_picture';
 // Route for Settings
 $route['canbo/admin/settings'] = 'settings/index';
 $route['canbo/admin/settings/domains'] = 'settings/domains';
+$route['canbo/admin/settings/department'] = 'settings/department';
+$route['canbo/admin/settings/add_department'] = 'settings/add_department';
+$route['canbo/admin/settings/delete_department'] = 'settings/delete_department';
+$route['canbo/admin/settings/faculty'] = 'settings/faculty';
+$route['canbo/admin/settings/add_faculty'] = 'settings/add_faculty';
+$route['canbo/admin/settings/delete_faculty'] = 'settings/delete_faculty';
+$route['canbo/admin/settings/school'] = 'settings/school';
+$route['canbo/admin/settings/add_school'] = 'settings/add_school';
+$route['canbo/admin/settings/delete_school'] = 'settings/delete_school';
 $route['canbo/admin/settings/add_domain'] = 'settings/add_domain';
 $route['canbo/admin/settings/delete_domain'] = 'settings/delete_domain';
 $route['canbo/admin/settings/update_default_processing'] = 'settings/update_default_processing';

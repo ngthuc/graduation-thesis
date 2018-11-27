@@ -16,7 +16,7 @@
     <?php $this->load->view('site_page/themes/basic_template/components/menu',$data_subview); ?>
     <hr>
 
-	   <?php $this->load->view('site_page/themes/basic_template/components/list_test',$data_subview); ?>
+	   <?php $this->load->view('site_page/themes/basic_template/components/list_info',$data_subview); ?>
 </div>
 
 <!-- Load footer -->

@@ -63,4 +63,105 @@ class Settings extends CI_Controller {
 				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật thất bại!"));
 			}
     }
+
+    public function department() {
+      $data['subview'] = 'admin_page/settings/department';
+      $this->load->view('admin_page/main_layout',$data);
+    }
+
+    public function add_department() {
+      //code
+      $data['PARENTID'] = $this->input->post('parent');
+      $data['DEPTNAME'] = $this->input->post('name');
+      $data['DEPTENGLISHNAME'] = $this->input->post('engname');
+      $data['DEPTNICKNAME'] = $this->input->post('nickname');
+
+      $status = $this->Mdepartment->insertDept($data);
+			// Thông báo
+			if(!$status) {
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Thêm mới thành công!"));
+			} else {
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Thêm mới thất bại!"));
+			}
+    }
+
+    public function delete_department() {
+      //code
+      $id = $this->input->post('delete');
+
+      $status = $this->Mdepartment->deleteDept($id);
+			// Thông báo
+			if($status) {
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa thành công!"));
+			} else {
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Xóa thất bại!"));
+			}
+    }
+
+    public function faculty() {
+      $data['subview'] = 'admin_page/settings/faculty';
+      $this->load->view('admin_page/main_layout',$data);
+    }
+
+    public function add_faculty() {
+      //code
+      $data['PARENTID'] = $this->input->post('parent');
+      $data['FACNAME'] = $this->input->post('name');
+      $data['FACENGLISHNAME'] = $this->input->post('engname');
+      $data['FACNICKNAME'] = $this->input->post('nickname');
+
+      $status = $this->Mfaculty->insertFaculty($data);
+			// Thông báo
+			if(!$status) {
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Thêm mới thành công!"));
+			} else {
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Thêm mới thất bại!"));
+			}
+    }
+
+    public function delete_faculty() {
+      //code
+      $id = $this->input->post('delete');
+
+      $status = $this->Mfaculty->deleteFaculty($id);
+			// Thông báo
+			if($status) {
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa thành công!"));
+			} else {
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Xóa thất bại!"));
+			}
+    }
+
+    public function school() {
+      $data['subview'] = 'admin_page/settings/school';
+      $this->load->view('admin_page/main_layout',$data);
+    }
+
+    public function add_school() {
+      //code
+      $data['SCHNAME'] = $this->input->post('name');
+      $data['SCHENGLISHNAME'] = $this->input->post('engname');
+      $data['SCHNICKNAME'] = $this->input->post('nickname');
+
+      $status = $this->Mschool->insertSchool($data);
+			// Thông báo
+			if(!$status) {
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Thêm mới thành công!"));
+			} else {
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Thêm mới thất bại!"));
+			}
+    }
+
+    public function delete_school() {
+      //code
+      $id = $this->input->post('delete');
+
+      $status = $this->Mschool->deleteSchool($id);
+			// Thông báo
+			if($status) {
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa thành công!"));
+			} else {
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Xóa thất bại!"));
+			}
+    }
 }

@@ -74,6 +74,7 @@
                     <option value="research"<?=($info['INFOTYPE']=='research') ? ' selected' : '';?>>Nghiên cứu</option>
                     <option value="experience"<?=($info['INFOTYPE']=='experience') ? ' selected' : '';?>>Kinh nghiệm</option>
                     <!-- Hiển thị kiểu công bố -->
+                    <option value="isi"<?=($info['INFOTYPE']=='isi') ? ' selected' : '';?>>Công bố: ISI/Scopus</option>
                     <option value="journal"<?=($info['INFOTYPE']=='journal') ? ' selected' : '';?>>Công bố: Journal, book chapter</option>
                     <option value="edited"<?=($info['INFOTYPE']=='edited') ? ' selected' : '';?>>Công bố: Edited book</option>
                     <option value="conference"<?=($info['INFOTYPE']=='conference') ? ' selected' : '';?>>Công bố: Conference, workshop</option>

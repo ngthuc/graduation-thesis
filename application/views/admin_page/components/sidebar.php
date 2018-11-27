@@ -190,11 +190,26 @@
               <i class="fa fa-list-alt"></i> Tên miền được cấp phép
             </a>
           </li>
+          <li <?php echo ($this->uri->segment(4) == 'department') ? 'class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/settings/department'); ?>">
+              <i class="fa fa-list-alt"></i> Quản lý danh sách bộ môn
+            </a>
+          </li>
+          <li <?php echo ($this->uri->segment(4) == 'faculty') ? 'class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/settings/faculty'); ?>">
+              <i class="fa fa-list-alt"></i> Quản lý danh sách khoa/viện
+            </a>
+          </li>
+          <li <?php echo ($this->uri->segment(4) == 'school') ? 'class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/settings/school'); ?>">
+              <i class="fa fa-list-alt"></i> Quản lý danh sách trường học
+            </a>
+          </li>
         </ul>
       </li>
       <?php endif; ?>
       <?php if(has_role(get_role_logged(),'admin')): ?>
-      <li class="<?php echo ($this->uri->segment(3) == 'analytics') ? 'active ' : ''; ?>treeview">
+      <li class="<?php echo ($this->uri->segment(3) == 'statistic') ? 'active ' : ''; ?>treeview">
         <a href="#">
           <i class="fa fa-line-chart"></i> <span>Thống kê</span>
           <span class="pull-right-container">
@@ -203,15 +218,15 @@
         </a>
         <ul class="treeview-menu">
           <li <?php echo ($this->uri->segment(4) == '') ? 'class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/analytics'); ?>">
+            <a href="<?php echo base_url('canbo/admin/statistic'); ?>">
               <i class="fa fa-bar-chart"></i> Các thống kê cơ bản
             </a>
           </li>
-          <li <?php echo ($this->uri->segment(4) == 'export') ? 'class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/analytics/export'); ?>">
+          <!-- <li <?php echo ($this->uri->segment(4) == 'export') ? 'class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/statistic/export'); ?>">
               <i class="fa fa-cloud-download"></i> Xuất báo cáo Excel
             </a>
-          </li>
+          </li> -->
         </ul>
       </li>
       <?php endif; ?>

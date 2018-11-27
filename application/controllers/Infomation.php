@@ -90,7 +90,7 @@ class Infomation extends CI_Controller {
       $type = $this->input->post('type');
       if($type=='research' || $type=='research') {
         $date = get_date_follow_format($this->input->post('time'),'year').' - '.$this->input->post('to_year');
-      } else if($type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis' || $type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor'){
+      } else if($type=='isi' || $type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis' || $type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor'){
         $date = get_date_follow_format($this->input->post('time'),'year');
       } else {
         $date = $this->input->post('time');

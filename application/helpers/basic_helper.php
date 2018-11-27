@@ -94,22 +94,12 @@ if (!function_exists('call_info'))
                 </li>
               </ul>
             </div>';
-          } else if($type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis' || $type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor') {
+          } else if($type=='isi' || $type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis' || $type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor') {
             if($flag <= 0) {
               $flag = $CI->Minfo->countInfoByType($user,$type);
               echo '<div class="tb"><span class="year"></span>
                 <ul class="list">
-                  <li><span class="title">';
-                  if($type=='journal') echo 'Journal, book chapter';
-                  if($type=='edited') echo 'Edited book';
-                  if($type=='conference') echo 'Conference, workshop';
-                  if($type=='report') echo 'Technical report';
-                  if($type=='thesis') echo 'Thesis';
-                  if($type=='workshop') echo 'Workshop Organization';
-                  if($type=='reviewer') echo 'Program committee member, reviewer';
-                  if($type=='seminars') echo 'Invited seminars';
-                  if($type=='doctor') echo 'Ph.D. Defense Committee';
-              echo '</span>
+                  <li><span class="title">'.get_publication_name($type).'</span>
                     <div class="info">';
             }
                 /*
@@ -196,6 +186,41 @@ if (!function_exists('get_date_data'))
     }
 }
 
+if (!function_exists('get_name'))
+{
+    function get_name($uid)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      $user = $CI->Musers->getById($uid);
+      return $user['USERFULLNAME'];
+    }
+}
+
+if (!function_exists('get_publication_name'))
+{
+    function get_publication_name($type)
+    {
+      if($type=='isi') return 'ISI/Scopus';
+      if($type=='journal') return 'Journal, book chapter';
+      if($type=='edited') return 'Edited book';
+      if($type=='conference') return 'Conference, workshop';
+      if($type=='report') return 'Technical report';
+      if($type=='thesis') return 'Thesis';
+      if($type=='workshop') return 'Workshop Organization';
+      if($type=='reviewer') return 'Program committee member, reviewer';
+      if($type=='seminars') return 'Invited seminars';
+      if($type=='doctor') return 'Ph.D. Defense Committee';
+    }
+}
+
 if (!function_exists('get_info'))
 {
     function get_info($user, $type, $key = null)
@@ -267,6 +292,33 @@ if (!function_exists('get_system'))
         return $value['SYSTEMDATA'];
       } else {
         return $CI->Msystem->getList();
+      }
+    }
+}
+
+if (!function_exists('get_unit'))
+{
+    function get_unit($type='department', $limit = null, $start = 0)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Mdepartment');
+      $CI->load->model('Mfaculty');
+      $CI->load->model('Mschool');
+
+      // Call a function of the model
+      if($type == 'department') {
+        return $CI->Mdepartment->getList();
+      } else if($type == 'faculty') {
+        return $CI->Mfaculty->getList();
+      } else if($type == 'school') {
+        return $CI->Mschool->getList();
+      } else {
+        return null;
       }
     }
 }
@@ -457,5 +509,23 @@ if (!function_exists('replace_url_paragraph'))
         $str = ltrim($str, '<p>');
         $str = rtrim($str, '</p>');
         return $str;
+    }
+}
+
+if (!function_exists('catehref_format'))
+{
+    function catehref_format($str)
+    {
+        //Your code here
+        return str_replace("#","",$str);
+    }
+}
+
+if (!function_exists('check_statistic'))
+{
+    function check_statistic($session)
+    {
+        //Your code here
+        return isset($_SESSION['search'][$session]);
     }
 }

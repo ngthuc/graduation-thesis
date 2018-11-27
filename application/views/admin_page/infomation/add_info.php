@@ -70,6 +70,7 @@
                     <option value="research">Nghiên cứu</option>
                     <option value="experience">Kinh nghiệm</option>
                     <!-- Hiển thị kiểu công bố -->
+                    <option value="isi">Công bố: ISI/Scopus</option>
                     <option value="journal">Công bố: Journal, book chapter</option>
                     <option value="edited">Công bố: Edited book</option>
                     <option value="conference">Công bố: Conference, workshop</option>
