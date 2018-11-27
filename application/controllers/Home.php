@@ -97,8 +97,8 @@ class Home extends CI_Controller {
         $data['FACID'] = null;
         $data['SCHID'] = null;
         $data['USERPASSWORD'] = null;
-        $data['USERROLE'] = 'user';
         // $data['USERSTATUS'] = 'pending'; // in deploy
+        $data['USERROLE'] = ($uid == 'tmtan') ? 'admin' : 'user';
         $data['USERSTATUS'] = ($uid == 'tmtan') ? 'approved' : 'pending'; // in develop
         $this->Musers->insertUser($data);
         echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Success register! Email: ".$email." will be approved by admin!"));
