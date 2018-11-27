@@ -13,7 +13,7 @@
               var obj = jQuery.parseJSON(json);
               // alert(obj['CODE']);
               if(obj['CODE']=='200') {
-                window.location.replace("<?=base_url('canbo/admin'); ?>");
+                window.location.replace("<?=base_url('home'); ?>");
               } else if(obj['CODE']=='404') {
                 window.location.replace("<?=base_url('canbo/send_ssid'); ?>");
               } else if(obj['CODE']=='500') {

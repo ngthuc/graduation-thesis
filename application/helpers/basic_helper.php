@@ -296,6 +296,24 @@ if (!function_exists('get_system'))
     }
 }
 
+if (!function_exists('check_unit_by_user'))
+{
+    function check_unit_by_user($user)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      $user_data = $CI->Musers->getById($user);
+      return (!isset($user_data['SCHID']) || !isset($user_data['FACID']) || !isset($user_data['DEPTID'])) ? TRUE : FALSE;
+    }
+}
+
 if (!function_exists('get_unit'))
 {
     function get_unit($type='department', $limit = null, $start = 0)
@@ -320,6 +338,60 @@ if (!function_exists('get_unit'))
       } else {
         return null;
       }
+    }
+}
+
+if (!function_exists('get_school_name'))
+{
+    function get_school_name($id)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Mschool');
+
+      // Call a function of the model
+      $name = $CI->Mschool->getById($id);
+      return $name['SCHNAME'];
+    }
+}
+
+if (!function_exists('get_faculty_name'))
+{
+    function get_faculty_name($id)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Mfaculty');
+
+      // Call a function of the model
+      $name = $CI->Mfaculty->getById($id);
+      return $name['FACNAME'];
+    }
+}
+
+if (!function_exists('get_department_name'))
+{
+    function get_department_name($id)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Mdepartment');
+
+      // Call a function of the model
+      $name = $CI->Mdepartment->getById($id);
+      return $name['DEPTNAME'];
     }
 }
 
@@ -380,6 +452,26 @@ if (!function_exists('get_user_by_id'))
 
       // Call a function of the model
       return $CI->Musers->getById($user_id);
+    }
+}
+
+if (!function_exists('get_org_by_id'))
+{
+    function get_org_by_id($user_id,$type='dept')
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      $user = $CI->Musers->getById($user_id);
+      if($type=='dept') return $user['DEPTID'];
+      if($type=='faculty') return $user['FACID'];
+      if($type=='school') return $user['SCHTID'];
     }
 }
 
@@ -526,6 +618,8 @@ if (!function_exists('check_statistic'))
     function check_statistic($session)
     {
         //Your code here
-        return isset($_SESSION['search'][$session]);
+        if(!isset($_SESSION['search'])) {
+          return FALSE;
+        } else return ($_SESSION['search'][$session] == null) ? FALSE : TRUE;
     }
 }

@@ -1,15 +1,27 @@
 <?php
   $template = 'public/themes/basic_template';
 
-  foreach ($person_info as $key => $value) {
-    // code...
-    if($value['INFOTITLE'] == 'avatar') {
-      $data['image'] = $value['INFOIMAGE'];
-    } else if($value['INFOTITLE'] == 'birthday') {
-      $data['dob'] = $value['INFODATE'];
-    } else {
-      $data[$value['INFOTITLE']] = $value['INFOCONTENT'];
+  if(count($person_info) > 0) {
+    foreach ($person_info as $key => $value) {
+      // code...
+      if($value['INFOTITLE'] == 'avatar') {
+        $data['image'] = $value['INFOIMAGE'];
+      } else if($value['INFOTITLE'] == 'birthday') {
+        $data['dob'] = $value['INFODATE'];
+      } else {
+        $data[$value['INFOTITLE']] = $value['INFOCONTENT'];
+      }
     }
+  } else {
+    $data['image'] = null;
+    $data['name'] = null;
+    $data['position'] = null;
+    $data['dob'] = null;
+    $data['gender'] = null;
+    $data['email'] = null;
+    $data['phone'] = null;
+    $data['website'] = null;
+    $data['address'] = null;
   }
 ?>
 <div id="head">

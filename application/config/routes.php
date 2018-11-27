@@ -65,6 +65,8 @@ $route['canbo/destroy_ssid'] = 'home/destroyFileSSID';
 // Route for Admin
 $route['canbo'] = 'home';
 $route['canbo/admin'] = 'admin/index';
+$route['canbo/admin/profile'] = 'admin/profile';
+$route['canbo/admin/profile/edit_profile'] = 'admin/edit_profile';
 $route['canbo/admin/statistic'] = 'admin/statistic';
 $route['canbo/admin/statistic/export'] = 'admin/export';
 $route['canbo/admin/statistic/export_processing'] = 'admin/export_processing';

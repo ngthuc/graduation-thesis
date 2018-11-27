@@ -12,6 +12,32 @@ class Admin extends CI_Controller {
 			$this->load->view('admin_page/main_layout',$_data);
 		}
 
+		public function profile() {
+      $data['subview'] = 'admin_page/profile/default';
+      $data['data_subview'] = array(
+        'user' => $this->Musers->getById(get_id_logged())
+      );
+      $this->load->view('admin_page/main_layout',$data);
+    }
+
+		public function edit_profile() {
+      //code
+      $uid = $this->input->post('uid');
+      $data['USERFULLNAME'] = $this->input->post('fullname');
+      $data['USEREMAIL'] = $this->input->post('email');
+			$data['SCHID'] = $this->input->post('school');
+			$data['FACID'] = $this->input->post('faculty');
+      $data['DEPTID'] = $this->input->post('department');
+
+      $status = $this->Musers->updateUser($data,$uid);
+			// Thông báo
+			if(!$status) {
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật tài khoản thành công!"));
+			} else {
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật tài khoản thất bại!"));
+			}
+    }
+
 		public function statistic() {
       $data['subview'] = 'admin_page/statistic/basic';
       $data['data_subview'] = array(

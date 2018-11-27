@@ -96,6 +96,9 @@ class Infomation extends CI_Controller {
         $date = $this->input->post('time');
       }
       $data['USERID'] = get_id_logged();
+      $data['DEPTID'] = get_org_by_id(get_id_logged(),'dept');
+      $data['FACID'] = get_org_by_id(get_id_logged(),'faculty');
+      $data['SCHID'] = get_org_by_id(get_id_logged(),'school');
       $data['CATEID'] = intval($this->input->post('category'));
       $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
       $data['INFODATE'] = $date;

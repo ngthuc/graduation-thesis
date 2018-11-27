@@ -10,7 +10,16 @@ class Home extends CI_Controller {
 
     public function index() {
       //code
-      (isset($_SESSION['user'])) ? redirect(base_url('canbo/admin')) : redirect(base_url('canbo/login'));
+      if(isset($_SESSION['user'])) {
+        if(check_unit_by_user(get_id_logged())) {
+          redirect(base_url('canbo/admin/profile'));
+        } else {
+          redirect(base_url('canbo/admin'));
+        }
+      } else {
+        redirect(base_url('canbo/login'));
+      }
+      // (isset($_SESSION['user'])) ? ((check_unit_by_user(get_id_logged())) ? redirect(base_url('canbo/admin/profile')) : redirect(base_url('canbo/admin'))) : redirect(base_url('canbo/login'));
     }
 
     // public function language($lang = "") {

@@ -81,7 +81,7 @@
                 <td>'.$value['FACNAME'].'</td>
                 <td>'.$value['FACENGLISHNAME'].'</td>
                 <td>'.$value['FACNICKNAME'].'</td>
-                <td>'.$value['PARENTID'].'</td>
+                <td>'.get_school_name($value['PARENTID']).'</td>
                 <td>
                   <input type="hidden" name="delete" value="'.$value['FACID'].'" />
                   <button type="submit" class="btn btn-danger">Delete</button>
