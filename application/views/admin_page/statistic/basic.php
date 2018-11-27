@@ -65,37 +65,6 @@
                   }
                 ?>
               </select>
-              <select class="form-control" name="department" id="department" onChange="document.search.submit();">
-                <option value="null">--Chọn bộ môn/tổ chuyên ngành--</option>
-                <?php
-                  $departments = $this->Mdepartment->getList('sort','DEPTNICKNAME','ASC');
-                  foreach ($departments as $key => $department) {
-                    // code...
-                    if(isset($_SESSION['search']['department']) && $_SESSION['search']['department']==$department['DEPTID']) {
-                      echo '<option value="'.$department['DEPTID'].'" selected>'.$department['DEPTNAME'].'</option>';
-                    } else {
-                      echo '<option value="'.$department['DEPTID'].'">'.$department['DEPTNAME'].'</option>';
-                    }
-                  }
-                ?>
-              </select>
-              <select class="form-control" name="faculty" id="faculty" onChange="document.search.submit();">
-                <option value="null">--Chọn khoa/viện--</option>
-                <?php
-                  if(check_statistic('school')) {
-                    
-                  }
-                  $faculties = $this->Mfaculty->getList('sort','FACNICKNAME','ASC');
-                  foreach ($faculties as $key => $faculty) {
-                    // code...
-                    if(isset($_SESSION['search']['faculty']) && $_SESSION['search']['faculty']==$faculty['FACID']) {
-                      echo '<option value="'.$faculty['FACID'].'" selected>'.$faculty['FACNAME'].'</option>';
-                    } else {
-                      echo '<option value="'.$faculty['FACID'].'">'.$faculty['FACNAME'].'</option>';
-                    }
-                  }
-                ?>
-              </select>
               <select class="form-control" name="school" id="school" onChange="document.search.submit();">
                 <option value="null">--Chọn trường--</option>
                 <?php
@@ -106,6 +75,42 @@
                       echo '<option value="'.$school['SCHID'].'" selected>'.$school['SCHNAME'].'</option>';
                     } else {
                       echo '<option value="'.$school['SCHID'].'">'.$school['SCHNAME'].'</option>';
+                    }
+                  }
+                ?>
+              </select>
+              <select class="form-control" name="faculty" id="faculty" onChange="document.search.submit();">
+                <option value="null">--Chọn khoa/viện--</option>
+                <?php
+                  if(check_statistic('school')) {
+                    $faculties = $this->Mfaculty->getList('where','PARENTID',$_SESSION['search']['school']);
+                  } else {
+                    $faculties = $this->Mfaculty->getList('sort','FACNICKNAME','ASC');
+                  }
+                  foreach ($faculties as $key => $faculty) {
+                    // code...
+                    if(isset($_SESSION['search']['faculty']) && $_SESSION['search']['faculty']==$faculty['FACID']) {
+                      echo '<option value="'.$faculty['FACID'].'" selected>'.$faculty['FACNAME'].'</option>';
+                    } else {
+                      echo '<option value="'.$faculty['FACID'].'">'.$faculty['FACNAME'].'</option>';
+                    }
+                  }
+                ?>
+              </select>
+              <select class="form-control" name="department" id="department" onChange="document.search.submit();">
+                <option value="null">--Chọn bộ môn/tổ chuyên ngành--</option>
+                <?php
+                  if(check_statistic('faculty')) {
+                    $departments = $this->Mdepartment->getList('where','PARENTID',$_SESSION['search']['faculty']);
+                  } else {
+                    $departments = $this->Mdepartment->getList('sort','DEPTNICKNAME','ASC');
+                  }
+                  foreach ($departments as $key => $department) {
+                    // code...
+                    if(isset($_SESSION['search']['department']) && $_SESSION['search']['department']==$department['DEPTID']) {
+                      echo '<option value="'.$department['DEPTID'].'" selected>'.$department['DEPTNAME'].'</option>';
+                    } else {
+                      echo '<option value="'.$department['DEPTID'].'">'.$department['DEPTNAME'].'</option>';
                     }
                   }
                 ?>
