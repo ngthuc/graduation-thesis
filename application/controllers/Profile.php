@@ -52,9 +52,7 @@ class Profile extends CI_Controller {
 		// var_dump($data);
 	}
 
-	public function category($username,$category) {
-		$id = $this->Mcategory->findId($username,$category);
-
+	public function category($username,$idcate) {
 		// $this->_data['base_url'] = base_url() . ($this->lang->line('article')) . '/' . ($this->lang->line('category')).'/'.$category;
 		// $this->_data['limit_per_page'] = get_media('theme','limit_per_page');
 		// $this->_data['uri_segment'] = 4;
@@ -62,11 +60,11 @@ class Profile extends CI_Controller {
 		// $this->_data['start_index'] = ($this->uri->segment(4)) ? (($this->_data['limit_per_page'])*($this->uri->segment(4)-1)) : 0;
 
 		// $data_articles = $this->Mposts->getByCategory($id, $this->_data['limit_per_page'], $this->_data['start_index']);
-		$data_articles = $this->Marticle->getByCategory($id);
+		$data_articles = $this->Marticle->getByCategory($idcate);
 
 		// $_articles = $this->Mposts->getByCategory($id);
-		$_categoryname = $this->Mcategory->getArticleCateNameById($id);
-		$_page = ($this->Marticle->getPageByCategory($id)) ? $this->Marticle->getPageByCategory($id) : null;
+		$_categoryname = $this->Mcategory->getArticleCateNameById($idcate);
+		$_page = ($this->Marticle->getPageByCategory($idcate)) ? $this->Marticle->getPageByCategory($idcate) : null;
 		$this->_data['articles'] = $data_articles;
 		$this->_data['page'] = $_page;
 		$this->_data['category_name'] = $_categoryname['CATENAME'];

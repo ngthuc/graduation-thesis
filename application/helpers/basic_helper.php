@@ -130,12 +130,12 @@ if (!function_exists('call_info'))
 
 if (!function_exists('get_date_follow_format'))
 {
-    function get_date_follow_format($date, $format='std')
+    function get_date_follow_format($base_date, $format='std')
     {
       // Get a reference to the controller object
       //$CI = get_instance();
       // use this below
-      $date = date_create($date);
+      $date = date_create($base_date);
       $year_from_date = date_format($date,"Y");
       $month_from_date = date_format($date,"m");
       $day_from_date = date_format($date,"d");
@@ -165,23 +165,30 @@ if (!function_exists('get_date_follow_format'))
       } else if(($month_from_date == '12') || ($month_from_date == '12')) {
         $month = 'Dec';
       }
-      if($format=='std') {
-        return $month.' '.$year_from_date;
-      } else if($format=='year') {
-        return $year_from_date;
-      } else if($format=='month') {
-        return $month_from_date;
-      } else if($format=='day') {
-        return $day_from_date;
+
+      if(strlen($base_date) == 4) {
+        return $base_date;
+      } else if(strlen($base_date) > 4) {
+        if($format=='std') {
+          return $month.' '.$year_from_date;
+        } else if($format=='year') {
+          return $year_from_date;
+        } else if($format=='month') {
+          return $month_from_date;
+        } else if($format=='day') {
+          return $day_from_date;
+        }
+      } else if(strlen($base_date) < 4) {
+        return null;
       }
     }
 }
 
 if (!function_exists('get_date_data'))
 {
-    function get_date_data($data,$position=0)
+    function get_date_data($date,$position=0)
     {
-      $data = explode(' - ',$data);
+      $data = explode(' - ',$date);
       return $data[$position];
     }
 }

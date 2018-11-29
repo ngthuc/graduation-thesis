@@ -46,7 +46,7 @@
                 <td>'.$stt.'</td>';
               echo (isset($info['INFOIMAGE'])) ? '<td><img src="'.$info['INFOIMAGE'].'" width="100px" height="150px" /></td>' : '<td></td>';
               echo '<td>'.$info['INFOTITLE'].'</td>';
-              echo (isset($info['INFODATE'])) ? '<td>'.date('d/m/Y',strtotime($info['INFODATE'])).'</td>' : '<td>-</td>';
+              echo (isset($info['INFODATE'])) ? '<td>'.$info['INFODATE'].'</td>' : '<td>-</td>';
               echo (isset($info['INFODESCRIPTION'])) ? '<td>'.$info['INFODESCRIPTION'].'</td>' : '<td>-</td>';
               echo (isset($info['INFOCONTENT'])) ? '<td>'.$info['INFOCONTENT'].'</td>' : '<td>-</td>';
               echo (isset($name_category['CATENAME'])) ? '<td>'.$name_category['CATENAME'].'</td>' : '<td>-</td>';

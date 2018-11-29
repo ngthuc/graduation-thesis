@@ -151,8 +151,8 @@ $route['canbo/admin/themes/delete_menu'] = 'themes/delete_menu';
 
 // Route for public site
 $route['~(:any)'] = 'profile/user/$1';
-$route['~(:any)/(:any)'] = 'profile/category/$1/$2';
-$route['~(:any)/(:any).html'] = 'profile/article/$1/$2';
+$route['~(:any)/(:any)_(:num)'] = 'profile/category/$1/$3';
+$route['~(:any)/(:any)_(:num).html'] = 'profile/article/$1/$3';
 
 $route['article'] = 'mp_site/article';
 $route['article/(:num)'] = 'mp_site/article/home/$1';

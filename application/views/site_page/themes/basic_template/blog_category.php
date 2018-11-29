@@ -2,10 +2,8 @@
   <section id="clients" class="wow fadeInUp">
     <div class="container">
       <div class="section-header">
-        <h2><?php echo $this->lang->line('Posts'); ?>
-          <small><?php echo $this->lang->line('Category'); ?> <?php
-            $site_lang = $this->session->userdata('lang');
-            echo ($site_lang == 'english') ? $category_name_english : $category_name; ?></small></h2>
+        <h2>Bài viết
+          <small>Thể loại <?php echo $category_name; ?></small></h2>
         <hr>
 <?php } ?>
 
@@ -16,13 +14,10 @@
         <h2><?php echo $page['ARTICLETITLE']; ?></h2>
         <hr>
         <p>
-          <i><?php echo $this->lang->line('publish_at'); ?>
-            <?php echo $page['ARTICLECREATIONDATE']; ?>
-            <?php echo $this->lang->line('by'); ?>
-            <a href="<?php echo base_url($this->lang->line('article').'/'.$this->lang->line('author').'/'.$page['USERID']); ?>">
-              <?php echo $page['USERID']; ?></a>
-              |
-              <?php echo $this->lang->line('View'); ?>: <?php echo ($page['ARTICLECOUNT'] == NULL) ? 0 : $page['ARTICLECOUNT']; ?>
+          <i>Đăng tải lúc <?php echo $page['ARTICLECREATIONDATE']; ?> bởi
+            <a href="<?php echo base_url('~'.$user); ?>">
+              <?php echo $page['USERID']; ?>
+            </a>
           </i>
         </p>
         <hr>
@@ -31,7 +26,7 @@
         <hr>
         <?php foreach ($articles as $key => $row): ?>
           <h4>
-            <a href="<?php echo base_url('~'.get_id_logged().'/'.convert_url($row['ARTICLETITLE']).'.html'); ?>">
+            <a href="<?php echo base_url('~'.$user.'/'.convert_url($row['ARTICLETITLE']).'.html'); ?>">
               <?php echo $row['ARTICLETITLE']; ?>
             </a>
             <br>

@@ -28,6 +28,7 @@
               <!-- Alert by Ajax -->
             </div>
             <div class="form-group">
+              <input type="hidden" name="id" value="<?php echo $info['INFOID']; ?>">
               <input type="hidden" name="policy" value="public">
               <label for="category">Thể loại</label>
               <select class="form-control select2" style="width: 100%;" name="category" required>
@@ -55,7 +56,7 @@
               </div>
               <div class="col-sm-6">
                 đến
-               <?=($info['INFOTYPE'] != 'education' || $info['INFOTYPE'] != 'distinction' || $info['INFOTYPE'] != 'research' || $info['INFOTYPE'] != 'experience') ? '<input type="text" class="form-control" name="to_year" id="to_year" value="'.get_date_data($info['INFODATE'],1).'" placeholder="Nhập năm kết thúc (chỉ yêu cầu nếu trình bày theo năm - năm)">': '<input type="text" class="form-control" name="to_year" id="to_year" placeholder="Nhập năm kết thúc (chỉ yêu cầu nếu trình bày theo năm - năm)">'; ?>
+               <?=($info['INFOTYPE'] == 'research' || $info['INFOTYPE'] == 'experience') ? '<input type="text" class="form-control" name="to_year" id="to_year" value="'.get_date_data($info['INFODATE'],1).'" placeholder="Nhập năm kết thúc (chỉ yêu cầu nếu trình bày theo năm - năm)">' : '<input type="text" class="form-control" name="to_year" id="to_year" placeholder="Nhập năm kết thúc (chỉ yêu cầu nếu trình bày theo năm - năm)">'; ?>
               </div>
             </div>
             <div class="form-group">
@@ -150,8 +151,8 @@
 
   $(document).ready(function(){
     $("form").submit(function(){
-      // alert($("#add-post").serialize());
-      var url="<?php echo base_url('canbo/admin/article/edit_info_processing')?>";
+      // alert($("#add-info").serialize());
+      var url="<?php echo base_url('canbo/admin/infomation/edit_info_processing');?>";
       var form="#edit-info";
       var callback="#alert-ajax";
       makeAjaxCall(url, form, callback);

@@ -88,7 +88,7 @@ class Infomation extends CI_Controller {
     public function add_new_processing() {
       //code
       $type = $this->input->post('type');
-      if($type=='research' || $type=='research') {
+      if($type=='research' || $type=='experience') {
         $date = get_date_follow_format($this->input->post('time'),'year').' - '.$this->input->post('to_year');
       } else if($type=='isi' || $type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis' || $type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor'){
         $date = get_date_follow_format($this->input->post('time'),'year');
@@ -129,27 +129,24 @@ class Infomation extends CI_Controller {
 
     public function edit_info_processing() {
       //code
-      $ID = intval($this->input->post('id'));
-      $data['CATEID'] = intval($this->input->post('id'));
-      $data['USERID'] = $this->input->post('user_id');
-      $data['CAT_CATEID'] = ($this->input->post('level_cate') == 1) ? 0 : intval($this->input->post('parent_cate'));
-      $data['CATENAME'] = $this->input->post('name_cate');
-      $data['CATELEVEL'] = $this->input->post('level_cate');
-      $data['CATEHREF'] = $this->input->post('href');
-      $data['CATEPOLICY'] = $this->input->post('policy');
-      $data['CATETYPE'] = $this->input->post('type');
-
-      $data['USERID'] = get_id_logged();
+      $id = $this->input->post('id');
+      $type = $this->input->post('type');
+      if($type=='research' || $type=='experience') {
+        $date = get_date_follow_format($this->input->post('time'),'year').' - '.$this->input->post('to_year');
+      } else if($type=='isi' || $type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis' || $type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor'){
+        $date = get_date_follow_format($this->input->post('time'),'year');
+      } else {
+        $date = $this->input->post('time');
+      }
       $data['CATEID'] = intval($this->input->post('category'));
-      $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
-      $data['INFODATE'] = ($this->input->post('to_year')) ? ($this->input->post('time').' - '.$this->input->post('to_year')) : $this->input->post('time');
-      $data['INFOTITLE'] = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
-      $data['INFODESCRIPTION'] = ($this->input->post('description')) ? $this->input->post('description') : null;
+      // $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
+      $data['INFODATE'] = $date;
+      $data['INFOTITLE'] = $this->input->post('name_info');
       $data['INFOCONTENT'] = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
       $data['INFOPOLICY'] = $this->input->post('policy');
-      $data['INFOTYPE'] = $this->input->post('type');
+      $data['INFOTYPE'] = $type;
 
-      $status = $this->Mcategory->updateCate($data,$ID);
+      $status = $this->Minfo->updateInfoById($data,$id);
 			// Thông báo
 			if(!$status) {
 				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật thể loại thành công!"));
