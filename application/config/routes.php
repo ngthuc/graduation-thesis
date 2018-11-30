@@ -88,7 +88,7 @@ $route['canbo/admin/article/add_new_page'] = 'article/add_new_page';
 $route['canbo/admin/article/(:num)'] = 'article/edit_article/$1';
 $route['canbo/admin/article/add_new_processing'] = 'article/add_new_processing';
 $route['canbo/admin/article/edit_article_processing'] = 'article/edit_article_processing';
-$route['canbo/admin/article/delete_post'] = 'article/delete_article';
+$route['canbo/admin/article/delete_post'] = 'article/delete_post';
 
 // Route for Admin: Category
 $route['canbo/admin/category'] = 'category/index';
@@ -141,18 +141,20 @@ $route['canbo/admin/settings/update_default_processing'] = 'settings/update_defa
 // Route for Themes
 $route['canbo/admin/themes'] = 'themes/index';
 $route['canbo/admin/themes/menu'] = 'nav/index';
+$route['canbo/admin/themes/category'] = 'category/position_category';
 $route['canbo/admin/themes/add_menu'] = 'nav/add_menu';
 $route['canbo/admin/themes/add_menu_processing'] = 'nav/add_menu_processing';
 $route['canbo/admin/themes/update_themes'] = 'themes/update_themes';
 $route['canbo/admin/themes/update_menu'] = 'nav/update_menu';
+$route['canbo/admin/themes/update_category'] = 'category/update_position_category';
 $route['canbo/admin/themes/edit_menu/(:num)'] = 'nav/edit_menu/$1';
 $route['canbo/admin/themes/edit_menu_processing'] = 'nav/edit_menu_processing';
-$route['canbo/admin/themes/delete_menu'] = 'themes/delete_menu';
+$route['canbo/admin/themes/delete_menu'] = 'nav/delete_menu';
 
 // Route for public site
 $route['~(:any)'] = 'profile/user/$1';
 $route['~(:any)/(:any)_(:num)'] = 'profile/category/$1/$3';
-$route['~(:any)/(:any)_(:num).html'] = 'profile/article/$1/$3';
+$route['~(:any)/(:any)_(:num)_(:num).html'] = 'profile/article/$1/$3/$4';
 
 $route['article'] = 'mp_site/article';
 $route['article/(:num)'] = 'mp_site/article/home/$1';

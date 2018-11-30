@@ -4,7 +4,7 @@
     Cài đặt thanh điều hướng
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a href="<?=base_url('canbo/admin');?>"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
     <li class="active">Menu</li>
   </ol>
 </section>
@@ -34,6 +34,7 @@
                   <th>Vị trí hiện tại</th>
                   <th>Điều hướng</th>
                   <th>Đường dẫn</th>
+                  <th>Loại</th>
                   <th>Cập nhật</th>
                 </tr>
               </thead>
@@ -42,9 +43,10 @@
                   foreach ($menu as $key => $row_menu) {
                     // code...
                     echo '<tr>
-                      <td>'.$row_menu['MENUPOSITION'].'</td>
+                      <td>'.(($row_menu['MENUTYPE']=='primary') ? 'P' : 'S').$row_menu['MENUPOSITION'].'</td>
                       <td>'.$row_menu['MENUNAME'].'</td>
                       <td>'.$row_menu['MENULINK'].'</td>
+                      <td>'.(($row_menu['MENUTYPE']=='primary') ? 'Điều hướng chính' : 'Điều hướng phụ').'</td>
                       <td>
                         <button type="submit" data-id="'.$row_menu['MENUID'].'" data-position="'.(intval($row_menu['MENUPOSITION'])-1).'" class="btn btn-success"><span class="fa fa-arrow-up"></span></button>
                         <button type="submit" data-id="'.$row_menu['MENUID'].'" data-position="'.(intval($row_menu['MENUPOSITION'])+1).'" class="btn btn-info"><span class="fa fa-arrow-down"></span></button>

@@ -5,7 +5,7 @@
     <small>Chỉnh sửa</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a href="<?=base_url('canbo/admin');?>"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
     <li class="active">Chỉnh sửa điều hướng</li>
   </ol>
 </section>
@@ -72,6 +72,7 @@
 
           <div class="box-footer">
             <button type="submit" class="btn btn-primary">Lưu</button>
+            <button type="button" value="<?=$menu['MENUID'];?>" class="btn btn-danger ondelete"><b class="fa fa-trash"></b> Xóa</button>
           </div>
         </form>
       </div>
@@ -82,7 +83,7 @@
 <?php // var_dump($parent_cate); ?>
 <!-- Load ajax -->
 <script type="text/javascript">
-  // Login
+  // edit
   $(document).ready(function(){
     $("form").submit(function(){
       // alert($("#edit-menu").serialize());
@@ -92,4 +93,34 @@
       makeAjaxCall(url, form, callback);
     });
   });
+  // <!-- load ajax to delete -->
+
+  $(function(){
+    $('.ondelete').on('click', function(){
+      // alert($(this).attr('value'));
+      var url = "<?php echo base_url('canbo/admin/themes/delete_menu')?>";
+      var id = $(this).attr('value');
+      var callback = "#alert-ajax";
+      load_ajax(url,id,callback);
+    });
+  });
+
+  function load_ajax(url,id,callback){
+      $.ajax({
+          url : url,
+          type : "post",
+          dateType:"text",
+          data : {
+              menu_id : id
+          },
+      success : function (result){
+        //alert(result);
+        var obj = jQuery.parseJSON(result);
+        $(callback).html(
+          '<div class="alert alert-'+obj['STATUS']+'" id="alert-out">'+obj['MESSAGE']+'</div>'
+        );
+        location.reload(true);
+      }
+    });
+  }
 </script>

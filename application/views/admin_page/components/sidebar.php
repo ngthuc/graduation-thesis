@@ -142,8 +142,8 @@
               <i class="fa fa-navicon"></i> Thanh điều hướng
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(4) == 'list_info') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/themes/menu'); ?>">
+          <li<?php echo ($this->uri->segment(4) == 'category') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/themes/category'); ?>">
               <i class="fa fa-user"></i> Thông tin hiển thị
             </a>
           </li>

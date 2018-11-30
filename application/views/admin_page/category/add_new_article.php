@@ -5,7 +5,7 @@
     <small>Thêm mới</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a href="<?=base_url('canbo/admin');?>"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
     <li class="active">Bảng điều khiển</li>
   </ol>
 </section>
@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
               <label for="name_cate">Tên thể loại</label>
-              <input type="hidden" name="type" value="info">
+              <input type="hidden" name="type" value="article">
               <input type="text" class="form-control" name="name_cate" id="name_cate" placeholder="Nhập tên thể loại">
             </div>
             <div class="form-group">

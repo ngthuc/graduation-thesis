@@ -4,7 +4,7 @@
     Bài viết
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a href="<?=base_url('canbo/admin');?>"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
     <li class="active">Danh sách bài viết</li>
   </ol>
 </section>
@@ -30,7 +30,7 @@
               <th>Thể loại</th>
               <th>Tác giả</th>
               <th>Kiểu đăng</th>
-              <th>Lượt xem</th>
+              <!-- <th>Lượt xem</th> -->
               <th>Cập nhật</th>
             </tr>
             </thead>
@@ -39,15 +39,15 @@
             $stt = 1;
             foreach ($articles as $key => $post) {
               // code...
-              $name_category = $this->Mcategory->getArticleCateNameById($post['CATEID']);
-              $name_author = $this->Musers->getNameById($post['USERID']);
+              $category = $this->Mcategory->getById($post['CATEID']);
+              $author = $this->Musers->getNameById($post['USERID']);
               echo '<tr>
                 <td>'.$stt.'</td>
                 <td>'.$post['ARTICLETITLE'].'</td>
-                <td>'.$name_category['CATENAME'].'</td>
-                <td>'.$name_author['USERFULLNAME'].'</td>
+                <td>'.$category['CATENAME'].'</td>
+                <td>'.$author['USERFULLNAME'].'</td>
                 <td>'.(($post['ARTICLETYPE']=='page') ? 'Trang' : 'Bài viết').'</td>
-                <td>'.$post['ARTICLECOUNT'].'</td>
+                <!--td>'.$post['ARTICLECOUNT'].'</td-->
                 <td>
                   <a href="'.base_url('canbo/admin/article/'.$post['ARTICLEID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
                   <button type="button" value="'.$post['ARTICLEID'].'" class="btn btn-danger ondelete"><b class="fa fa-trash"></b></button>

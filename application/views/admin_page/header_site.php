@@ -8,6 +8,17 @@
   <!-- Javascript -->
 
   <!-- Internal Cascading Style Sheets or Javascript -->
+    <style media="screen">
+      @media only screen and (max-width: 1000px) {
+        .box-body {
+          overflow-x: auto !important;
+        }
+
+        #datatables {
+          width: 100% !important;
+        }
+      }
+    </style>
     <script type="text/javascript">
       $(document).ajaxStart(function() {
          Pace.restart();

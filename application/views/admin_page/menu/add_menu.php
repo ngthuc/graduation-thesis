@@ -5,7 +5,7 @@
     <small>Thêm mới</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a href="<?=base_url('canbo/admin');?>"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
     <li class="active">Thêm điều hướng</li>
   </ol>
 </section>
@@ -40,15 +40,15 @@
               <select class="form-control select2" style="width: 100%;" name="parent">
                 <option selected="selected" value="0">-- <i>Điều hướng gốc</i> --</option>
                 <?php
-                foreach ($categories as $key => $row) {
-                echo '<option value="'.$row['MENUID'].'">';
-                  for($i=1;$i<=$row['MENULEVEL'];$i++) {
-                    if($i==1) echo '';
-                    else echo '|---';
-                  }
-                  echo $row['MENUNAME'].'</option>
-                  ';
-                }
+                // foreach ($categories as $key => $row) {
+                // echo '<option value="'.$row['MENUID'].'">';
+                //   for($i=1;$i<=$row['MENULEVEL'];$i++) {
+                //     if($i==1) echo '';
+                //     else echo '|---';
+                //   }
+                //   echo $row['MENUNAME'].'</option>
+                //   ';
+                // }
                 ?>
               </select>
             </div>

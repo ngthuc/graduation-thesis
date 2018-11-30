@@ -10,7 +10,7 @@ class Nav extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/menu/list_menu';
       $_data['data_subview'] = array(
-        'menu' => $this->Menu->getSortByParent(get_id_logged(),0,'MENUPOSITION','ASC')
+        'menu' => $this->Menu->getSortByParent(get_id_logged(),0,null,'MENUPOSITION','ASC')
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
@@ -61,12 +61,15 @@ class Nav extends CI_Controller {
 
     public function edit_menu($id = null) {
       //code
-      $_data['subview'] = 'admin_page/menu/edit_menu';
-      $_data['data_subview'] = array(
-        'menu' => $this->Menu->getById($id),
-        'menus' => $this->Menu->returnCategories()
-      );
-      $this->load->view('admin_page/main_layout',$_data);
+      $menu = $this->Menu->getById($id);
+      if(isset($menu)) {
+        $_data['subview'] = 'admin_page/menu/edit_menu';
+        $_data['data_subview'] = array(
+          'menu' => $menu,
+          'menus' => $this->Menu->returnCategories()
+        );
+        $this->load->view('admin_page/main_layout',$_data);
+      } else redirect(base_url('canbo/admin/themes/menu'));
     }
 
     public function edit_menu_processing() {
@@ -92,12 +95,12 @@ class Nav extends CI_Controller {
     public function delete_menu() {
       //code
       if(isset($_POST)) {
-        $status = $this->Menu->deleteMenu(intval($this->input->post('cate_id')));
+        $status = $this->Menu->deleteMenu(intval($this->input->post('menu_id')));
   			// Thông báo
   			if($status) {
-  				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa thể loại thành công!"));
+  				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa điều hướng thành công!"));
   			} else {
-  				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Xóa thể loại thất bại!"));
+  				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Xóa điều hướng thất bại!"));
   			}
         redirect(base_url(), 'refresh');
       } else {
@@ -107,6 +110,6 @@ class Nav extends CI_Controller {
 
     public function test() {
       //code
-      var_dump($this->Menu->returnCategories());
+      // var_dump($this->Menu->returnCategories());
     }
 }

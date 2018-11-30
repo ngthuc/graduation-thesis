@@ -6,13 +6,10 @@
         <hr>
         <!-- Date/Time - Author - Counting -->
         <p>
-          <i><?php echo $this->lang->line('publish_at'); ?>
-            <?php echo $article['ARTICLECREATIONDATE']; ?>
-            <?php echo $this->lang->line('by'); ?>
-            <a href="<?php echo base_url($this->lang->line('article').'/'.$this->lang->line('author').'/'.$article['USERID']); ?>">
-              <?php echo $article['USERID']; ?></a>
-              |
-              <?php echo $this->lang->line('View'); ?>: <?php echo ($article['ARTICLECOUNT'] == NULL) ? 0 : $article['ARTICLECOUNT']; ?>
+          <i>Đăng tải lúc <?php echo $article['ARTICLECREATIONDATE']; ?> bởi
+            <a href="<?php echo base_url('~'.$user); ?>">
+              <?php echo $article['USERID']; ?>
+            </a>
           </i>
         </p>
         <hr>
@@ -27,34 +24,22 @@
           }
         } else echo '<p>'.$article['ARTICLECONTENT'].'</p>'; ?>
       <hr>
+      <h4>
+        Cùng thể loại
+        <a href="<?=base_url('~'.$user.'/'.convert_url($category['CATENAME']).'_'.$category['CATEID']);?>">
+          <?=$category['CATENAME'];?>
+        </a>
+      </h4>
       <?php foreach ($articles as $key => $row): ?>
         <h4>
-          <a href="<?php echo base_url($this->lang->line('article').'/'.$this->lang->line('post').'/'.convert_url($row['ARTICLETITLE']).'.html'); ?>">
+          * <a href="<?php echo base_url('~'.$user.'/'.convert_url($row['ARTICLETITLE']).'_'.$category['CATEID'].'_'.$row['ARTICLEID'].'.html'); ?>">
             <?php echo $row['ARTICLETITLE']; ?>
           </a>
-          <br>
         </h4>
       <?php endforeach; ?>
     </div>
   </section>
 
-  <script type="text/javascript">
-    // Login
-    $(document).ready(function(){
-      $.ajax({
-          type: "post",
-          url: "<?php echo base_url('article/count_view/'.$article['ARTICLEID'])?>",
-          cache: false,
-          data:{
-            id : <?php echo $article['ARTICLEID'];?>
-          },
-          success: function(){
-            console.log('Success!');
-            // $.notify('Success!','success');
-          }
-      });
-    });
-  </script>
 <?php } else {
   echo '<section id="clients" class="wow fadeInUp">
     <div class="container">

@@ -585,7 +585,8 @@ if (!function_exists('convert_url'))
         $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", "u", $str);
         $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", "y", $str);
         $str = preg_replace("/(Đ)/", "d", $str);
-        $str = str_replace(" ","_",$str);
+        $str = str_replace("/","-",$str);
+        $str = str_replace(" ","-",$str);
         return $str;
     }
 }
@@ -628,5 +629,34 @@ if (!function_exists('check_statistic'))
         if(!isset($_SESSION['search'])) {
           return FALSE;
         } else return ($_SESSION['search'][$session] == null) ? FALSE : TRUE;
+    }
+}
+
+if (!function_exists('check_menu_type'))
+{
+    function check_menu_type($user)
+    {
+      $CI = &get_instance();
+
+      $CI->load->model('Menu');
+
+      $menu_type_list = $CI->Menu->getTypeByUser($user);
+      for($i=0;$i<count($menu_type_list);$i++){
+        $menu_type[$i] = $menu_type_list[$i]['MENUTYPE'];
+      }
+      return (in_array('submenu',$menu_type)) ? 'submenu' : 'primary';
+    }
+}
+
+if (!function_exists('get_menu'))
+{
+    function get_menu($user,$type='primary')
+    {
+      $CI = &get_instance();
+
+      $CI->load->model('Menu');
+
+      // Call a function of the model
+      return $CI->Menu->getSortByParent($user,0,$type,'MENUPOSITION','ASC');
     }
 }

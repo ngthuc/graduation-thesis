@@ -158,7 +158,7 @@ class Infomation extends CI_Controller {
     public function delete_info() {
       //code
       if(isset($_POST)) {
-        $status = $this->Minfo->deleteInfo(intval($this->input->post('id')));
+        $status = $this->Minfo->deleteInfo(intval($this->input->post('info_id')));
   			// Thông báo
   			if($status) {
   				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa thông tin thành công!"));

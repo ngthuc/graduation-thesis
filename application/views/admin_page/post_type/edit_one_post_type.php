@@ -5,7 +5,7 @@
     <small>Chỉnh sửa bài viết</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a href="<?=base_url('canbo/admin');?>"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
     <li class="active">Chỉnh sửa bài viết</li>
   </ol>
 </section>
@@ -18,7 +18,7 @@
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Chỉnh sửa bài viết: <?php echo '<a href="'.base_url('~'.get_id_logged().'/'.convert_url($content['ARTICLETITLE']).'.html'.'" target="_blank">'.$content['ARTICLETITLE'].'</a>'; ?></h3>
+          <h3 class="box-title">Chỉnh sửa bài viết: <?php echo '<a href="'.base_url('~'.get_id_logged().'/'.convert_url($content['ARTICLETITLE']).'.html').'" target="_blank">'.$content['ARTICLETITLE'].'</a>'; ?></h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->

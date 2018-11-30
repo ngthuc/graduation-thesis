@@ -1,11 +1,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Cài đặt thanh điều hướng
+    Cài đặt thứ tự hiển thị
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-    <li class="active">Menu</li>
+    <li><a href="<?=base_url('canbo/admin');?>"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li class="active">Sort</li>
   </ol>
 </section>
 
@@ -17,37 +17,36 @@
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Thiết lập thanh điều hướng</h3>
+          <h3 class="box-title">Thiết lập thông tin hiển thị</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
         <form role="form" id="customize-options" method="post">
           <div class="box-body">
-            <a href="<?=base_url('canbo/admin/themes/add_menu');?>" class="btn btn-primary"> Thêm mới </a>
+            <a href="<?=base_url('canbo/admin/category/add_new_info');?>" class="btn btn-primary"> Thêm mới </a>
             <hr>
             <div class="form-group" id="alert-ajax">
               <!-- Alert by Ajax -->
             </div>
             <table class="table table-bordered table-striped" id="datatables">
               <thead>
-              <tr>
-                <th>Vị trí hiện tại</th>
-                <th>Điều hướng</th>
-                <th>Navigation</th>
-                <th rowspan="2">Cập nhật</th>
-              </tr>
+                <tr>
+                  <th>Vị trí hiện tại</th>
+                  <th>Thể loại</th>
+                  <th>Cập nhật</th>
+                </tr>
               </thead>
               <tbody>
                 <?php
-                  foreach ($cate_menu as $key => $row_menu) {
+                  foreach ($category as $key => $row_cate) {
                     // code...
                     echo '<tr>
-                      <td>'.$row_menu['CATEPOSITION'].'</td>
-                      <td>'.$row_menu['CATENAME'].'</td>
-                      <td>'.$row_menu['CATENAME_ENGLISH'].'</td>
+                      <td>'.$row_cate['CATEPOSITION'].'</td>
+                      <td>'.$row_cate['CATENAME'].'</td>
                       <td>
-                        <button type="submit" data-id="'.$row_menu['CATEID'].'" data-position="'.(intval($row_menu['CATEPOSITION'])-1).'" class="btn btn-success"><span class="fa fa-arrow-up"></span></button>
-                        <button type="submit" data-id="'.$row_menu['CATEID'].'" data-position="'.(intval($row_menu['CATEPOSITION'])+1).'" class="btn btn-info"><span class="fa fa-arrow-down"></span></button>
+                        <button type="submit" data-id="'.$row_cate['CATEID'].'" data-position="'.(intval($row_cate['CATEPOSITION'])-1).'" class="btn btn-success"><span class="fa fa-arrow-up"></span></button>
+                        <button type="submit" data-id="'.$row_cate['CATEID'].'" data-position="'.(intval($row_cate['CATEPOSITION'])+1).'" class="btn btn-info"><span class="fa fa-arrow-down"></span></button>
+                        <a href="'.base_url('canbo/admin/category/edit_category_info/'.$row_cate['CATEID']).'" class="btn btn-primary"><span class="fa fa-cog"></span></button>
                       </td>
                     </tr>';
                   }
@@ -83,7 +82,7 @@
 
   function loadAjaxChangePosition(id,position){
     $.ajax({
-        url : "<?php echo base_url('admin/settings/update_menu')?>",
+        url : "<?php echo base_url('canbo/admin/themes/update_category')?>",
         type : "post",
         dateType:"text",
         data : {

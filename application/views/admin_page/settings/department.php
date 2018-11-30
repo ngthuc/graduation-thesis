@@ -4,7 +4,7 @@
     Danh sách bộ môn/tổ chuyên ngành
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a href="<?=base_url('canbo/admin');?>"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
     <li class="active">Cài đặt</li>
   </ol>
 </section>

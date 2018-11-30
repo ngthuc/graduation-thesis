@@ -5,7 +5,7 @@
     <small>Chỉnh sửa thông tin</small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a href="<?=base_url('canbo/admin');?>"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
     <li class="active">Chỉnh sửa thông tin</li>
   </ol>
 </section>
@@ -63,6 +63,7 @@
               <div class="row">
                 <div class="col-md-8">
                   <label for="content">Nội dung thông tin</label>
+                  <?php var_dump($info['INFOCONTENT']);?>
                   <textarea name="content" id="content" value="<?=$info['INFOCONTENT']?>" width="100%"></textarea>
                 </div>
                 <div class="col-md-4">

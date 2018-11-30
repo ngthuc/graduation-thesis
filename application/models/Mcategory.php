@@ -81,9 +81,10 @@ class Mcategory extends CI_Model{
         return $this->db->get($this->_table)->result_array();
     }
 
-    public function getSortByParent($user,$idparent,$where=null,$type_sort=null,$show=null){
+    public function getSortByParent($user,$idparent,$type,$where=null,$type_sort=null,$show=null){
         $this->db->where("USERID", $user);
         $this->db->where("CAT_CATEID", $idparent);
+        $this->db->where("CATETYPE", $type);
         if(isset($show)) $this->db->where("CATESHOWMENU", 1);
         if($where && $type_sort) $this->db->order_by($where,$type_sort);
         return $this->db->get($this->_table)->result_array();

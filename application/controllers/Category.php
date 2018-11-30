@@ -92,6 +92,29 @@ class Category extends CI_Controller {
 			}
     }
 
+    public function position_category() {
+      //code
+      $_data['subview'] = 'admin_page/themes/list_info_view';
+      $_data['data_subview'] = array(
+        'category' => $this->Mcategory->getSortByParent(get_id_logged(),0,'info','CATEPOSITION','ASC')
+      );
+      $this->load->view('admin_page/main_layout',$_data);
+    }
+
+    public function update_position_category() {
+      //code
+      $id = $this->input->post('id');
+      $data['CATEPOSITION'] = intval($this->input->post('position'));
+
+      $status = $this->Mcategory->updateCate($data,$id);
+			// Thông báo
+			if(!$status) {
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật thành công!"));
+			} else {
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật thất bại!"));
+			}
+    }
+
     public function delete_category() {
       //code
       $id = intval($this->input->post('cate_id'));

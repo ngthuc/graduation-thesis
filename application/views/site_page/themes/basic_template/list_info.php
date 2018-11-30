@@ -1,6 +1,5 @@
 <?php
-$categories = $this->Mcategory->returnCategories($user,'info');
-foreach ($categories as $key => $category) {
+foreach ($person_research as $key => $category) {
   // code...
   echo '<!-- '.convert_url($category['CATENAME']).' -->';
   if($category['CATEHREF']) echo '<a name="'.catehref_format($category['CATEHREF']).'">';

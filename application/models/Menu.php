@@ -38,6 +38,23 @@ class Menu extends CI_Model{
         return $this->db->get($this->_table)->row_array();
     }
 
+    public function getByUser($uid){
+        $this->db->where("USERID", $uid);
+        return $this->db->get($this->_table)->row_array();
+    }
+
+    public function getByType($type='primary'){
+        $this->db->where("MENUTYPE", $type);
+        return $this->db->get($this->_table)->result_array();
+    }
+
+    public function getTypeByUser($uid){
+        $this->db->distinct();
+        $this->db->select('MENUTYPE');
+        $this->db->where("USERID", $uid);
+        return $this->db->get($this->_table)->result_array();
+    }
+
     public function findId($string_menu){
         $list_menu = $this->getList();
         foreach ($list_menu as $key => $value) {
@@ -66,10 +83,12 @@ class Menu extends CI_Model{
         return $this->db->get($this->_table)->result_array();
     }
 
-    public function getSortByParent($uid,$idparent,$where=null,$type_sort=null){
+    public function getSortByParent($uid,$idparent,$type=null,$where=null,$type_sort=null){
         $this->db->where("USERID", $uid);
         $this->db->where("MENUPARENT", $idparent);
-        if($where && $type_sort) $this->db->order_by($where,$type_sort);
+        if(isset($type)) $this->db->where("MENUTYPE", $type);
+        if(isset($where) && isset($type_sort)) $this->db->order_by($where,$type_sort);
+        $this->db->order_by("MENUTYPE","ASC");
         return $this->db->get($this->_table)->result_array();
     }
 

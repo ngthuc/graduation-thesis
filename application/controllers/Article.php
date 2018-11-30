@@ -10,7 +10,7 @@ class Article extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/post_type/list_posts';
       $_data['data_subview'] = array(
-        'articles' => $this->Marticle->getLatestList()
+        'articles' => $this->Marticle->getLatestList(get_id_logged())
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
@@ -19,8 +19,7 @@ class Article extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/post_type/add_new_post';
       $_data['data_subview'] = array(
-        'parent_cate' => $this->Mcategory->returnCategories()
-        // 'parent_cate' => $this->Mcategory->getRecursive()
+        'parent_cate' => $this->Mcategory->returnCategories(get_id_logged())
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
@@ -29,18 +28,16 @@ class Article extends CI_Controller {
       //code
       $_data['subview'] = 'admin_page/post_type/add_new_page';
       $_data['data_subview'] = array(
-        'parent_cate' => $this->Mcategory->returnCategories()
-        // 'parent_cate' => $this->Mcategory->getRecursive()
+        'parent_cate' => $this->Mcategory->returnCategories(get_id_logged())
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
 
     public function add_new_processing() {
       //code
-      // $_user_logged = $this->session->userdata('user');
       $data['USERID'] = get_id_logged();
       $data['CATEID'] = intval($this->input->post('category'));
-      $data['ARTICLEIMAGE'] = ($this->input->post('avatar_post') != '') ? $this->input->post('avatar_post') : base_url('public/filemanager/upload/default-image.jpg');
+      $data['ARTICLEIMAGE'] = ($this->input->post('avatar_post') != '') ? $this->input->post('avatar_post') : base_url('spsim_media/default-image.jpg');
       $data['ARTICLETITLE'] = $this->input->post('title_post');
       $data['ARTICLEDESCRIPTION'] = $this->input->post('description');
       $data['ARTICLECONTENT'] = $this->input->post('post_content');
@@ -63,7 +60,7 @@ class Article extends CI_Controller {
       $_data['subview'] = 'admin_page/post_type/edit_one_post_type';
       $_data['data_subview'] = array(
         'content' => $this->Marticle->getById($id),
-        'categories' => $this->Mcategory->returnCategories()
+        'categories' => $this->Mcategory->returnCategories(get_id_logged())
       );
       $this->load->view('admin_page/main_layout',$_data);
     }
