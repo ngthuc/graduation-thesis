@@ -34,6 +34,15 @@ class Minfo extends CI_Model{
         return $this->db->get($this->_table)->result_array();
     }
 
+    public function getInfoDashboardByUser($user,$type=null){
+        $this->db->select('*');
+        $this->db->where('USERID', $user);
+        $this->db->where('INFOTYPE', $type);
+        $this->db->order_by('INFODATE','DESC');
+        $this->db->limit(5,0);
+        return $this->db->get($this->_table)->result_array();
+    }
+
     public function statisticInfo($user=null,$year=null,$type=null,$school=null,$faculty=null,$department=null){
         $this->db->select('*');
         if(isset($user)) $this->db->where('USERID', $user);

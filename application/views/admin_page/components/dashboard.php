@@ -154,17 +154,21 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $isi_publication = $this->Minfo->getInfoByUser(get_id_logged(),'isi');
-            // if(count($isi_publication) > 0) {
-            //   $i = 1;
-            //   foreach ($isi_publication as $key => $isi_info) {
-            //     // code...
-            //     echo '<li>
-            //       <span class="handle">'.$i.'</span><span class="text">'.$isi_info['INFOTITLE'].'</span>
-            //     </li>';
-            //     $i++;
-            //   }
-            // }
+            $isi_publication = $this->Minfo->getInfoDashboardByUser(get_id_logged(),'isi');
+            if(count($isi_publication) > 0) {
+              $i = 1;
+              foreach ($isi_publication as $key => $isi_info) {
+                // code...
+                echo '<li>
+                  <span class="handle">'.$i.'</span><span class="text">'.$isi_info['INFOTITLE'].'.'.$isi_info['INFOCONTENT'].','.$isi_info['INFODATE'].'</span>
+                </li>';
+                $i++;
+              }
+            } else {
+              echo '<li>
+                <span class="text">Chưa có thông tin</span>
+              </li>';
+            }
           ?>
           </ul>
         </div>
@@ -186,17 +190,21 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $isi_publication = $this->Minfo->getInfoByUser(get_id_logged(),'isi');
-            // if(count($isi_publication) > 0) {
-            //   $i = 1;
-            //   foreach ($isi_publication as $key => $isi_info) {
-            //     // code...
-            //     echo '<li>
-            //       <span class="handle">'.$i.'</span><span class="text">'.$isi_info['INFOTITLE'].'</span>
-            //     </li>';
-            //     $i++;
-            //   }
-            // }
+            $edited_publication = $this->Minfo->getInfoDashboardByUser(get_id_logged(),'edited');
+            if(count($edited_publication) > 0) {
+              $i = 1;
+              foreach ($edited_publication as $key => $edited_info) {
+                // code...
+                echo '<li>
+                  <span class="handle">'.$i.'</span><span class="text">'.$edited_info['INFOTITLE'].'.'.$edited_info['INFOCONTENT'].','.$edited_info['INFODATE'].'</span>
+                </li>';
+                $i++;
+              }
+            } else {
+              echo '<li>
+                <span class="text">Chưa có thông tin</span>
+              </li>';
+            }
           ?>
           </ul>
         </div>
@@ -219,17 +227,21 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $isi_publication = $this->Minfo->getInfoByUser(get_id_logged(),'isi');
-            // if(count($isi_publication) > 0) {
-            //   $i = 1;
-            //   foreach ($isi_publication as $key => $isi_info) {
-            //     // code...
-            //     echo '<li>
-            //       <span class="handle">'.$i.'</span><span class="text">'.$isi_info['INFOTITLE'].'</span>
-            //     </li>';
-            //     $i++;
-            //   }
-            // }
+            $conference_publication = $this->Minfo->getInfoDashboardByUser(get_id_logged(),'conference');
+            if(count($conference_publication) > 0) {
+              $i = 1;
+              foreach ($conference_publication as $key => $conference_info) {
+                // code...
+                echo '<li>
+                  <span class="handle">'.$i.'</span><span class="text">'.$conference_info['INFOTITLE'].'.'.$conference_info['INFOCONTENT'].','.$conference_info['INFODATE'].'</span>
+                </li>';
+                $i++;
+              }
+            } else {
+              echo '<li>
+                <span class="text">Chưa có thông tin</span>
+              </li>';
+            }
           ?>
           </ul>
         </div>
@@ -256,17 +268,21 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $isi_publication = $this->Minfo->getInfoByUser(get_id_logged(),'isi');
-            // if(count($isi_publication) > 0) {
-            //   $i = 1;
-            //   foreach ($isi_publication as $key => $isi_info) {
-            //     // code...
-            //     echo '<li>
-            //       <span class="handle">'.$i.'</span><span class="text">'.$isi_info['INFOTITLE'].'</span>
-            //     </li>';
-            //     $i++;
-            //   }
-            // }
+            $journal_publication = $this->Minfo->getInfoDashboardByUser(get_id_logged(),'journal');
+            if(count($journal_publication) > 0) {
+              $i = 1;
+              foreach ($journal_publication as $key => $journal_info) {
+                // code...
+                echo '<li>
+                  <span class="handle">'.$i.'</span><span class="text">'.$journal_info['INFOTITLE'].'.'.$journal_info['INFOCONTENT'].','.$journal_info['INFODATE'].'</span>
+                </li>';
+                $i++;
+              }
+            } else {
+              echo '<li>
+                <span class="text">Chưa có thông tin</span>
+              </li>';
+            }
           ?>
           </ul>
         </div>
@@ -288,17 +304,21 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $isi_publication = $this->Minfo->getInfoByUser(get_id_logged(),'isi');
-            // if(count($isi_publication) > 0) {
-            //   $i = 1;
-            //   foreach ($isi_publication as $key => $isi_info) {
-            //     // code...
-            //     echo '<li>
-            //       <span class="handle">'.$i.'</span><span class="text">'.$isi_info['INFOTITLE'].'</span>
-            //     </li>';
-            //     $i++;
-            //   }
-            // }
+            $report_publication = $this->Minfo->getInfoDashboardByUser(get_id_logged(),'report');
+            if(count($report_publication) > 0) {
+              $i = 1;
+              foreach ($report_publication as $key => $report_info) {
+                // code...
+                echo '<li>
+                  <span class="handle">'.$i.'</span><span class="text">'.$report_info['INFOTITLE'].'.'.$report_info['INFOCONTENT'].','.$report_info['INFODATE'].'</span>
+                </li>';
+                $i++;
+              }
+            } else {
+              echo '<li>
+                <span class="text">Chưa có thông tin</span>
+              </li>';
+            }
           ?>
           </ul>
         </div>
@@ -320,17 +340,21 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            // $isi_publication = $this->Minfo->getInfoByUser(get_id_logged(),'isi');
-            // if(count($isi_publication) > 0) {
-            //   $i = 1;
-            //   foreach ($isi_publication as $key => $isi_info) {
-            //     // code...
-            //     echo '<li>
-            //       <span class="handle">'.$i.'</span><span class="text">'.$isi_info['INFOTITLE'].'</span>
-            //     </li>';
-            //     $i++;
-            //   }
-            // }
+            $thesis_publication = $this->Minfo->getInfoDashboardByUser(get_id_logged(),'thesis');
+            if(count($thesis_publication) > 0) {
+              $i = 1;
+              foreach ($thesis_publication as $key => $thesis_info) {
+                // code...
+                echo '<li>
+                  <span class="handle">'.$i.'</span><span class="text">'.$thesis_info['INFOTITLE'].'.'.$thesis_info['INFOCONTENT'].','.$thesis_info['INFODATE'].'</span>
+                </li>';
+                $i++;
+              }
+            } else {
+              echo '<li>
+                <span class="text">Chưa có thông tin</span>
+              </li>';
+            }
           ?>
           </ul>
         </div>
