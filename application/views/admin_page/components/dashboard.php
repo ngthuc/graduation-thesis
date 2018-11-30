@@ -59,7 +59,17 @@
       <!-- small box -->
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h3><?php echo $this->Minfo->countPersonInfo(get_id_logged(),'publication');?></h3>
+          <h3>
+          <?php
+            $isi = $this->Minfo->countPersonInfo(get_id_logged(),'isi');
+            $journal = $this->Minfo->countPersonInfo(get_id_logged(),'journal');
+            $edited = $this->Minfo->countPersonInfo(get_id_logged(),'edited');
+            $conference = $this->Minfo->countPersonInfo(get_id_logged(),'conference');
+            $report = $this->Minfo->countPersonInfo(get_id_logged(),'report');
+            $thesis = $this->Minfo->countPersonInfo(get_id_logged(),'thesis');
+            echo intval($isi) + intval($journal) + intval($edited) + intval($conference) + intval($report) + intval($thesis);
+          ?>
+          </h3>
 
           <p>Công bố</p>
         </div>
@@ -88,9 +98,17 @@
       <?php if(has_role(get_role_logged(),'user')): ?>
       <div class="small-box bg-red">
         <div class="inner">
-          <h3><?php echo $this->Minfo->countPersonInfo(get_id_logged(),'research');?></h3>
+          <h3>
+          <?php
+            $workshop = $this->Minfo->countPersonInfo(get_id_logged(),'workshop');
+            $reviewer = $this->Minfo->countPersonInfo(get_id_logged(),'reviewer');
+            $seminars = $this->Minfo->countPersonInfo(get_id_logged(),'seminars');
+            $doctor = $this->Minfo->countPersonInfo(get_id_logged(),'doctor');
+            echo intval($workshop) + intval($reviewer) + intval($seminars) + intval($doctor);
+          ?>
+          </h3>
 
-          <p>Nghiên cứu</p>
+          <p>Dịch vụ</p>
         </div>
         <div class="icon">
           <i class="ion-briefcase"></i>
@@ -128,7 +146,7 @@
         <div class="box-header">
           <i class="ion ion-clipboard"></i>
 
-          <h3 class="box-title">Bài viết mới nhất</h3>
+          <h3 class="box-title">Công bố ISI/Scopus</h3>
 
         </div>
         <!-- /.box-header -->
@@ -136,22 +154,23 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            $article = $this->Marticle->getFiveLatestArticle();
-            $i = 1;
-            foreach ($article as $key => $post) {
-              // code...
-              echo '<li>
-                <span class="handle">'.$i.'</span>
-                <a href="'.(base_url('~'.get_id_logged().'/'.convert_url($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
-              </li>';
-              $i++;
-            }
+            // $isi_publication = $this->Minfo->getInfoByUser(get_id_logged(),'isi');
+            // if(count($isi_publication) > 0) {
+            //   $i = 1;
+            //   foreach ($isi_publication as $key => $isi_info) {
+            //     // code...
+            //     echo '<li>
+            //       <span class="handle">'.$i.'</span><span class="text">'.$isi_info['INFOTITLE'].'</span>
+            //     </li>';
+            //     $i++;
+            //   }
+            // }
           ?>
           </ul>
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix no-border">
-          <a type="button" href="<?php echo base_url('canbo/admin/article/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
+          <a type="button" href="<?php echo base_url('canbo/admin/infomation/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
         </div>
       </div>
 
@@ -159,7 +178,7 @@
         <div class="box-header">
           <i class="ion ion-clipboard"></i>
 
-          <h3 class="box-title">Bài viết được xem nhiều</h3>
+          <h3 class="box-title">Chỉnh sửa sách</h3>
 
         </div>
         <!-- /.box-header -->
@@ -167,25 +186,58 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            $article = $this->Marticle->getFiveMostView();
-            $i = 1;
-            foreach ($article as $key => $post) {
-              // code...
-              echo '<li>
-                <span class="handle">'.$i.'</span>
-                <a href="'.(base_url('~'.get_id_logged().'/'.convert_url($post['ARTICLETITLE']).'.html')).'"><span class="text">'.$post['ARTICLETITLE'].'</span></a>
-              </li>';
-              $i++;
-            }
+            // $isi_publication = $this->Minfo->getInfoByUser(get_id_logged(),'isi');
+            // if(count($isi_publication) > 0) {
+            //   $i = 1;
+            //   foreach ($isi_publication as $key => $isi_info) {
+            //     // code...
+            //     echo '<li>
+            //       <span class="handle">'.$i.'</span><span class="text">'.$isi_info['INFOTITLE'].'</span>
+            //     </li>';
+            //     $i++;
+            //   }
+            // }
           ?>
           </ul>
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix no-border">
-          <a type="button" href="<?php echo base_url('canbo/admin/article/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
+          <a type="button" href="<?php echo base_url('canbo/admin/infomation/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
         </div>
       </div>
       <!-- /.box -->
+
+      <div class="box box-primary">
+        <div class="box-header">
+          <i class="ion ion-clipboard"></i>
+
+          <h3 class="box-title">Hội nghị - Workshop</h3>
+
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+          <ul class="todo-list">
+          <?php
+            // $isi_publication = $this->Minfo->getInfoByUser(get_id_logged(),'isi');
+            // if(count($isi_publication) > 0) {
+            //   $i = 1;
+            //   foreach ($isi_publication as $key => $isi_info) {
+            //     // code...
+            //     echo '<li>
+            //       <span class="handle">'.$i.'</span><span class="text">'.$isi_info['INFOTITLE'].'</span>
+            //     </li>';
+            //     $i++;
+            //   }
+            // }
+          ?>
+          </ul>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix no-border">
+          <a type="button" href="<?php echo base_url('canbo/admin/infomation/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
+        </div>
+      </div>
 
     </section>
     <!-- /.Left col -->
@@ -196,7 +248,7 @@
         <div class="box-header">
           <i class="ion ion-clipboard"></i>
 
-          <h3 class="box-title">Tác giả tích cực</h3>
+          <h3 class="box-title">Công bố Tạp chí/chương sách</h3>
 
         </div>
         <!-- /.box-header -->
@@ -204,23 +256,23 @@
           <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
           <ul class="todo-list">
           <?php
-            $authors = $this->Marticle->getPopularOfAuthor();
-            $i = 1;
-            foreach ($authors as $key => $author) {
-              // code...
-              $user = get_user_by_id($author['USERID']);
-              echo '<li>
-                <span class="handle">'.$i.'</span>
-                <a href="'.(base_url('~'.get_id_logged().'/'.convert_url($author['USERID']))).'"><span class="text">'.$user['USERFULLNAME'].'</span></a>
-              </li>';
-              $i++;
-            }
+            // $isi_publication = $this->Minfo->getInfoByUser(get_id_logged(),'isi');
+            // if(count($isi_publication) > 0) {
+            //   $i = 1;
+            //   foreach ($isi_publication as $key => $isi_info) {
+            //     // code...
+            //     echo '<li>
+            //       <span class="handle">'.$i.'</span><span class="text">'.$isi_info['INFOTITLE'].'</span>
+            //     </li>';
+            //     $i++;
+            //   }
+            // }
           ?>
           </ul>
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix no-border">
-          <a type="button" href="<?php echo base_url('canbo/admin/article/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
+          <a type="button" href="<?php echo base_url('canbo/admin/infomation/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
         </div>
       </div>
 
@@ -228,7 +280,71 @@
         <div class="box-header">
           <i class="ion ion-clipboard"></i>
 
-          <h3 class="box-title">Thể loại thường xuyên</h3>
+          <h3 class="box-title">Báo cáo công nghệ</h3>
+
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+          <ul class="todo-list">
+          <?php
+            // $isi_publication = $this->Minfo->getInfoByUser(get_id_logged(),'isi');
+            // if(count($isi_publication) > 0) {
+            //   $i = 1;
+            //   foreach ($isi_publication as $key => $isi_info) {
+            //     // code...
+            //     echo '<li>
+            //       <span class="handle">'.$i.'</span><span class="text">'.$isi_info['INFOTITLE'].'</span>
+            //     </li>';
+            //     $i++;
+            //   }
+            // }
+          ?>
+          </ul>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix no-border">
+          <a type="button" href="<?php echo base_url('canbo/admin/infomation/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
+        </div>
+      </div>
+
+      <div class="box box-primary">
+        <div class="box-header">
+          <i class="ion ion-clipboard"></i>
+
+          <h3 class="box-title">Hướng dẫn tốt nghiệp</h3>
+
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+          <ul class="todo-list">
+          <?php
+            // $isi_publication = $this->Minfo->getInfoByUser(get_id_logged(),'isi');
+            // if(count($isi_publication) > 0) {
+            //   $i = 1;
+            //   foreach ($isi_publication as $key => $isi_info) {
+            //     // code...
+            //     echo '<li>
+            //       <span class="handle">'.$i.'</span><span class="text">'.$isi_info['INFOTITLE'].'</span>
+            //     </li>';
+            //     $i++;
+            //   }
+            // }
+          ?>
+          </ul>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix no-border">
+          <a type="button" href="<?php echo base_url('canbo/admin/infomation/');?>" class="btn btn-default pull-right"><i class="fa fa-hand-o-right"></i> Xem thêm</a>
+        </div>
+      </div>
+
+      <div class="box box-primary">
+        <div class="box-header">
+          <i class="ion ion-clipboard"></i>
+
+          <h3 class="box-title">Thể loại có bài viết</h3>
 
         </div>
         <!-- /.box-header -->
@@ -237,15 +353,19 @@
           <ul class="todo-list">
           <?php
             $categories = $this->Marticle->getPopularOfCategory();
-            $i = 1;
-            foreach ($categories as $key => $category) {
-              // code...
-              $cate = get_category_by_id($category['CATEID']);
-              echo '<li>
-                <span class="handle">'.$i.'</span>
-                <a href="'.(base_url('~'.get_id_logged().'/'.convert_url($cate['CATENAME']))).'"><span class="text">'.$cate['CATENAME'].'</span></a>
-              </li>';
-              $i++;
+            if(count($categories) > 0) {
+              $i = 1;
+              foreach ($categories as $key => $category) {
+                // code...
+                $cate = get_category_by_id($category['CATEID']);
+                echo '<li>
+                  <span class="handle">'.$i.'</span>
+                  <a href="'.(base_url('~'.get_id_logged().'/'.convert_url($cate['CATENAME']))).'"><span class="text">'.$cate['CATENAME'].'</span></a>
+                </li>';
+                $i++;
+              }
+            } else {
+              echo '<li><span class="handle"> * </span>Chưa có bài viết có liên quan</li>';
             }
           ?>
           </ul>

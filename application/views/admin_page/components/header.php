@@ -75,6 +75,7 @@
             <li class="user-footer">
               <div class="pull-left">
                 <a href="<?php echo base_url('canbo/admin/profile'); ?>" class="btn btn-default btn-flat">Profile</a>
+                <a href="<?php echo base_url('canbo/admin/profile/newpwd'); ?>" class="btn btn-default btn-flat">Password</a>
               </div>
               <div class="pull-right">
                 <button type="button" id="logoutBtn" class="btn btn-default btn-flat" onclick="confirmLogout();">Sign out</button>
