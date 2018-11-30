@@ -36,14 +36,31 @@ class Profile extends CI_Controller {
 	}
 
 	public function user($username) {
-		$data['data_subview'] = array(
-			'user' => $username,
-			'menu_type' => 'primary',
-			'menu_style' => 'home',
-			'person_info' => $this->Minfo->getPersonInfoByUser($username),
-			'person_research' =>  $this->Mcategory->getSortByParent(get_id_logged(),0,'info','CATEPOSITION','ASC')
-		);
-		$this->load->view('site_page/themes/'.$this->template.'/main_layout',$data);
+		if($this->Minfo->countInfo($username) > 0) {
+			$data['data_subview'] = array(
+				'user' => $username,
+				'menu_type' => 'primary',
+				'menu_style' => 'home',
+				'person_info' => $this->Minfo->getPersonInfoByUser($username),
+				'person_research' =>  $this->Mcategory->getSortByParent(get_id_logged(),0,'info','CATEPOSITION','ASC')
+			);
+			$this->load->view('site_page/themes/'.$this->template.'/main_layout',$data);
+		} else {
+			echo '<!DOCTYPE html>
+			<html>
+			<head>
+				<title>It work!</title>
+				<link rel="stylesheet" type="text/css" href="'.base_url('public/libraries/bootstrap-3.3.7-dist/css/bootstrap.min.css').'">
+			</head>
+			<body>
+
+			<div class="alert alert-info">
+				<p><b>Cán bộ chưa sẵn sàng công bố thông tin</b></p>
+			</div>
+
+			</body>
+			</html>';
+		}
 	}
 
 	public function category($username,$idcate) {
