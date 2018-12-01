@@ -17,7 +17,7 @@ class Home extends CI_Controller {
           redirect(base_url('canbo/admin'));
         }
       } else {
-        redirect(base_url('canbo/login'));
+        redirect(base_url('canbo/check_gsid'));
       }
       // (isset($_SESSION['user'])) ? ((check_unit_by_user(get_id_logged())) ? redirect(base_url('canbo/admin/profile')) : redirect(base_url('canbo/admin'))) : redirect(base_url('canbo/login'));
     }
@@ -27,6 +27,10 @@ class Home extends CI_Controller {
     //     $this->session->set_userdata('lang', $language);
     //     redirect(base_url());
     // }
+
+    public function check_gsid() {
+      $this->load->view('site_page/login/check_google_id');
+    }
 
     public function login() {
       $this->load->view('site_page/login/login_default');

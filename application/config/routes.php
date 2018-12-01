@@ -58,6 +58,7 @@ $route['canbo/login'] = 'home/login';
 $route['canbo/logout'] = 'home/logout';
 $route['canbo/auth'] = 'home/auth';
 $route['canbo/reg'] = 'home/reg';
+$route['canbo/check_gsid'] = 'home/check_gsid';
 $route['canbo/check_ssid'] = 'home/checkFileSSID';
 $route['canbo/send_ssid'] = 'home/sendFileSSID';
 $route['canbo/destroy_ssid'] = 'home/destroyFileSSID';
