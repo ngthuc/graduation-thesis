@@ -152,7 +152,7 @@ class Mcategory extends CI_Model{
         }
     }
 
-    public function returnCategories($user,$type='info') {
+    public function returnCategories($user,$type=null) {
         $query = $this->getSortByParentForType($user,0,$type,'CATEID','ASC');
         if (count($query) > 0) {
           foreach ($query as $key => $node) {

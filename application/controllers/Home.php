@@ -105,9 +105,9 @@ class Home extends CI_Controller {
         $data['USERROLE'] = ($uid == 'tmtan') ? 'admin' : 'user';
         $data['USERSTATUS'] = ($uid == 'tmtan') ? 'approved' : 'pending'; // in develop
         $this->Musers->insertUser($data);
-        echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Success register! Email: ".$email." will be approved by admin!"));
+        echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Đăng ký thành công! Email: ".$email." đang trong hàng chờ kích hoạt!"));
       } else {
-        echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Failure register! The domain of email not approved by the system!"));
+        echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Đăng ký thất bại! Tên miền chưa được cấp phép!"));
       }
     }
 

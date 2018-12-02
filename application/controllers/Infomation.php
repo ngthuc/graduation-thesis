@@ -149,9 +149,9 @@ class Infomation extends CI_Controller {
       $status = $this->Minfo->updateInfoById($data,$id);
 			// Thông báo
 			if(!$status) {
-				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật thể loại thành công!"));
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật thông tin thành công!"));
 			} else {
-				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật thể loại thất bại!"));
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật thông tin thất bại!"));
 			}
     }
 

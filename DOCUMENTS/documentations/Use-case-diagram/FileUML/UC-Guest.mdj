@@ -1143,6 +1143,101 @@
 							"headQualifiersCompartment": {
 								"$ref": "AAAAAAFmIuJ1fnj+nTw="
 							}
+						},
+						{
+							"_type": "UMLUseCaseSubjectView",
+							"_id": "AAAAAAFnalg/YMea5Zs=",
+							"_parent": {
+								"$ref": "AAAAAAFmItaGj1l6K0Y="
+							},
+							"model": {
+								"$ref": "AAAAAAFnalg/XMeYUG0="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAFnalg/YMebZMA=",
+									"_parent": {
+										"$ref": "AAAAAAFnalg/YMea5Zs="
+									},
+									"model": {
+										"$ref": "AAAAAAFnalg/XMeYUG0="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFnalg/YMecupE=",
+											"_parent": {
+												"$ref": "AAAAAAFnalg/YMebZMA="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFnalg/Yced4LQ=",
+											"_parent": {
+												"$ref": "AAAAAAFnalg/YMebZMA="
+											},
+											"font": "Arial;13;1",
+											"left": 333,
+											"top": 127,
+											"width": 454,
+											"height": 13,
+											"text": "SPSIM Khách"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFnalg/YceeKqQ=",
+											"_parent": {
+												"$ref": "AAAAAAFnalg/YMebZMA="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"width": 72,
+											"height": 13,
+											"text": "(from Model)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFnalg/Ysef3Zg=",
+											"_parent": {
+												"$ref": "AAAAAAFnalg/YMebZMA="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 328,
+									"top": 120,
+									"width": 464,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFnalg/YMecupE="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAFnalg/Yced4LQ="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAFnalg/YceeKqQ="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFnalg/Ysef3Zg="
+									}
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 328,
+							"top": 120,
+							"width": 464,
+							"height": 616,
+							"nameCompartment": {
+								"$ref": "AAAAAAFnalg/YMebZMA="
+							}
 						}
 					]
 				},
@@ -2163,6 +2258,14 @@
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
 					"name": "UseCase1"
+				},
+				{
+					"_type": "UMLUseCaseSubject",
+					"_id": "AAAAAAFnalg/XMeYUG0=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "SPSIM Khách"
 				}
 			]
 		}

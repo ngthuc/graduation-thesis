@@ -63,8 +63,7 @@
               <div class="row">
                 <div class="col-md-8">
                   <label for="content">Nội dung thông tin</label>
-                  <?php var_dump($info['INFOCONTENT']);?>
-                  <textarea name="content" id="content" value="<?=$info['INFOCONTENT']?>" width="100%"></textarea>
+                  <textarea name="content" id="content" width="100%"><?=$info['INFOCONTENT']?></textarea>
                 </div>
                 <div class="col-md-4">
                   <label for="type">Loại</label>
