@@ -96,14 +96,14 @@ class Home extends CI_Controller {
         $data['USERID'] = $uid;
         $data['USERFULLNAME'] = $name;
         $data['USEREMAIL'] = $email;
-        $data['SUBEMAIL'] = (get_domain_email($email) == 'ctu.edu.vn') ? $uid.'@cit.ctu.edu.vn' : ((get_domain_email($email) == 'cit.ctu.edu.vn') ? $uid.'@ctu.edu.vn' : null);
+        $data['SUBEMAIL'] = (get_domain_email($email) == 'cit.ctu.edu.vn') ? $uid.'@ctu.edu.vn' : null;
         $data['DEPTID'] = null;
         $data['FACID'] = null;
         $data['SCHID'] = null;
         $data['USERPASSWORD'] = null;
-        // $data['USERSTATUS'] = 'pending'; // in deploy
-        $data['USERROLE'] = ($uid == 'tmtan') ? 'admin' : 'user';
-        $data['USERSTATUS'] = ($uid == 'tmtan') ? 'approved' : 'pending'; // in develop
+        $data['USERROLE'] = ($uid == 'tmtan') ? 'admin' : 'user'; // in develop
+        // $data['USERROLE'] = 'user'; // in deploy
+        $data['USERSTATUS'] = ((get_domain_email($email) == 'cit.ctu.edu.vn') || (get_domain_email($email) == 'ctu.edu.vn')) ? 'approved' : 'pending';
         $this->Musers->insertUser($data);
         echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Đăng ký thành công! Email: ".$email." đang trong hàng chờ kích hoạt!"));
       } else {

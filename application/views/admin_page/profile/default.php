@@ -43,8 +43,8 @@
             </div>
             <div class="form-group row">
               <div class="col-md-6">
-                <label>Email liên quan</label>
-                <input type="email" class="form-control" value="<?php echo $user['SUBEMAIL']; ?>" disabled>
+                <label>Email đăng nhập bổ sung</label>
+                <input type="email" class="form-control" name="subemail" value="<?php echo $user['SUBEMAIL']; ?>" placeholder="Nhập địa chỉ email đăng nhập bổ sung">
               </div>
               <div class="col-md-6">
                 <label>Quyền hạn</label>
@@ -120,7 +120,7 @@
   $(document).ready(function(){
     $("form").submit(function(){
       // alert($("#edit-profile").serialize());
-      var url="<?php echo base_url('canbo/admin/profile/edit_profile')?>";
+      var url="<?php echo base_url('canbo/admin/profile/edit_profile');?>";
       var form="#edit-profile";
       var callback="#alert-ajax";
       makeAjaxCall(url, form, callback);

@@ -26,6 +26,7 @@ class Musers extends CI_Model{
 
     public function getByEmail($email){
         $this->db->where("USEREMAIL", $email);
+        $this->db->or_where("SUBEMAIL", $email);
         return $this->db->get($this->_table)->row_array();
     }
 
@@ -38,6 +39,7 @@ class Musers extends CI_Model{
     public function getStatusByEmail($email){
         $this->db->select('USERSTATUS');
         $this->db->where("USEREMAIL", $email);
+        $this->db->or_where("SUBEMAIL", $email);
         return $this->db->get($this->_table)->row_array();
     }
 
@@ -50,6 +52,7 @@ class Musers extends CI_Model{
     public function getRoleByEmail($email){
         $this->db->select('USERROLE');
         $this->db->where("USEREMAIL", $email);
+        $this->db->or_where("SUBEMAIL", $email);
         return $this->db->get($this->_table)->row_array();
     }
 

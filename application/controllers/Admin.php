@@ -24,7 +24,8 @@ class Admin extends CI_Controller {
       //code
       $uid = $this->input->post('uid');
       $data['USERFULLNAME'] = $this->input->post('fullname');
-      $data['USEREMAIL'] = $this->input->post('email');
+			$data['USEREMAIL'] = $this->input->post('email');
+      $data['SUBEMAIL'] = ($this->input->post('subemail') != '') ? $this->input->post('subemail') : null;
 			$data['SCHID'] = $this->input->post('school');
 			$data['FACID'] = $this->input->post('faculty');
       $data['DEPTID'] = $this->input->post('department');
