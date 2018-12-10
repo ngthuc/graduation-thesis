@@ -69,9 +69,6 @@ class Admin extends CI_Controller {
 
 		public function statistic() {
       $data['subview'] = 'admin_page/statistic/basic';
-      $data['data_subview'] = array(
-        'themes_info' => $this->Msystem->getSystemByType('themes')
-      );
       $this->load->view('admin_page/main_layout',$data);
     }
 

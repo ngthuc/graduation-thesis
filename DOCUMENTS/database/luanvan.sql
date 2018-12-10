@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 01, 2018 at 09:09 AM
+-- Generation Time: Dec 10, 2018 at 06:58 AM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -38,7 +38,15 @@ CREATE TABLE IF NOT EXISTS `ARTICLE` (
   `ARTICLECOUNT` int(20) DEFAULT NULL,
   `ARTICLEPOLICY` text COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `ARTICLETYPE` text COLLATE utf8mb4_vietnamese_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+--
+-- Dumping data for table `ARTICLE`
+--
+
+INSERT INTO `ARTICLE` (`ARTICLEID`, `USERID`, `CATEID`, `ARTICLEIMAGE`, `ARTICLETITLE`, `ARTICLEDESCRIPTION`, `ARTICLECONTENT`, `ARTICLECREATIONDATE`, `ARTICLECOUNT`, `ARTICLEPOLICY`, `ARTICLETYPE`) VALUES
+(1, 'ngthuc', 18, 'http://spsimct594.tk/public/filemanager/upload/default-image.jpg', 'Khóa học lập trình', 'Bài viết', '', '2018-11-29 14:11:03', 0, 'public', 'article'),
+(2, 'ngthuc', 18, 'http://spsimct594.tk/public/filemanager/upload/default-image.jpg', 'Khóa học sinh viên Việt Nam', 'Khóa học', '', '2018-11-29 14:11:04', 0, 'public', 'page');
 
 -- --------------------------------------------------------
 
@@ -58,6 +66,21 @@ CREATE TABLE IF NOT EXISTS `CATEGORY` (
   `CATETYPE` text COLLATE utf8mb4_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
+--
+-- Dumping data for table `CATEGORY`
+--
+
+INSERT INTO `CATEGORY` (`CATEID`, `USERID`, `CAT_CATEID`, `CATENAME`, `CATELEVEL`, `CATEHREF`, `CATEPOSITION`, `CATEPOLICY`, `CATETYPE`) VALUES
+(2, 'ngthuc', 0, 'Education', 1, NULL, 1, 'public', 'info'),
+(3, 'ngthuc', 0, 'Distinction', 1, NULL, 2, 'public', 'info'),
+(4, 'ngthuc', 0, 'Research interests', 1, 'rech', 3, 'public', 'info'),
+(5, 'ngthuc', 0, 'Experience', 1, NULL, 4, 'public', 'info'),
+(6, 'ngthuc', 0, 'Publications', 1, NULL, 5, 'public', 'info'),
+(7, 'ngthuc', 0, 'Professional Service', 1, NULL, 6, 'public', 'info'),
+(17, 'ngthuc.hrm', 0, 'Công bố', 1, NULL, 1, 'public', 'info'),
+(18, 'ngthuc', 0, 'Course', 1, NULL, 1, 'public', 'article'),
+(19, 'ngthuc', 0, 'Software', 1, NULL, 1, 'public', 'article');
+
 -- --------------------------------------------------------
 
 --
@@ -73,6 +96,18 @@ CREATE TABLE IF NOT EXISTS `DEPARTMENT` (
   `DEPTTYPE` text COLLATE utf8mb4_vietnamese_ci
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
+--
+-- Dumping data for table `DEPARTMENT`
+--
+
+INSERT INTO `DEPARTMENT` (`DEPTID`, `PARENTID`, `DEPTNAME`, `DEPTENGLISHNAME`, `DEPTNICKNAME`, `DEPTTYPE`) VALUES
+(2, 1, 'Bộ môn Công nghệ phần mềm', 'Department of Software Engineering', 'SE', NULL),
+(3, 1, 'Bộ môn Công nghệ thông tin', 'Department of Infomation Technology', 'IT', NULL),
+(4, 1, 'Bộ môn Hệ thống thông tin', 'Department of Infomation System', 'IS', NULL),
+(5, 1, 'Bộ môn Khoa học máy tính', 'Department of Computer Science', 'CS', NULL),
+(6, 1, 'Bộ môn Mạng máy tính và Truyền thông', 'Department of Network and Communication', 'Network', NULL),
+(7, 1, 'Bộ môn Tin học ứng dụng', 'Department of Applied Informatics', 'AI', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -87,6 +122,14 @@ CREATE TABLE IF NOT EXISTS `FACULTY` (
   `FACNICKNAME` varchar(50) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `FACTYPE` text COLLATE utf8mb4_vietnamese_ci
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+--
+-- Dumping data for table `FACULTY`
+--
+
+INSERT INTO `FACULTY` (`FACID`, `PARENTID`, `FACNAME`, `FACENGLISHNAME`, `FACNICKNAME`, `FACTYPE`) VALUES
+(1, 1, 'Khoa CNTT&TT', 'College of ICT', 'DI', NULL),
+(2, 1, 'Khoa Công nghệ', 'College of Engineering Technology', 'CT', NULL);
 
 -- --------------------------------------------------------
 
@@ -109,6 +152,29 @@ CREATE TABLE IF NOT EXISTS `INFO` (
   `INFOPOLICY` text COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `INFOTYPE` text COLLATE utf8mb4_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+--
+-- Dumping data for table `INFO`
+--
+
+INSERT INTO `INFO` (`INFOID`, `USERID`, `DEPTID`, `FACID`, `SCHID`, `CATEID`, `INFOIMAGE`, `INFODATE`, `INFOTITLE`, `INFODESCRIPTION`, `INFOCONTENT`, `INFOPOLICY`, `INFOTYPE`) VALUES
+(49, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'name', NULL, 'Nguyen-Thuc Le', 'public', 'person'),
+(50, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'position', NULL, 'Student at Department of Software Engineering', 'public', 'person'),
+(51, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'address', NULL, 'Can Tho', 'public', 'person'),
+(52, 'ngthuc', 2, 1, 1, NULL, NULL, '1996-06-26', 'birthday', NULL, NULL, 'public', 'person'),
+(53, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'gender', NULL, 'Male', 'public', 'person'),
+(54, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'phone', NULL, '0907355924', 'public', 'person'),
+(55, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'email', NULL, 'thuc.edu@gmail.com', 'public', 'person'),
+(56, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'website', NULL, 'http://spsimct594.tk/spsim_media/quyhoach-khu1DHCT.jpg', 'public', 'person'),
+(57, 'ngthuc', 2, 1, 1, NULL, 'http://spsimct594.tk/spsim_media/NguyenThuc_DSC_1865_27082018.jpg', NULL, 'avatar', NULL, NULL, 'public', 'person'),
+(58, 'ngthuc', 2, 1, 1, 2, NULL, '2004-12-01', 'Ph.D. in computer science on', NULL, 'Visualization and Support Vector Machine in Data Mining<br />LINA, Nantes Laboratory for Computer Science Nantes University, France<br />Thesis advisors: Prof. Henri Briand, Dr. Fran&ccedil;ois Poulet', 'public', 'education'),
+(59, 'ngthuc', 2, 1, 1, 3, NULL, '2015-11-01', 'Qualification for Associate Professor (A/Prof.)', NULL, 'Informatics', 'public', 'distinction'),
+(60, 'ngthuc', 2, 1, 1, 4, NULL, '2001 - present', 'Data mining and Knowledge discovery in databases', NULL, 'Data mining with SVM and Kernel-based methods, Ensemble methods, Decision tree&nbsp;<br /><br />Information visualization in knowledge discovery in databases, Visual data mining&nbsp;<br /><br />Mining complex data: very-high-dimensional, large scale, imbalanced datasets', 'public', 'research'),
+(61, 'ngthuc', 2, 1, 1, 5, NULL, '2012 - 2013', 'Visiting scientist', NULL, 'DECIDE, URM 6285 Lab-STICC, with Prof. Philippe Lenca, A/Prof. Sorin Moga, Telecom-Bretagne, France.<br />Automatic Configuration of Enterprise Resource Planning', 'public', 'experience'),
+(62, 'ngthuc', 2, 1, 1, 6, NULL, '2018', 'T-N. Do, F. Poulet', NULL, 'Latent-lSVM classification of very high-dimensional and large scale multi-class datasets. (to appear) in&nbsp;<em>Concurrency and Computation: Practice and Experience</em>, Wiley', 'public', 'journal'),
+(63, 'ngthuc', 2, 1, 1, 6, NULL, '2004', 'T-N. Do', NULL, 'Visualisation et s&eacute;parateurs &agrave; vaste marge en fouille de donn&eacute;es. Th&egrave;se de Doctorat de l''Universit&eacute; de Nantes, D&eacute;cembre&nbsp;', 'public', 'thesis'),
+(64, 'ngthuc', 2, 1, 1, 7, NULL, '2015', 'QIMIE 2015 is organized in association with the PAKDD 2015 conference, with Prof. P. Lenca, Prof. S. Lallich', NULL, NULL, 'public', 'workshop'),
+(65, 'ngthuc', 2, 1, 1, 6, NULL, '2018', 'T-N. Do, L-D. Bui', NULL, 'Parallel learning algorithms of local support vector regression for dealing with large datasets. (to appear) in The LNCS Journal Transactions on Large-Scale Data- and Knowledge-Centered Systems, Springe', 'public', 'journal');
 
 -- --------------------------------------------------------
 
@@ -144,6 +210,18 @@ CREATE TABLE IF NOT EXISTS `MENU` (
   `MENUTYPE` text COLLATE utf8mb4_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
+--
+-- Dumping data for table `MENU`
+--
+
+INSERT INTO `MENU` (`MENUID`, `USERID`, `MENUPARENT`, `MENUNAME`, `MENULINK`, `MENULEVEL`, `MENUPOSITION`, `MENUTYPE`) VALUES
+(1, 'ngthuc', 0, 'Research', '#rech', 1, 1, 'primary'),
+(2, 'ngthuc', 0, 'Software', 'http://spsimct594.tk/~ngthuc/v4miner', 1, 2, 'primary'),
+(3, 'ngthuc', 0, 'Image', 'http://spsimct594.tk/~ngthuc/images', 1, 3, 'primary'),
+(4, 'ngthuc', 0, 'Course.VN', 'http://spsimct594.tk/~ngthuc/Course_18', 1, 4, 'primary'),
+(5, 'ngthuc', 0, 'Course.VN', 'http://spsimct594.tk/~ngthuc/Course_18', 1, 2, 'submenu'),
+(7, 'ngthuc', 0, 'Profile', 'http://spsimct594.tk/~ngthuc/', 1, 1, 'submenu');
+
 -- --------------------------------------------------------
 
 --
@@ -158,6 +236,13 @@ CREATE TABLE IF NOT EXISTS `SCHOOL` (
   `SCHNICKNAME` varchar(50) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `SCHTYPE` text COLLATE utf8mb4_vietnamese_ci
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+--
+-- Dumping data for table `SCHOOL`
+--
+
+INSERT INTO `SCHOOL` (`SCHID`, `PARENTID`, `SCHNAME`, `SCHENGLISHNAME`, `SCHNICKNAME`, `SCHTYPE`) VALUES
+(1, NULL, 'Đại học Cần Thơ', 'Can Tho University', 'CTU', '');
 
 -- --------------------------------------------------------
 
@@ -179,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `SYSTEM` (
 --
 
 INSERT INTO `SYSTEM` (`SYSTEMID`, `SYSTEMTITLE`, `SYSTEMDATA`, `SYSTEMLINK`, `SYSTEMPOLICY`, `SYSTEMTYPE`) VALUES
-(1, 'site_name', 'Hệ thống quản lý profile viên chức khoa CNTT&TT, trường Đại học Cần Thơ', NULL, 'public', 'default'),
+(1, 'site_name', 'SPSIM | Hệ thống quản lý profile viên chức khoa CNTT&TT, trường Đại học Cần Thơ', NULL, 'public', 'default'),
 (2, 'short_name', 'SPSIM ', NULL, 'public', 'default'),
 (3, 'phone', '0907355924', NULL, 'public', 'default'),
 (4, 'email', 'thucb1400731@student.ctu.edu.vn', NULL, 'public', 'default'),
@@ -190,8 +275,13 @@ INSERT INTO `SYSTEM` (`SYSTEMID`, `SYSTEMTITLE`, `SYSTEMDATA`, `SYSTEMLINK`, `SY
 (9, 'version', '2.0.0', NULL, 'public', 'default'),
 (10, 'limit_per_page', '2', NULL, 'public', 'default'),
 (11, 'favicon', 'https://ngthuc.github.io/src/public/resources/images/logo/logo-without-name.png', NULL, 'public', 'default'),
+(14, NULL, NULL, 'lapvo3.tk', 'protected', 'domain'),
+(15, NULL, NULL, 'ngthuc.com', 'protected', 'domain'),
 (16, 'basic_template', 'public/themes/basic_template/screenshot.png', NULL, 'protected', 'themes'),
-(17, 'theme', 'basic_template', NULL, 'protected', 'theme');
+(17, 'theme', 'basic_template', NULL, 'protected', 'theme'),
+(18, NULL, NULL, 'ctu.edu.vn', 'protected', 'domain'),
+(19, NULL, NULL, 'cit.ctu.edu.vn', 'protected', 'domain'),
+(20, NULL, NULL, 'student.ctu.edu.vn', 'protected', 'domain');
 
 -- --------------------------------------------------------
 
@@ -217,7 +307,8 @@ CREATE TABLE IF NOT EXISTS `USERS` (
 --
 
 INSERT INTO `USERS` (`USERID`, `DEPTID`, `FACID`, `SCHID`, `USERFULLNAME`, `USEREMAIL`, `SUBEMAIL`, `USERPASSWORD`, `USERROLE`, `USERSTATUS`) VALUES
-('ngthuc', 2, 1, 1, 'Nguyên Thức', 'ngthuc@lapvo3.tk', NULL, '21232f297a57a5a743894a0e4a801fc3', 'admin', 'approved');
+('ngthuc', 2, 1, 1, 'Nguyên Thức', 'ngthuc@lapvo3.tk', 'me@ngthuc.com', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'approved'),
+('ngthuc.hrm', 4, 1, 1, 'HRM Nguyen Thuc', 'ngthuc.hrm@lapvo3.tk', NULL, '21232f297a57a5a743894a0e4a801fc3', 'user', 'approved');
 
 --
 -- Indexes for dumped tables
@@ -307,7 +398,7 @@ ALTER TABLE `USERS`
 -- AUTO_INCREMENT for table `ARTICLE`
 --
 ALTER TABLE `ARTICLE`
-  MODIFY `ARTICLEID` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `ARTICLEID` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `CATEGORY`
 --
