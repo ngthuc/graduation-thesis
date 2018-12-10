@@ -87,10 +87,14 @@ class Infomation extends CI_Controller {
 
     public function add_new_processing() {
       //code
+      $publication = 0;
       $type = $this->input->post('type');
       if($type=='research' || $type=='experience') {
         $date = get_date_follow_format($this->input->post('time'),'year').' - '.$this->input->post('to_year');
-      } else if($type=='isi' || $type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis' || $type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor'){
+      } else if($type=='isi' || $type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis'){
+        $date = get_date_follow_format($this->input->post('time'),'year');
+        $publication = 1;
+      } else if($type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor') {
         $date = get_date_follow_format($this->input->post('time'),'year');
       } else {
         $date = $this->input->post('time');
@@ -107,6 +111,7 @@ class Infomation extends CI_Controller {
       $data['INFOCONTENT'] = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
       $data['INFOPOLICY'] = $this->input->post('policy');
       $data['INFOTYPE'] = $type;
+      $data['INFOPUBLICATION'] = $publication;
 
       $status = $this->Minfo->insertInfo($data);
 			// Thông báo
@@ -130,10 +135,14 @@ class Infomation extends CI_Controller {
     public function edit_info_processing() {
       //code
       $id = $this->input->post('id');
+      $publication = 0;
       $type = $this->input->post('type');
       if($type=='research' || $type=='experience') {
         $date = get_date_follow_format($this->input->post('time'),'year').' - '.$this->input->post('to_year');
-      } else if($type=='isi' || $type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis' || $type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor'){
+      } else if($type=='isi' || $type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis'){
+        $date = get_date_follow_format($this->input->post('time'),'year');
+        $publication = 1;
+      } else if($type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor') {
         $date = get_date_follow_format($this->input->post('time'),'year');
       } else {
         $date = $this->input->post('time');
@@ -145,6 +154,7 @@ class Infomation extends CI_Controller {
       $data['INFOCONTENT'] = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
       $data['INFOPOLICY'] = $this->input->post('policy');
       $data['INFOTYPE'] = $type;
+      $data['INFOPUBLICATION'] = $publication;
 
       $status = $this->Minfo->updateInfoById($data,$id);
 			// Thông báo

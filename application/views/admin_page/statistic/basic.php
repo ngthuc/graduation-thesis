@@ -169,7 +169,7 @@
             if(isset($_SESSION['search']['department'])) {
               $department = $_SESSION['search']['department'];
             } else $department=null;
-            $statistic = $this->Minfo->statisticInfo($user,$year,$type,$school,$faculty,$department);
+            $statistic = $this->Minfo->statisticInfo($user,$year,$type,$school,$faculty,$department,1);
           ?>
           <table class="table table-bordered table-striped" id="datatables">
             <thead>

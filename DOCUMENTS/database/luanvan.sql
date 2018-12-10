@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 10, 2018 at 06:58 AM
+-- Generation Time: Dec 10, 2018 at 07:26 AM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -150,31 +150,32 @@ CREATE TABLE IF NOT EXISTS `INFO` (
   `INFODESCRIPTION` text COLLATE utf8mb4_vietnamese_ci,
   `INFOCONTENT` longtext COLLATE utf8mb4_vietnamese_ci,
   `INFOPOLICY` text COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `INFOTYPE` text COLLATE utf8mb4_vietnamese_ci NOT NULL
+  `INFOTYPE` text COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `INFOPUBLICATION` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
 -- Dumping data for table `INFO`
 --
 
-INSERT INTO `INFO` (`INFOID`, `USERID`, `DEPTID`, `FACID`, `SCHID`, `CATEID`, `INFOIMAGE`, `INFODATE`, `INFOTITLE`, `INFODESCRIPTION`, `INFOCONTENT`, `INFOPOLICY`, `INFOTYPE`) VALUES
-(49, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'name', NULL, 'Nguyen-Thuc Le', 'public', 'person'),
-(50, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'position', NULL, 'Student at Department of Software Engineering', 'public', 'person'),
-(51, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'address', NULL, 'Can Tho', 'public', 'person'),
-(52, 'ngthuc', 2, 1, 1, NULL, NULL, '1996-06-26', 'birthday', NULL, NULL, 'public', 'person'),
-(53, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'gender', NULL, 'Male', 'public', 'person'),
-(54, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'phone', NULL, '0907355924', 'public', 'person'),
-(55, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'email', NULL, 'thuc.edu@gmail.com', 'public', 'person'),
-(56, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'website', NULL, 'http://spsimct594.tk/spsim_media/quyhoach-khu1DHCT.jpg', 'public', 'person'),
-(57, 'ngthuc', 2, 1, 1, NULL, 'http://spsimct594.tk/spsim_media/NguyenThuc_DSC_1865_27082018.jpg', NULL, 'avatar', NULL, NULL, 'public', 'person'),
-(58, 'ngthuc', 2, 1, 1, 2, NULL, '2004-12-01', 'Ph.D. in computer science on', NULL, 'Visualization and Support Vector Machine in Data Mining<br />LINA, Nantes Laboratory for Computer Science Nantes University, France<br />Thesis advisors: Prof. Henri Briand, Dr. Fran&ccedil;ois Poulet', 'public', 'education'),
-(59, 'ngthuc', 2, 1, 1, 3, NULL, '2015-11-01', 'Qualification for Associate Professor (A/Prof.)', NULL, 'Informatics', 'public', 'distinction'),
-(60, 'ngthuc', 2, 1, 1, 4, NULL, '2001 - present', 'Data mining and Knowledge discovery in databases', NULL, 'Data mining with SVM and Kernel-based methods, Ensemble methods, Decision tree&nbsp;<br /><br />Information visualization in knowledge discovery in databases, Visual data mining&nbsp;<br /><br />Mining complex data: very-high-dimensional, large scale, imbalanced datasets', 'public', 'research'),
-(61, 'ngthuc', 2, 1, 1, 5, NULL, '2012 - 2013', 'Visiting scientist', NULL, 'DECIDE, URM 6285 Lab-STICC, with Prof. Philippe Lenca, A/Prof. Sorin Moga, Telecom-Bretagne, France.<br />Automatic Configuration of Enterprise Resource Planning', 'public', 'experience'),
-(62, 'ngthuc', 2, 1, 1, 6, NULL, '2018', 'T-N. Do, F. Poulet', NULL, 'Latent-lSVM classification of very high-dimensional and large scale multi-class datasets. (to appear) in&nbsp;<em>Concurrency and Computation: Practice and Experience</em>, Wiley', 'public', 'journal'),
-(63, 'ngthuc', 2, 1, 1, 6, NULL, '2004', 'T-N. Do', NULL, 'Visualisation et s&eacute;parateurs &agrave; vaste marge en fouille de donn&eacute;es. Th&egrave;se de Doctorat de l''Universit&eacute; de Nantes, D&eacute;cembre&nbsp;', 'public', 'thesis'),
-(64, 'ngthuc', 2, 1, 1, 7, NULL, '2015', 'QIMIE 2015 is organized in association with the PAKDD 2015 conference, with Prof. P. Lenca, Prof. S. Lallich', NULL, NULL, 'public', 'workshop'),
-(65, 'ngthuc', 2, 1, 1, 6, NULL, '2018', 'T-N. Do, L-D. Bui', NULL, 'Parallel learning algorithms of local support vector regression for dealing with large datasets. (to appear) in The LNCS Journal Transactions on Large-Scale Data- and Knowledge-Centered Systems, Springe', 'public', 'journal');
+INSERT INTO `INFO` (`INFOID`, `USERID`, `DEPTID`, `FACID`, `SCHID`, `CATEID`, `INFOIMAGE`, `INFODATE`, `INFOTITLE`, `INFODESCRIPTION`, `INFOCONTENT`, `INFOPOLICY`, `INFOTYPE`, `INFOPUBLICATION`) VALUES
+(49, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'name', NULL, 'Nguyen-Thuc Le', 'public', 'person', 0),
+(50, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'position', NULL, 'Student at Department of Software Engineering', 'public', 'person', 0),
+(51, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'address', NULL, 'Can Tho', 'public', 'person', 0),
+(52, 'ngthuc', 2, 1, 1, NULL, NULL, '1996-06-26', 'birthday', NULL, NULL, 'public', 'person', 0),
+(53, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'gender', NULL, 'Male', 'public', 'person', 0),
+(54, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'phone', NULL, '0907355924', 'public', 'person', 0),
+(55, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'email', NULL, 'thuc.edu@gmail.com', 'public', 'person', 0),
+(56, 'ngthuc', 2, 1, 1, NULL, NULL, NULL, 'website', NULL, 'http://spsimct594.tk/spsim_media/quyhoach-khu1DHCT.jpg', 'public', 'person', 0),
+(57, 'ngthuc', 2, 1, 1, NULL, 'http://spsimct594.tk/spsim_media/NguyenThuc_DSC_1865_27082018.jpg', NULL, 'avatar', NULL, NULL, 'public', 'person', 0),
+(58, 'ngthuc', 2, 1, 1, 2, NULL, '2004-12-01', 'Ph.D. in computer science on', NULL, 'Visualization and Support Vector Machine in Data Mining<br />LINA, Nantes Laboratory for Computer Science Nantes University, France<br />Thesis advisors: Prof. Henri Briand, Dr. Fran&ccedil;ois Poulet', 'public', 'education', 0),
+(59, 'ngthuc', 2, 1, 1, 3, NULL, '2015-11-01', 'Qualification for Associate Professor (A/Prof.)', NULL, 'Informatics', 'public', 'distinction', 0),
+(60, 'ngthuc', 2, 1, 1, 4, NULL, '2001 - present', 'Data mining and Knowledge discovery in databases', NULL, 'Data mining with SVM and Kernel-based methods, Ensemble methods, Decision tree&nbsp;<br /><br />Information visualization in knowledge discovery in databases, Visual data mining&nbsp;<br /><br />Mining complex data: very-high-dimensional, large scale, imbalanced datasets', 'public', 'research', 0),
+(61, 'ngthuc', 2, 1, 1, 5, NULL, '2012 - 2013', 'Visiting scientist', NULL, 'DECIDE, URM 6285 Lab-STICC, with Prof. Philippe Lenca, A/Prof. Sorin Moga, Telecom-Bretagne, France.<br />Automatic Configuration of Enterprise Resource Planning', 'public', 'experience', 0),
+(62, 'ngthuc', 2, 1, 1, 6, NULL, '2018', 'T-N. Do, F. Poulet', NULL, 'Latent-lSVM classification of very high-dimensional and large scale multi-class datasets. (to appear) in&nbsp;<em>Concurrency and Computation: Practice and Experience</em>, Wiley', 'public', 'journal', 1),
+(63, 'ngthuc', 2, 1, 1, 6, NULL, '2004', 'T-N. Do', NULL, 'Visualisation et s&eacute;parateurs &agrave; vaste marge en fouille de donn&eacute;es. Th&egrave;se de Doctorat de l''Universit&eacute; de Nantes, D&eacute;cembre&nbsp;', 'public', 'thesis', 1),
+(64, 'ngthuc', 2, 1, 1, 7, NULL, '2015', 'QIMIE 2015 is organized in association with the PAKDD 2015 conference, with Prof. P. Lenca, Prof. S. Lallich', NULL, NULL, 'public', 'workshop', 0),
+(65, 'ngthuc', 2, 1, 1, 6, NULL, '2018', 'T-N. Do, L-D. Bui', NULL, 'Parallel learning algorithms of local support vector regression for dealing with large datasets. (to appear) in The LNCS Journal Transactions on Large-Scale Data- and Knowledge-Centered Systems, Springe', 'public', 'journal', 1);
 
 -- --------------------------------------------------------
 

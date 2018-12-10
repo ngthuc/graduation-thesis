@@ -43,25 +43,15 @@ class Minfo extends CI_Model{
         return $this->db->get($this->_table)->result_array();
     }
 
-    public function statisticInfo($user=null,$year=null,$type=null,$school=null,$faculty=null,$department=null){
+    public function statisticInfo($user=null,$year=null,$type=null,$school=null,$faculty=null,$department=null,$publication=1){
         $this->db->select('*');
-        if($user!=null ) {
-          $this->db->where('USERID', $user);
-          if($type==null) {
-            $this->db->where('INFOTYPE', 'isi');
-            $this->db->or_where('INFOTYPE', 'journal');
-            $this->db->or_where('INFOTYPE', 'edited');
-            $this->db->or_where('INFOTYPE', 'conference');
-            $this->db->or_where('INFOTYPE', 'report');
-            $this->db->or_where('INFOTYPE', 'thesis');
-          }
-        }
+        if($user!=null ) $this->db->where('USERID', $user);
         if($year!=null) $this->db->where('INFODATE', $year);
         if($type!=null) $this->db->where('INFOTYPE', $type);
         if($school!=null) $this->db->where('SCHID', $school);
         if($faculty!=null) $this->db->where('FACID', $faculty);
         if($department!=null) $this->db->where('DEPTID', $department);
-        if(!isset($user) && !isset($year) && !isset($type) && !isset($school) && !isset($faculty) && !isset($department)) $this->db->where('INFOTYPE', 'isi');
+        if($publication!=null) $this->db->where('INFOPUBLICATION', $publication);
         return $this->db->get($this->_table)->result_array();
     }
 
