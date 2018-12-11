@@ -39,6 +39,7 @@ CREATE TABLE INFO (
   INFOCONTENT longtext COLLATE utf8mb4_vietnamese_ci,
   INFOPOLICY text COLLATE utf8mb4_vietnamese_ci NOT NULL,
   INFOTYPE text COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  INFOPUBLICATION tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (INFOID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
