@@ -42,7 +42,7 @@ class Profile extends CI_Controller {
 				'menu_type' => 'primary',
 				'menu_style' => 'home',
 				'person_info' => $this->Minfo->getPersonInfoByUser($username),
-				'person_research' =>  $this->Mcategory->getSortByParent(get_id_logged(),0,'info','CATEPOSITION','ASC')
+				'person_research' =>  $this->Mcategory->getSortByParent($username,0,'info','CATEPOSITION','ASC')
 			);
 			$this->load->view('site_page/themes/'.$this->template.'/main_layout',$data);
 		} else {
