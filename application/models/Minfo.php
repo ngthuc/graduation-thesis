@@ -58,7 +58,7 @@ class Minfo extends CI_Model{
     public function getPersonInfoByUser($user = null){
         $this->db->select('*');
         $this->db->where('USERID', $user);
-        $this->db->where('INFOTYPE', 'person');
+        $this->db->where('INFOPUBLICATIONORPERSON', 2);
         return $this->db->get($this->_table)->result_array();
     }
 

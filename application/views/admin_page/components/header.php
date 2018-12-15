@@ -59,16 +59,21 @@
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="<?php echo base_url('public/extensions/AdminLTE-2.4.5/dist/img/user2-160x160.jpg'); ?>" class="user-image" alt="User Image">
+            <img src="<?=get_avatar_of_user_logged($_SESSION['user']['USERID']); ?>" class="user-image" alt="User Image">
             <span class="hidden-xs"><?php if(isset($_SESSION['user'])) echo $_SESSION['user']['USERFULLNAME']; ?></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img src="<?php echo base_url('public/extensions/AdminLTE-2.4.5/dist/img/user2-160x160.jpg'); ?>" class="img-circle" alt="User Image">
+              <img src="<?=get_avatar_of_user_logged($_SESSION['user']['USERID']); ?>" class="img-circle" alt="User Image">
 
               <p>
                 <?php if(isset($_SESSION['user'])) echo $_SESSION['user']['USERFULLNAME']; ?>
+                <br>
+                <label class="switch" title="Thay đổi tình trạng hiển thị trang thông tin">
+                  <input type="checkbox" id="changeStatusSite" onclick="changeStatusSite();"<?=(get_status_site_of_user_logged($_SESSION['user']['USERID'])==1) ? ' checked' : '';?>>
+                  <span class="slider round"></span>
+                </label>
               </p>
             </li>
             <!-- Menu Footer-->
@@ -93,6 +98,19 @@
 </header>
 
 <script type="text/javascript">
+// change Status Site
+function changeStatusSite() {
+  $.ajax({
+      type: "post",
+      url: "<?php echo base_url('canbo/change_status_site')?>",
+      cache: false,
+      data:{},
+      success: function(){
+        location.reload();
+      }
+  });
+}
+
 // Logout
 function confirmLogout() {
   if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
@@ -103,7 +121,7 @@ function confirmLogout() {
         cache: false,
         data:{},
         success: function(){
-          // location.reload();
+          location.reload();
           window.location.replace("<?=base_url('canbo/destroy_ssid'); ?>");
         }
     });

@@ -48,13 +48,13 @@
                   </td>
                   <td>
                     <button class="onchange btn ';
-                    if(get_system('theme','theme') == $info['SYSTEMTITLE']) {
+                    if(get_theme_of_user(get_id_logged()) == $info['SYSTEMTITLE']) {
                       echo 'btn-primary';
                     } else {
                       echo 'btn-default';
                     }
                     echo '" name="theme" type="submit" value="'.$info['SYSTEMTITLE'].'"><b class="fa fa-check-square-o"></b> ';
-                    if(get_system('theme','theme') == $info['SYSTEMTITLE']) {
+                    if(get_theme_of_user(get_id_logged()) == $info['SYSTEMTITLE']) {
                       echo 'Đang kích hoạt</button>';
                     } else {
                       echo 'Kích hoạt</button>';

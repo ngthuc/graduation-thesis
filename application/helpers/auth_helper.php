@@ -38,6 +38,60 @@ if (!function_exists('get_id_logged'))
     }
 }
 
+if (!function_exists('get_status_site_of_user_logged'))
+{
+    function get_status_site_of_user_logged($username)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      $get_status = $CI->Musers->getById($username);
+      return $get_status['USERSTATUSSITE'];
+    }
+}
+
+if (!function_exists('get_avatar_of_user_logged'))
+{
+    function get_avatar_of_user_logged($username)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      $get_status = $CI->Musers->getById($username);
+      return $get_status['USERAVATAR'];
+    }
+}
+
+if (!function_exists('get_theme_of_user'))
+{
+    function get_theme_of_user($username)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      $get_status = $CI->Musers->getById($username);
+      return $get_status['USERTHEME'];
+    }
+}
+
 if (!function_exists('check_domain'))
 {
     function check_domain($email_string)

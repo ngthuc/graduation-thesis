@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 10, 2018 at 07:26 AM
+-- Generation Time: Dec 15, 2018 at 12:43 PM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `CATEGORY` (
   `CATEPOSITION` int(5) NOT NULL DEFAULT '1',
   `CATEPOLICY` text COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `CATETYPE` text COLLATE utf8mb4_vietnamese_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
 -- Dumping data for table `CATEGORY`
@@ -79,7 +79,8 @@ INSERT INTO `CATEGORY` (`CATEID`, `USERID`, `CAT_CATEID`, `CATENAME`, `CATELEVEL
 (7, 'ngthuc', 0, 'Professional Service', 1, NULL, 6, 'public', 'info'),
 (17, 'ngthuc.hrm', 0, 'Công bố', 1, NULL, 1, 'public', 'info'),
 (18, 'ngthuc', 0, 'Course', 1, NULL, 1, 'public', 'article'),
-(19, 'ngthuc', 0, 'Software', 1, NULL, 1, 'public', 'article');
+(19, 'ngthuc', 0, 'Software', 1, NULL, 1, 'public', 'article'),
+(20, 'ngthuc', 0, 'Khóa học', 1, NULL, 1, 'public', 'info');
 
 -- --------------------------------------------------------
 
@@ -152,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `INFO` (
   `INFOPOLICY` text COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `INFOTYPE` text COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `INFOPUBLICATION` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
 -- Dumping data for table `INFO`
@@ -175,7 +176,8 @@ INSERT INTO `INFO` (`INFOID`, `USERID`, `DEPTID`, `FACID`, `SCHID`, `CATEID`, `I
 (62, 'ngthuc', 2, 1, 1, 6, NULL, '2018', 'T-N. Do, F. Poulet', NULL, 'Latent-lSVM classification of very high-dimensional and large scale multi-class datasets. (to appear) in&nbsp;<em>Concurrency and Computation: Practice and Experience</em>, Wiley', 'public', 'journal', 1),
 (63, 'ngthuc', 2, 1, 1, 6, NULL, '2004', 'T-N. Do', NULL, 'Visualisation et s&eacute;parateurs &agrave; vaste marge en fouille de donn&eacute;es. Th&egrave;se de Doctorat de l''Universit&eacute; de Nantes, D&eacute;cembre&nbsp;', 'public', 'thesis', 1),
 (64, 'ngthuc', 2, 1, 1, 7, NULL, '2015', 'QIMIE 2015 is organized in association with the PAKDD 2015 conference, with Prof. P. Lenca, Prof. S. Lallich', NULL, NULL, 'public', 'workshop', 0),
-(65, 'ngthuc', 2, 1, 1, 6, NULL, '2018', 'T-N. Do, L-D. Bui', NULL, 'Parallel learning algorithms of local support vector regression for dealing with large datasets. (to appear) in The LNCS Journal Transactions on Large-Scale Data- and Knowledge-Centered Systems, Springe', 'public', 'journal', 1);
+(65, 'ngthuc', 2, 1, 1, 6, NULL, '2018', 'T-N. Do, L-D. Bui', NULL, 'Parallel learning algorithms of local support vector regression for dealing with large datasets. (to appear) in The LNCS Journal Transactions on Large-Scale Data- and Knowledge-Centered Systems, Springe', 'public', 'journal', 1),
+(66, 'ngthuc', 2, 1, NULL, 20, NULL, '2018 - ', 'Qualification for Associate Professor (A/Prof.)', NULL, '2', 'public', 'research', 0);
 
 -- --------------------------------------------------------
 
@@ -404,7 +406,7 @@ ALTER TABLE `ARTICLE`
 -- AUTO_INCREMENT for table `CATEGORY`
 --
 ALTER TABLE `CATEGORY`
-  MODIFY `CATEID` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `CATEID` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `DEPARTMENT`
 --
@@ -419,7 +421,7 @@ ALTER TABLE `FACULTY`
 -- AUTO_INCREMENT for table `INFO`
 --
 ALTER TABLE `INFO`
-  MODIFY `INFOID` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=66;
+  MODIFY `INFOID` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=67;
 --
 -- AUTO_INCREMENT for table `MEDIA`
 --

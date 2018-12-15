@@ -28,7 +28,9 @@ class Admin extends CI_Controller {
       $data['SUBEMAIL'] = ($this->input->post('subemail') != '') ? $this->input->post('subemail') : null;
 			$data['SCHID'] = $this->input->post('school');
 			$data['FACID'] = $this->input->post('faculty');
-      $data['DEPTID'] = $this->input->post('department');
+			$data['DEPTID'] = $this->input->post('department');
+			$data['USERAVATAR'] = $this->input->post('avatar');
+      $data['USERPOSITION'] = $this->input->post('position');
 
       $status = $this->Musers->updateUser($data,$uid);
 			// Thông báo
@@ -64,6 +66,20 @@ class Admin extends CI_Controller {
 				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật mật khẩu thành công!"));
 			} else {
 				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật mật khẩu thất bại!"));
+			}
+    }
+
+		public function change_status_site() {
+      //code
+      $uid = get_id_logged();
+			$data['USERSTATUSSITE'] = (get_status_site_of_user_logged($uid) == 0) ? 1 : 0;
+
+      $status = $this->Musers->updateUser($data,$uid);
+			// Thông báo
+			if(!$status) {
+				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật trạng thái thành công!"));
+			} else {
+				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật trạng thái thất bại!"));
 			}
     }
 

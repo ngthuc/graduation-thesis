@@ -15,38 +15,10 @@ class Infomation extends CI_Controller {
       $this->load->view('admin_page/main_layout',$_data);
     }
 
-    public function update_person() {
+    public function add_person() {
       //code
-      $_data['subview'] = 'admin_page/infomation/update_person';
-      $_data['data_subview'] = array(
-        'cate' => $this->Mcategory->returnCategories(get_id_logged(),'info')
-      );
+      $_data['subview'] = 'admin_page/infomation/add_person';
       $this->load->view('admin_page/main_layout',$_data);
-    }
-
-    public function update_person_processing() {
-      //code
-      $_user = $this->session->userdata('user');
-      $titles = $this->input->post('title[]');
-      $keys = $this->input->post('key[]');
-      $contents = $this->input->post('content[]');
-      for($i = 0; $i < count($contents); $i++) {
-        $key = ($keys[$i] == $titles[$i]) ? 'INFOCONTENT' : $keys[$i];
-        $content = $contents[$i];
-        $data[$i]['USERID'] = $_user['USERID'];
-        $data[$i]['INFOTITLE'] = $titles[$i];
-        $data[$i][$key] = $content;
-        $data[$i]['INFOPOLICY'] = 'public';
-        $data[$i]['INFOTYPE'] = 'person';
-      }
-
-      $status = $this->Minfo->updateMultiInfo($data);
-			// Thông báo
-			if(!$status) {
-				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật thông tin thành công!"));
-			} else {
-				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật thông tin thất bại!"));
-			}
     }
 
     public function add_info() {
@@ -58,60 +30,67 @@ class Infomation extends CI_Controller {
       $this->load->view('admin_page/main_layout',$_data);
     }
 
-    // public function add_time() {
-    //   //code
-    //   $_data['subview'] = 'admin_page/infomation/add_time';
-    //   $_data['data_subview'] = array(
-    //     'cate' => $this->Mcategory->returnCategories(get_id_logged(),'info')
-    //   );
-    //   $this->load->view('admin_page/main_layout',$_data);
-    // }
-    //
-    // public function add_timeline() {
-    //   //code
-    //   $_data['subview'] = 'admin_page/infomation/add_timeline';
-    //   $_data['data_subview'] = array(
-    //     'cate' => $this->Mcategory->returnCategories(get_id_logged(),'info')
-    //   );
-    //   $this->load->view('admin_page/main_layout',$_data);
-    // }
-    //
-    // public function add_decentralization() {
-    //   //code
-    //   $_data['subview'] = 'admin_page/infomation/add_decentralization';
-    //   $_data['data_subview'] = array(
-    //     'cate' => $this->Mcategory->returnCategories(get_id_logged(),'info')
-    //   );
-    //   $this->load->view('admin_page/main_layout',$_data);
-    // }
-
     public function add_new_processing() {
       //code
-      $publication = 0;
+      $publication_or_person = 0;
       $type = $this->input->post('type');
       if($type=='research' || $type=='experience') {
+        $cate = intval($this->input->post('category'));
+        $name_info = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
         $date = get_date_follow_format($this->input->post('time'),'year').' - '.$this->input->post('to_year');
+        $content = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
       } else if($type=='isi' || $type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis'){
+        $cate = intval($this->input->post('category'));
+        $name_info = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
         $date = get_date_follow_format($this->input->post('time'),'year');
-        $publication = 1;
+        $content = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
+        $publication_or_person = 1;
       } else if($type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor') {
+        $cate = intval($this->input->post('category'));
+        $name_info = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
         $date = get_date_follow_format($this->input->post('time'),'year');
+        $content = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
+      } else if($type=='dob') {
+        $cate = null;
+        $name_info = $type;
+        $date = $this->input->post('dob');
+        $content = null;
+        $publication_or_person = 2;
+      } else if($type=='gender') {
+        $cate = null;
+        $name_info = $type;
+        $date = null;
+        $content = $this->input->post('gender');
+        $publication_or_person = 2;
+      } else if($type=='email') {
+        $cate = null;
+        $name_info = $type;
+        $date = null;
+        $content = $this->input->post('email');
+        $publication_or_person = 2;
+      } else if($type=='phone' || $type=='website' || $type=='address' || $type=='infomations') {
+        $cate = null;
+        $name_info = $type;
+        $date = null;
+        $content = ($this->input->post('content')) ? $this->input->post('content') : null;
+        $publication_or_person = 2;
       } else {
-        $date = $this->input->post('time');
+        $cate = ($this->input->post('category')) ? $this->input->post('category') : null;
+        $name_info = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
+        $date = ($this->input->post('time')) ? $this->input->post('time') : null;
+        $content = ($this->input->post('content')) ? $this->input->post('content') : null;
       }
       $data['USERID'] = get_id_logged();
       $data['DEPTID'] = get_org_by_id(get_id_logged(),'dept');
       $data['FACID'] = get_org_by_id(get_id_logged(),'faculty');
       $data['SCHID'] = get_org_by_id(get_id_logged(),'school');
-      $data['CATEID'] = intval($this->input->post('category'));
-      $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
+      $data['CATEID'] = $cate;
       $data['INFODATE'] = $date;
-      $data['INFOTITLE'] = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
-      $data['INFODESCRIPTION'] = ($this->input->post('description')) ? $this->input->post('description') : null;
-      $data['INFOCONTENT'] = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
+      $data['INFOTITLE'] = $name_info;
+      $data['INFOCONTENT'] = $content;
       $data['INFOPOLICY'] = $this->input->post('policy');
       $data['INFOTYPE'] = $type;
-      $data['INFOPUBLICATION'] = $publication;
+      $data['INFOPUBLICATIONORPERSON'] = $publication_or_person;
 
       $status = $this->Minfo->insertInfo($data);
 			// Thông báo
@@ -127,6 +106,15 @@ class Infomation extends CI_Controller {
       $_data['subview'] = 'admin_page/infomation/edit_info';
       $_data['data_subview'] = array(
         'cate' => $this->Mcategory->returnCategories(get_id_logged(),'info'),
+        'info' => $this->Minfo->getById($id)
+      );
+      $this->load->view('admin_page/main_layout',$_data);
+    }
+
+    public function edit_person($id = null) {
+      //code
+      $_data['subview'] = 'admin_page/infomation/edit_person';
+      $_data['data_subview'] = array(
         'info' => $this->Minfo->getById($id)
       );
       $this->load->view('admin_page/main_layout',$_data);

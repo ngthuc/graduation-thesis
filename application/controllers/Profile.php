@@ -3,7 +3,6 @@
 class Profile extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
-		$this->template = get_system('theme','theme');
 	}
 
 	/**
@@ -36,15 +35,16 @@ class Profile extends CI_Controller {
 	}
 
 	public function user($username) {
-		if($this->Minfo->countInfo($username) > 0) {
+		if(get_status_site_of_user_logged($username)==1) {
 			$data['data_subview'] = array(
 				'user' => $username,
 				'menu_type' => 'primary',
 				'menu_style' => 'home',
-				'person_info' => $this->Minfo->getPersonInfoByUser($username),
+				'person_info_default' => $this->Musers->getById($username),
+				'person_info_customize' => $this->Minfo->getPersonInfoByUser($username),
 				'person_research' =>  $this->Mcategory->getSortByParent($username,0,'info','CATEPOSITION','ASC')
 			);
-			$this->load->view('site_page/themes/'.$this->template.'/main_layout',$data);
+			$this->load->view('site_page/themes/'.get_theme_of_user($username).'/main_layout',$data);
 		} else {
 			echo '<!DOCTYPE html>
 			<html>
@@ -74,7 +74,7 @@ class Profile extends CI_Controller {
 			'page' =>  $_page,
 			'category' =>  $this->Mcategory->getById($idcate)
 		);
-		$this->load->view('site_page/themes/'.$this->template.'/blog_layout',$_data);
+		$this->load->view('site_page/themes/'.get_theme_of_user($username).'/blog_layout',$_data);
 	}
 
 	public function article($username,$idcate,$idpost) {
@@ -89,6 +89,6 @@ class Profile extends CI_Controller {
 			'articles' =>  $this->Marticle->getByCategory($idcate,5,0),
 			'category' =>  $this->Mcategory->getById($idcate)
 		);
-		$this->load->view('site_page/themes/'.$this->template.'/blog_layout',$_data);
+		$this->load->view('site_page/themes/'.get_theme_of_user($username).'/blog_layout',$_data);
 	}
 }

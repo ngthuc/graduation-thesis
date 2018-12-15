@@ -50,6 +50,7 @@ class Home extends CI_Controller {
               $data['USERID'] = $user_data['USERID'];
               $data['USERFULLNAME'] = $user_data['USERFULLNAME'];
               $data['USEREMAIL'] = $user_data['USEREMAIL'];
+              $data['USERAVATAR'] = $user_data['USERAVATAR'];
               $data['USERROLE'] = $user_data['USERROLE'];
             }
           }
@@ -64,6 +65,7 @@ class Home extends CI_Controller {
             $data['USERID'] = $user_data['USERID'];
             $data['USERFULLNAME'] = $user_data['USERFULLNAME'];
             $data['USEREMAIL'] = $user_data['USEREMAIL'];
+            $data['USERAVATAR'] = $user_data['USERAVATAR'];
             $data['USERROLE'] = $user_data['USERROLE'];
           }
         }

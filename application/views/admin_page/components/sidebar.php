@@ -52,8 +52,8 @@
               <i class="fa fa-circle-o"></i> Danh mục thông tin
             </a>
           </li>
-          <li<?php echo ($this->uri->segment(4) == 'update_person') ? ' class="active"' : ''; ?>>
-            <a href="<?php echo base_url('canbo/admin/infomation/update_person'); ?>">
+          <li<?php echo ($this->uri->segment(4) == 'add_person') ? ' class="active"' : ''; ?>>
+            <a href="<?php echo base_url('canbo/admin/infomation/add_person'); ?>">
               <i class="fa fa-circle-o"></i> Thông tin cá nhân
             </a>
           </li>

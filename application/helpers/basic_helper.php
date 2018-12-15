@@ -401,32 +401,32 @@ if (!function_exists('get_department_name'))
       return $name['DEPTNAME'];
     }
 }
-
-if (!function_exists('get_media_id'))
-{
-    function get_media_id($type, $id, $data)
-    {
-      // Get a reference to the controller object
-      //$CI = get_instance();
-      // use this below
-      $CI = &get_instance();
-
-      // You may need to load the model if it hasn't been pre-loaded
-      $CI->load->model('Media');
-
-      // Call a function of the model
-      $value = $CI->Media->getMediaWithId($type,$id);
-      if($data == 'title') {
-        return $value['MEDIATITLE'];
-      } else if($data == 'data') {
-        return $value['MEDIADATA'];
-      } else if($data == 'link') {
-        return $value['MEDIALINK'];
-      } else {
-        return 'Error: Missing an argument!';
-      }
-    }
-}
+//
+// if (!function_exists('get_media_id'))
+// {
+//     function get_media_id($type, $id, $data)
+//     {
+//       // Get a reference to the controller object
+//       //$CI = get_instance();
+//       // use this below
+//       $CI = &get_instance();
+//
+//       // You may need to load the model if it hasn't been pre-loaded
+//       $CI->load->model('Media');
+//
+//       // Call a function of the model
+//       $value = $CI->Media->getMediaWithId($type,$id);
+//       if($data == 'title') {
+//         return $value['MEDIATITLE'];
+//       } else if($data == 'data') {
+//         return $value['MEDIADATA'];
+//       } else if($data == 'link') {
+//         return $value['MEDIALINK'];
+//       } else {
+//         return 'Error: Missing an argument!';
+//       }
+//     }
+// }
 
 if (!function_exists('get_category_by_id'))
 {
@@ -478,7 +478,7 @@ if (!function_exists('get_org_by_id'))
       $user = $CI->Musers->getById($user_id);
       if($type=='dept') return $user['DEPTID'];
       if($type=='faculty') return $user['FACID'];
-      if($type=='school') return $user['SCHTID'];
+      if($type=='school') return $user['SCHID'];
     }
 }
 

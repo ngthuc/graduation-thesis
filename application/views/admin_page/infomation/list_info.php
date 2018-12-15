@@ -26,10 +26,8 @@
             <thead>
             <tr>
               <th>STT</th>
-              <th>Hình ảnh</th>
               <th>Thông tin</th>
               <th>Ngày</th>
-              <th>Mô tả</th>
               <th>Nội dung</th>
               <th>Thể loại</th>
               <th>Kiểu & Quyền xem</th>
@@ -44,10 +42,8 @@
               $name_category = $this->Mcategory->getInfoCateNameById($info['CATEID']);
               echo '<tr>
                 <td>'.$stt.'</td>';
-              echo (isset($info['INFOIMAGE'])) ? '<td><img src="'.$info['INFOIMAGE'].'" width="100px" height="150px" /></td>' : '<td></td>';
               echo '<td>'.$info['INFOTITLE'].'</td>';
               echo (isset($info['INFODATE'])) ? '<td>'.$info['INFODATE'].'</td>' : '<td>-</td>';
-              echo (isset($info['INFODESCRIPTION'])) ? '<td>'.$info['INFODESCRIPTION'].'</td>' : '<td>-</td>';
               echo (isset($info['INFOCONTENT'])) ? '<td>'.$info['INFOCONTENT'].'</td>' : '<td>-</td>';
               echo (isset($name_category['CATENAME'])) ? '<td>'.$name_category['CATENAME'].'</td>' : '<td>-</td>';
               echo '<td>'.$info['INFOTYPE'].'/'.$info['INFOPOLICY'].'</td>

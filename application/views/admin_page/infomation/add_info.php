@@ -23,7 +23,7 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" id="add-timeline" method="post">
+        <form role="form" id="add-info" method="post">
           <div class="box-body">
             <div class="form-group" id="alert-ajax">
               <!-- Alert by Ajax -->
@@ -152,9 +152,9 @@
   }
   $(document).ready(function(){
     $("form").submit(function(){
-      // alert($("#add-timeline").serialize());
+      // alert($("#add-info").serialize());
       var url="<?php echo base_url('canbo/admin/infomation/add_new_processing');?>";
-      var form="#add-timeline";
+      var form="#add-info";
       var callback="#alert-ajax";
       makeAjaxCall(url, form, callback);
     });

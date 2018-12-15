@@ -65,6 +65,7 @@ $route['canbo/destroy_ssid'] = 'home/destroyFileSSID';
 
 // Route for Admin
 $route['canbo'] = 'home';
+$route['canbo/change_status_site'] = 'admin/change_status_site';
 $route['canbo/admin'] = 'admin/index';
 $route['canbo/admin/profile'] = 'admin/profile';
 $route['canbo/admin/profile/edit_profile'] = 'admin/edit_profile';
@@ -105,13 +106,10 @@ $route['canbo/admin/category/delete_category'] = 'category/delete_category';
 
 // Route for Admin: Infomation
 $route['canbo/admin/infomation'] = 'infomation/index';
-$route['canbo/admin/infomation/update_person'] = 'infomation/update_person';
 $route['canbo/admin/infomation/add_info'] = 'infomation/add_info';
-// $route['canbo/admin/infomation/add_time'] = 'infomation/add_time';
-// $route['canbo/admin/infomation/add_timeline'] = 'infomation/add_timeline';
-// $route['canbo/admin/infomation/add_decentralization'] = 'infomation/add_decentralization';
-$route['canbo/admin/infomation/(:num)'] = 'infomation/edit_info/$1';
-$route['canbo/admin/infomation/update_person_processing'] = 'infomation/update_person_processing';
+$route['canbo/admin/infomation/add_person'] = 'infomation/add_person';
+$route['canbo/admin/infomation/info/(:num)'] = 'infomation/edit_info/$1';
+$route['canbo/admin/infomation/person/(:num)'] = 'infomation/edit_person/$1';
 $route['canbo/admin/infomation/add_new_processing'] = 'infomation/add_new_processing';
 $route['canbo/admin/infomation/edit_info_processing'] = 'infomation/edit_info_processing';
 $route['canbo/admin/infomation/delete_info'] = 'infomation/delete_info';

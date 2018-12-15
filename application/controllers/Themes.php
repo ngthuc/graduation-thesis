@@ -49,10 +49,10 @@ class Themes extends CI_Controller {
 
     public function update_themes() {
       //code
-      $key = 'theme';
-      $data['SYSTEMDATA'] = $this->input->post('theme');
+      $uid = get_id_logged();
+      $data['USERTHEME'] = $this->input->post('theme');
 
-      $status = $this->Msystem->updateSystemByKey($data,$key);
+      $status = $this->Musers->updateUser($data,$uid);
 			// Thông báo
 			if(!$status) {
 				echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Cập nhật thành công!"));

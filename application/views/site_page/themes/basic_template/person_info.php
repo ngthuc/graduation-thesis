@@ -1,61 +1,35 @@
-<?php
-  $template = 'public/themes/basic_template';
-
-  if(count($person_info) > 0) {
-    foreach ($person_info as $key => $value) {
-      // code...
-      if($value['INFOTITLE'] == 'avatar') {
-        $data['image'] = $value['INFOIMAGE'];
-      } else if($value['INFOTITLE'] == 'birthday') {
-        $data['dob'] = $value['INFODATE'];
-      } else {
-        $data[$value['INFOTITLE']] = $value['INFOCONTENT'];
-      }
-    }
-  } else {
-    $data['image'] = null;
-    $data['name'] = null;
-    $data['position'] = null;
-    $data['dob'] = null;
-    $data['gender'] = null;
-    $data['email'] = null;
-    $data['phone'] = null;
-    $data['website'] = null;
-    $data['address'] = null;
-  }
-?>
+<?php $template = 'public/themes/basic_template';?>
 <div id="head">
-    <img id="image" src="<?=$data['image'] ;?>">
-    <div id="name"><?=$data['name'] ;?></div>
-    <div id="position"><?=$data['position'] ;?></div>
+    <img id="image" src="<?=$person_info_default['USERAVATAR'];?>">
+    <div id="name"><?=$person_info_default['USERFULLNAME'];?></div>
+    <div id="position"><?=$person_info_default['USERPOSITION'];?></div>
     <table id="tb_ephone">
       <tbody>
-        <tr>
-          <td class="dob">
-            <img class="icon" src="<?=base_url($template.'/images/dob.png'); ?>"> <?=$data['dob'] ;?>
-          </td>
-          <td class="sex">
-            <img class="icon" src="<?=base_url($template.'/images/sex.png'); ?>"><?=$data['gender'] ;?>
-          </td>
-        </tr>
-        <tr>
-          <td class="email">
-            <img class="icon" src="<?=base_url($template.'/images/mail.png'); ?>"><?=$data['email'] ;?>
-          </td>
-          <td class="phone">
-            <img class="icon" src="<?=base_url($template.'/images/phone.png'); ?>"> <?=$data['phone'] ;?>
-          </td>
-        </tr>
-        <tr>
-          <td class="email">
-            <img class="icon" src="<?=base_url($template.'/images/www.png'); ?>"> <?=$data['website'] ;?>
-          </td>
-        </tr>
-        <tr>
-          <td class="address" colspan="2">
-            <img class="icon" src="<?=base_url($template.'/images/location.png'); ?>"> <?=$data['address'] ;?>
-          </td>
-        </tr>
+    <?php
+      if(count($person_info_customize) > 0) {
+        for($i=0;$i<count($person_info_customize);$i++) {
+          if($person_info_customize[$i]['INFOTYPE'] == 'website' || $person_info_customize[$i]['INFOTYPE'] == 'address' || $person_info_customize[$i]['INFOTYPE'] == 'info') {
+            echo '<tr>
+              <td class="'.$person_info_customize[$i]['INFOTITLE'].'" colspan="2">
+                <img class="icon" src="'.base_url($template.'/images/'.$person_info_customize[$i]['INFOTITLE'].'.png').'">'.$person_info_customize[$i]['INFOCONTENT'].'
+              </td>
+            </tr>';
+          } else {
+            if(($i == 0) || ($i % 2 == 0)) {
+              echo '<tr>
+                <td class="'.$person_info_customize[$i]['INFOTITLE'].'">
+                  <img class="icon" src="'.base_url($template.'/images/'.$person_info_customize[$i]['INFOTITLE'].'.png').'">'.(($person_info_customize[$i]['INFOTYPE']=='dob') ? $person_info_customize[$i]['INFODATE'] : $person_info_customize[$i]['INFOCONTENT']).'
+                </td>';
+            } else {
+              echo '<td class="'.$person_info_customize[$i]['INFOTITLE'].'">
+                <img class="icon" src="'.base_url($template.'/images/'.$person_info_customize[$i]['INFOTITLE'].'.png').'">'.(($person_info_customize[$i]['INFOTYPE']=='dob') ? $person_info_customize[$i]['INFODATE'] : $person_info_customize[$i]['INFOCONTENT']).'
+              </td>
+            </tr>';
+            }
+          }
+        }
+      }
+    ?>
       </tbody>
     </table>
 
