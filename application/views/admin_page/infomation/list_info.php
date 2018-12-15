@@ -48,13 +48,13 @@
               echo (isset($name_category['CATENAME'])) ? '<td>'.$name_category['CATENAME'].'</td>' : '<td>-</td>';
               echo '<td>'.$info['INFOTYPE'].'/'.$info['INFOPOLICY'].'</td>
                 <td>';
-              if($info['INFOTYPE'] == 'person') {
-                echo '<a href="'.base_url('canbo/admin/infomation/update_person').'" class="btn btn-primary"><b class="fa fa-edit"></b></a>';
+              if($info['INFOPUBLICATIONORPERSON'] == 2) {
+                echo '<a href="'.base_url('canbo/admin/infomation/person/'.$info['INFOID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>';
               } else {
-                echo '<a href="'.base_url('canbo/admin/infomation/'.$info['INFOID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>
-                <button type="button" value="'.$info['INFOID'].'" class="btn btn-danger ondelete"><b class="fa fa-trash"></b></button>';
+                echo '<a href="'.base_url('canbo/admin/infomation/info/'.$info['INFOID']).'" class="btn btn-primary"><b class="fa fa-edit"></b></a>';
               }
-              echo '</td>
+              echo '<button type="button" value="'.$info['INFOID'].'" class="btn btn-danger ondelete"><b class="fa fa-trash"></b></button>
+                </td>
               </tr>';
               $stt++;
             }

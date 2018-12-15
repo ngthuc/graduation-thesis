@@ -123,26 +123,61 @@ class Infomation extends CI_Controller {
     public function edit_info_processing() {
       //code
       $id = $this->input->post('id');
-      $publication = 0;
+      $publication_or_person = 0;
       $type = $this->input->post('type');
       if($type=='research' || $type=='experience') {
+        $cate = intval($this->input->post('category'));
+        $name_info = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
         $date = get_date_follow_format($this->input->post('time'),'year').' - '.$this->input->post('to_year');
+        $content = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
       } else if($type=='isi' || $type=='journal' || $type=='edited' || $type=='conference' || $type=='report' || $type=='thesis'){
+        $cate = intval($this->input->post('category'));
+        $name_info = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
         $date = get_date_follow_format($this->input->post('time'),'year');
-        $publication = 1;
+        $content = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
+        $publication_or_person = 1;
       } else if($type=='workshop' || $type=='reviewer' || $type=='seminars' || $type=='doctor') {
+        $cate = intval($this->input->post('category'));
+        $name_info = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
         $date = get_date_follow_format($this->input->post('time'),'year');
+        $content = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
+      } else if($type=='dob') {
+        $cate = null;
+        $name_info = $type;
+        $date = $this->input->post('dob');
+        $content = null;
+        $publication_or_person = 2;
+      } else if($type=='gender') {
+        $cate = null;
+        $name_info = $type;
+        $date = null;
+        $content = $this->input->post('gender');
+        $publication_or_person = 2;
+      } else if($type=='email') {
+        $cate = null;
+        $name_info = $type;
+        $date = null;
+        $content = $this->input->post('email');
+        $publication_or_person = 2;
+      } else if($type=='phone' || $type=='website' || $type=='address' || $type=='infomations') {
+        $cate = null;
+        $name_info = $type;
+        $date = null;
+        $content = ($this->input->post('content')) ? $this->input->post('content') : null;
+        $publication_or_person = 2;
       } else {
-        $date = $this->input->post('time');
+        $cate = ($this->input->post('category')) ? $this->input->post('category') : null;
+        $name_info = ($this->input->post('name_info')) ? $this->input->post('name_info') : null;
+        $date = ($this->input->post('time')) ? $this->input->post('time') : null;
+        $content = ($this->input->post('content')) ? $this->input->post('content') : null;
       }
-      $data['CATEID'] = intval($this->input->post('category'));
-      // $data['INFOIMAGE'] = ($this->input->post('image')) ? $this->input->post('image') : null;
+      $data['CATEID'] = $cate;
       $data['INFODATE'] = $date;
-      $data['INFOTITLE'] = $this->input->post('name_info');
-      $data['INFOCONTENT'] = ($this->input->post('content')) ? replace_url_paragraph($this->input->post('content')) : null;
+      $data['INFOTITLE'] = $name_info;
+      $data['INFOCONTENT'] = $content;
       $data['INFOPOLICY'] = $this->input->post('policy');
       $data['INFOTYPE'] = $type;
-      $data['INFOPUBLICATION'] = $publication;
+      $data['INFOPUBLICATIONORPERSON'] = $publication_or_person;
 
       $status = $this->Minfo->updateInfoById($data,$id);
 			// Thông báo

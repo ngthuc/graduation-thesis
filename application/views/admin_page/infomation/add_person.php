@@ -7,7 +7,7 @@
   </h1>
   <ol class="breadcrumb">
     <li><a href="<?=base_url('canbo/admin');?>"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-    <li class="active">Bảng điều khiển</li>
+    <li class="active">Thông tin cá nhân</li>
   </ol>
 </section>
 
