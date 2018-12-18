@@ -59,55 +59,21 @@
                 <input type="text" class="form-control" value="<?php echo ($user['USERROLE']=='admin') ? 'Quản trị viên' : (($user['USERROLE']=='user') ? 'Người dùng' : ''); ?>" disabled>
               </div>
             </div>
-            <div class="form-group row">
-              <div class="col-md-4">
-                <label>Trường</label>
-                <select class="form-control" name="school" id="school" required>
-                  <?php
-                    $schools = $this->Mschool->getList('sort','SCHNICKNAME','ASC');
-                    foreach ($schools as $key => $school) {
-                      // code...
-                      if($user['SCHID']==$school['SCHID']) {
-                        echo '<option value="'.$school['SCHID'].'" selected>'.$school['SCHNAME'].'</option>';
-                      } else {
-                        echo '<option value="'.$school['SCHID'].'">'.$school['SCHNAME'].'</option>';
-                      }
+            <div class="form-group">
+              <label>Bộ môn/Tổ chuyên ngành</label>
+              <select class="form-control" name="department" id="department" required>
+                <?php
+                  $departments = $this->Mdepartment->getList('sort','DEPTNICKNAME','ASC');
+                  foreach ($departments as $key => $department) {
+                    // code...
+                    if($user['DEPTID']==$department['DEPTID']) {
+                      echo '<option value="'.$department['DEPTID'].'" selected>'.$department['DEPTNAME'].'</option>';
+                    } else {
+                      echo '<option value="'.$department['DEPTID'].'">'.$department['DEPTNAME'].'</option>';
                     }
-                  ?>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <label>Khoa/viện/phòng ban</label>
-                <select class="form-control" name="faculty" id="faculty" required>
-                  <?php
-                    $faculties = $this->Mfaculty->getList('sort','FACNICKNAME','ASC');
-                    foreach ($faculties as $key => $faculty) {
-                      // code...
-                      if($user['FACID']==$faculty['FACID']) {
-                        echo '<option value="'.$faculty['FACID'].'" selected>'.$faculty['FACNAME'].'</option>';
-                      } else {
-                        echo '<option value="'.$faculty['FACID'].'">'.$faculty['FACNAME'].'</option>';
-                      }
-                    }
-                  ?>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <label>Bộ môn/Tổ chuyên ngành</label>
-                <select class="form-control" name="department" id="department" required>
-                  <?php
-                    $departments = $this->Mdepartment->getList('sort','DEPTNICKNAME','ASC');
-                    foreach ($departments as $key => $department) {
-                      // code...
-                      if($user['DEPTID']==$department['DEPTID']) {
-                        echo '<option value="'.$department['DEPTID'].'" selected>'.$department['DEPTNAME'].'</option>';
-                      } else {
-                        echo '<option value="'.$department['DEPTID'].'">'.$department['DEPTNAME'].'</option>';
-                      }
-                    }
-                  ?>
-                </select>
-              </div>
+                  }
+                ?>
+              </select>
             </div>
             <div class="form-group" id="avatar">
               <label>Hình ảnh</label>

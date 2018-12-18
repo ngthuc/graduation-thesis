@@ -401,6 +401,43 @@ if (!function_exists('get_department_name'))
       return $name['DEPTNAME'];
     }
 }
+
+if (!function_exists('get_parent_of_faculty'))
+{
+    function get_parent_of_faculty($id)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Mfaculty');
+
+      // Call a function of the model
+      $result = $CI->Mfaculty->getById($id);
+      return $result['PARENTID'];
+    }
+}
+
+if (!function_exists('get_parent_of_department'))
+{
+    function get_parent_of_department($id)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Mdepartment');
+
+      // Call a function of the model
+      $result = $CI->Mdepartment->getById($id);
+      return $result['PARENTID'];
+    }
+}
+
 //
 // if (!function_exists('get_media_id'))
 // {

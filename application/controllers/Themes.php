@@ -22,13 +22,6 @@ class Themes extends CI_Controller {
         }
       }
 
-      if(get_system('theme','theme') == null) {
-        $data_theme['SYSTEMTITLE'] = 'theme';
-        $data_theme['SYSTEMPOLICY'] = 'protected';
-        $data_theme['SYSTEMTYPE'] = 'theme';
-        $this->Msystem->insertSystem($data_theme);
-      }
-
       $i=0;
       foreach ($themes_info as $key => $themes) {
         // code...

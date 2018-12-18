@@ -26,11 +26,11 @@ class Admin extends CI_Controller {
       $data['USERFULLNAME'] = $this->input->post('fullname');
 			$data['USEREMAIL'] = $this->input->post('email');
       $data['SUBEMAIL'] = ($this->input->post('subemail') != '') ? $this->input->post('subemail') : null;
-			$data['SCHID'] = $this->input->post('school');
-			$data['FACID'] = $this->input->post('faculty');
 			$data['DEPTID'] = $this->input->post('department');
+			$data['FACID'] = get_parent_of_department($this->input->post('department'));
+			$data['SCHID'] = get_parent_of_faculty(get_parent_of_department($this->input->post('department')));
 			$data['USERAVATAR'] = $this->input->post('avatar');
-      $data['USERPOSITION'] = $this->input->post('position');
+      $data['USERPOSITION'] = $this->input->post('position');			
 
       $status = $this->Musers->updateUser($data,$uid);
 			// Thông báo

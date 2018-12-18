@@ -17,7 +17,7 @@ CREATE TABLE ARTICLE (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 CREATE TABLE CATEGORY (
-  CATEID int(5) NOT NULL,
+  CATEID int(5) NOT NULL AUTO_INCREMENT,
   USERID varchar(30) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   CAT_CATEID int(5) DEFAULT NULL,
   CATENAME text COLLATE utf8mb4_vietnamese_ci NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE INFO (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 CREATE TABLE USERS (
-  USERID varchar(30) COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  USERID varchar(30) NOT NULL,
   DEPTID int(5) NULL,
   FACID int(5) NULL,
   SCHID int(5) NULL,
@@ -94,9 +94,18 @@ CREATE TABLE DEPARTMENT (
   DEPTNAME varchar(200) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   DEPTENGLISHNAME varchar(200) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   DEPTNICKNAME varchar(50) COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  DEPTTYPE text COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  DEPTTYPE varchar(10),
   PRIMARY KEY (DEPTID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+INSERT INTO DEPARTMENT (DEPTID, PARENTID, DEPTNAME, DEPTENGLISHNAME, DEPTNICKNAME) VALUES
+(1, 1, 'Bộ môn Công nghệ phần mềm', 'Department of Software Engineering', 'SE'),
+(2, 1, 'Bộ môn Công nghệ thông tin', 'Department of Infomation Technology', 'IT'),
+(3, 1, 'Bộ môn Hệ thống thông tin', 'Department of Infomation System', 'IS'),
+(4, 1, 'Bộ môn Khoa học máy tính', 'Department of Computer Science', 'CS'),
+(5, 1, 'Bộ môn Mạng máy tính và Truyền thông', 'Department of Network and Communication', 'Network'),
+(6, 1, 'Bộ môn Tin học ứng dụng', 'Department of Applied Informatics', 'AI'),
+(7, 2, 'Bộ môn Kỹ thuật máy tính', 'Department of Computer Engineering', 'CE');
 
 CREATE TABLE FACULTY (
   FACID int(5) NOT NULL AUTO_INCREMENT,
@@ -104,18 +113,25 @@ CREATE TABLE FACULTY (
   FACNAME varchar(200) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   FACENGLISHNAME varchar(200) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   FACNICKNAME varchar(50) COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  FACTYPE text COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  FACTYPE varchar(10),
   PRIMARY KEY (FACID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+INSERT INTO FACULTY (FACID, PARENTID, FACNAME, FACENGLISHNAME, FACNICKNAME) VALUES
+(1, 1, 'Khoa CNTT&TT', 'College of ICT', 'DI'),
+(2, 1, 'Khoa Công nghệ', 'College of Engineering Technology', 'CT');
 
 CREATE TABLE SCHOOL (
   SCHID int(5) NOT NULL AUTO_INCREMENT,
   SCHNAME varchar(200) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   SCHENGLISHNAME varchar(200) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   SCHNICKNAME varchar(50) COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  SCHTYPE text COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  SCHTYPE varchar(10),
   PRIMARY KEY (SCHID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+INSERT INTO SCHOOL (SCHID, SCHNAME, SCHENGLISHNAME, SCHNICKNAME) VALUES
+(1, 'Đại học Cần Thơ', 'Can Tho University', 'CTU');
 
 ALTER TABLE ARTICLE ADD CONSTRAINT FK_ARTICLECATEGORY FOREIGN KEY (CATEID) REFERENCES CATEGORY(CATEID) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE ARTICLE ADD CONSTRAINT FK_ARTICLEUSERS FOREIGN KEY (USERID) REFERENCES USERS(USERID) ON UPDATE CASCADE ON DELETE CASCADE;
