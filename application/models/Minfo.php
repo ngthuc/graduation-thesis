@@ -51,7 +51,7 @@ class Minfo extends CI_Model{
         if($school!=null) $this->db->where('SCHID', $school);
         if($faculty!=null) $this->db->where('FACID', $faculty);
         if($department!=null) $this->db->where('DEPTID', $department);
-        if($publication!=null) $this->db->where('INFOPUBLICATION', $publication);
+        if($publication!=null) $this->db->where('INFOPUBLICATIONORPERSON', $publication);
         return $this->db->get($this->_table)->result_array();
     }
 

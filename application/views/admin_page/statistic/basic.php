@@ -212,10 +212,22 @@
 <!-- /.row -->
 </section>
 
-<!-- DataTables 1.10.16 -->
+<!-- DataTables 1.10.16 -->.
   <!-- Include DataTables 1.10.16 -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/extensions/DataTables-1.10.16/datatables.min.css'); ?>"/>
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/extensions/DataTables-1.10.16/datatables.min.css'); ?>"/>
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/> -->
     <script type="text/javascript" src="<?php echo base_url('public/extensions/DataTables-1.10.16/datatables.min.js'); ?>"></script>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+    <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
+
+    <!-- Button for datatables -->
+      <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css"> -->
+      <!-- <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script> -->
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script> -->
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script> -->
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script> -->
+      <!-- <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script> -->
+    <!-- End Button for datatables -->
   <!-- Include DataTables 1.10.16 -->
   <!-- Using DataTables -->
     <script type="text/javascript">
@@ -223,7 +235,24 @@
         $('.datatables').DataTable({
           "language" : {
             "url" : "//cdn.datatables.net/plug-ins/1.10.16/i18n/Vietnamese.json"
-        }
+          },
+          // dom: 'Bfrtip',
+          // buttons: [
+          //   'copyHtml5',
+          //   'excelHtml5',
+          //   'csvHtml5',
+          //   'pdfHtml5'
+          // ]
+          // buttons: [
+          //   {
+          //       extend: 'excel',
+          //       messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.'
+          //   },
+          //   {
+          //       extend: 'pdf',
+          //       messageBottom: null
+          //   }
+          // ]
       });
     });
     </script>
