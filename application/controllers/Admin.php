@@ -30,7 +30,7 @@ class Admin extends CI_Controller {
 			$data['FACID'] = get_parent_of_department($this->input->post('department'));
 			$data['SCHID'] = get_parent_of_faculty(get_parent_of_department($this->input->post('department')));
 			$data['USERAVATAR'] = $this->input->post('avatar');
-      $data['USERPOSITION'] = $this->input->post('position');			
+      $data['USERPOSITION'] = $this->input->post('position');
 
       $status = $this->Musers->updateUser($data,$uid);
 			// Thông báo
@@ -84,7 +84,8 @@ class Admin extends CI_Controller {
     }
 
 		public function statistic() {
-      $data['subview'] = 'admin_page/statistic/basic';
+			$data['subview'] = 'admin_page/statistic/basic';
+      // $data['header']['title'] = 'Thống kê công bố khoa học';
       $this->load->view('admin_page/main_layout',$data);
     }
 
