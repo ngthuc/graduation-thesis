@@ -72,7 +72,7 @@ Graduation Thesis for Software Engineering
 * $config['base_url']: your domain (line 26)
 
 ## Team
-* Mentor: Mr.Tran Minh Tan (Master)
+* Supervisor: Mr.Tran Minh Tan (Master)
 * Owner: Mr.Le Nguyen Thuc (student degree Engineering)
 * Organization: Can Tho University, College of ICT
 
