@@ -22,7 +22,7 @@ Graduation Thesis for Software Engineering
 * sub_license.txt (file)
 * sub_readme.rst (file)
 ### B. Other
-* cgi-bin (folder)
+* DATABASE_GENERATOR (folder) - tool generate database
 * DOCUMENTS (folder)
 * JOOMLA_TEST (use Joomla - 3.4.8) - remove when deploy
 * LICENSE (file)
