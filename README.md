@@ -43,7 +43,7 @@ Graduation Thesis for Software Engineering
 
 ## Team
 * Supervisor: Mr.Tran Minh Tan (Master)
-* Owner: Mr.Le Nguyen Thuc (student degree Engineering)
-* Organization: Can Tho University, College of ICT
+* Developer: Mr.Le Nguyen Thuc (Engineer)
+* Organisation: Can Tho University, College of ICT
 
 ## Thanks for watch!
