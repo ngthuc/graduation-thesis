@@ -1,6 +1,6 @@
 <?php
 class Mcategory extends CI_Model{
-    protected $_table = 'CATEGORY';
+    protected $_table = 'category';
     protected $_arr = array();
 
     public function __construct(){
@@ -20,7 +20,7 @@ class Mcategory extends CI_Model{
     }
 
     public function numRows($where = null, $value = null, $field = null){
-        if ($where && $id) {
+        if ($where) {
           if($field) {
             $sql_query = "SELECT $field FROM $this->_table WHERE $where = $value";
           } else {
@@ -34,7 +34,7 @@ class Mcategory extends CI_Model{
     }
 
     public function getById($id){
-        $this->db->where("CATEID", $id);
+        $this->db->where("cateId", $id);
         return $this->db->get($this->_table)->row_array();
     }
 
@@ -42,58 +42,57 @@ class Mcategory extends CI_Model{
         $list_category = $this->getArticleCateByUserId($user);
         foreach ($list_category as $key => $value) {
           // code...
-          $string_search = convert_url($value['CATENAME']);
+          $string_search = convert_url($value['name']);
           if($string_search == $string_category) {
-            return $value['CATEID'];
+            return $value['id'];
           }
         }
     }
 
     public function getArticleCateByUserId($uid){
-        $this->db->where("USERID", $uid);
-        $this->db->where("CATETYPE", 'article');
+        $this->db->where("userId", $uid);
+        $this->db->where("type", 'article');
         return $this->db->get($this->_table)->result_array();
     }
 
     public function getArticleCateNameById($id){
-        $this->db->select('CATENAME');
-        $this->db->where("CATEID", $id);
-        $this->db->where("CATETYPE", 'article');
+        $this->db->select('name');
+        $this->db->where("id", $id);
+        $this->db->where("type", 'article');
         return $this->db->get($this->_table)->row_array();
     }
 
     public function getInfoCateNameById($id){
-        $this->db->select('CATENAME');
-        $this->db->where("CATEID", $id);
-        $this->db->where("CATETYPE", 'info');
+        $this->db->select('name');
+        $this->db->where("id", $id);
+        $this->db->where("type", 'info');
         return $this->db->get($this->_table)->row_array();
     }
 
     public function getParentById($id){
-        $this->db->select('CAT_CATEID');
-        $this->db->where("CATEID", $id);
+        $this->db->select('parentId');
+        $this->db->where("id", $id);
         return $this->db->get($this->_table)->row_array();
     }
 
     public function getByParent($user,$idparent){
-        $this->db->where("USERID", $user);
-        $this->db->where("CAT_CATEID", $idparent);
+        $this->db->where("id", $user);
+        $this->db->where("parentId", $idparent);
         return $this->db->get($this->_table)->result_array();
     }
 
     public function getSortByParent($user,$idparent,$type,$where=null,$type_sort=null,$show=null){
-        $this->db->where("USERID", $user);
-        $this->db->where("CAT_CATEID", $idparent);
-        $this->db->where("CATETYPE", $type);
-        if(isset($show)) $this->db->where("CATESHOWMENU", 1);
+        $this->db->where("id", $user);
+        $this->db->where("parentId", $idparent);
+        $this->db->where("type", $type);
         if($where && $type_sort) $this->db->order_by($where,$type_sort);
         return $this->db->get($this->_table)->result_array();
     }
 
     public function getSortByParentForType($user,$idparent,$type=null,$where=null,$type_sort=null){
-        $this->db->where("USERID", $user);
-        $this->db->where("CAT_CATEID", $idparent);
-        if($type) $this->db->where("CATETYPE", $type);
+        $this->db->where("id", $user);
+        $this->db->where("parentId", $idparent);
+        if($type) $this->db->where("type", $type);
         if($where && $type_sort) $this->db->order_by($where,$type_sort);
         return $this->db->get($this->_table)->result_array();
     }
@@ -103,21 +102,21 @@ class Mcategory extends CI_Model{
     }
 
     public function updateCate($data_update, $id){
-        $this->db->where("CATEID", $id);
+        $this->db->where("id", $id);
         $this->db->update($this->_table, $data_update);
     }
 
     public function deleteCate($id){
-        $this->db->where("CATEID", $id);
+        $this->db->where("id", $id);
         return $this->db->delete($this->_table);
     }
 
     public function findNodeLevel($id,$level=1) {
         $findIt = $this->getParentById($id);
-        if($findIt['CAT_CATEID'] == 0) {
+        if($findIt['parentId'] == 0) {
           return $level;
         } else {
-          return $this->findNodeLevel($findIt['CAT_CATEID'],$level+1);
+          return $this->findNodeLevel($findIt['parentId'],$level+1);
         }
     }
 
@@ -125,7 +124,7 @@ class Mcategory extends CI_Model{
         $findIt = $this->getList();
         foreach ($findIt as $key => $value) {
           // code...
-          if($value['CATEID'] == $value['CAT_CATEID']) {
+          if($value['id'] == $value['parentId']) {
             array_push($this->_arr,$findIt[$key]);
           }
         }
@@ -136,7 +135,7 @@ class Mcategory extends CI_Model{
         $findIt = $this->getByParent($user);
         foreach ($findIt as $key => $value) {
           // code...
-          if($value['CATEID'] != $value['CAT_CATEID']) {
+          if($value['id'] != $value['parentId']) {
             array_push($this->_arr,$findIt[$key]);
           }
         }
@@ -153,12 +152,12 @@ class Mcategory extends CI_Model{
     }
 
     public function returnCategories($user,$type=null) {
-        $query = $this->getSortByParentForType($user,0,$type,'CATEID','ASC');
+        $query = $this->getSortByParentForType($user,0,$type,'id','ASC');
         if (count($query) > 0) {
           foreach ($query as $key => $node) {
             // code...
             array_push($this->_arr,$query[$key]); // Trả lại tất cả menu cha
-            $this->getSubmenu($user,$node['CATEID']); // Nếu có menu con thì sẽ được hiển thị
+            $this->getSubmenu($user,$node['id']); // Nếu có menu con thì sẽ được hiển thị
           }
         }
         return $this->_arr;
@@ -170,7 +169,7 @@ class Mcategory extends CI_Model{
         foreach ($query as $key => $node) {
           // code...
           array_push($this->_arr,$query[$key]);
-          $this->getSubmenu($user,$node['CATEID']);
+          $this->getSubmenu($user,$node['id']);
         }
     	}
       return $this->_arr;

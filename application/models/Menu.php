@@ -1,6 +1,6 @@
 <?php
 class Menu extends CI_Model{
-    protected $_table = 'MENU';
+    protected $_table = 'menu';
     protected $_arr = array();
 
     public function __construct(){
@@ -20,7 +20,7 @@ class Menu extends CI_Model{
     }
 
     public function numRows($where = null, $value = null, $field = null){
-        if ($where && $id) {
+        if ($where) {
           if($field) {
             $sql_query = "SELECT $field FROM $this->_table WHERE $where = $value";
           } else {
@@ -34,24 +34,24 @@ class Menu extends CI_Model{
     }
 
     public function getById($id){
-        $this->db->where("MENUID", $id);
+        $this->db->where("id", $id);
         return $this->db->get($this->_table)->row_array();
     }
 
     public function getByUser($uid){
-        $this->db->where("USERID", $uid);
+        $this->db->where("userId", $uid);
         return $this->db->get($this->_table)->row_array();
     }
 
     public function getByType($type='primary'){
-        $this->db->where("MENUTYPE", $type);
+        $this->db->where("type", $type);
         return $this->db->get($this->_table)->result_array();
     }
 
     public function getTypeByUser($uid){
         $this->db->distinct();
-        $this->db->select('MENUTYPE');
-        $this->db->where("USERID", $uid);
+        $this->db->select('type');
+        $this->db->where("userId", $uid);
         return $this->db->get($this->_table)->result_array();
     }
 
@@ -59,36 +59,36 @@ class Menu extends CI_Model{
         $list_menu = $this->getList();
         foreach ($list_menu as $key => $value) {
           // code...
-          $string_search = convert_url($value['MENUNAME']);
+          $string_search = convert_url($value['name']);
           if($string_search == $string_menu) {
-            return $value['MENUID'];
+            return $value['id'];
           }
         }
     }
 
     public function getNameById($id){
-        $this->db->select('MENUNAME');
-        $this->db->where("MENUID", $id);
+        $this->db->select('name');
+        $this->db->where("id", $id);
         return $this->db->get($this->_table)->row_array();
     }
 
     public function getParentById($id){
-        $this->db->select('MENUPARENT');
-        $this->db->where("MENUID", $id);
+        $this->db->select('parentId');
+        $this->db->where("id", $id);
         return $this->db->get($this->_table)->row_array();
     }
 
     public function getByParent($idparent){
-        $this->db->where("MENUPARENT", $idparent);
+        $this->db->where("parentId", $idparent);
         return $this->db->get($this->_table)->result_array();
     }
 
     public function getSortByParent($uid,$idparent,$type=null,$where=null,$type_sort=null){
-        $this->db->where("USERID", $uid);
-        $this->db->where("MENUPARENT", $idparent);
-        if(isset($type)) $this->db->where("MENUTYPE", $type);
+        $this->db->where("userId", $uid);
+        $this->db->where("parentId", $idparent);
+        if(isset($type)) $this->db->where("type", $type);
         if(isset($where) && isset($type_sort)) $this->db->order_by($where,$type_sort);
-        $this->db->order_by("MENUTYPE","ASC");
+        $this->db->order_by("type","ASC");
         return $this->db->get($this->_table)->result_array();
     }
 
@@ -97,21 +97,21 @@ class Menu extends CI_Model{
     }
 
     public function updateMenu($data_update, $id){
-        $this->db->where("MENUID", $id);
+        $this->db->where("id", $id);
         $this->db->update($this->_table, $data_update);
     }
 
     public function deleteMenu($id){
-        $this->db->where("MENUID", $id);
+        $this->db->where("id", $id);
         return $this->db->delete($this->_table);
     }
 
     public function findNodeLevel($id,$level=1) {
         $findIt = $this->getParentById($id);
-        if($findIt['MENUPARENT'] == 0) {
+        if($findIt['parentId'] == 0) {
           return $level;
         } else {
-          return $this->findNodeLevel($findIt['MENUPARENT'],$level+1);
+          return $this->findNodeLevel($findIt['parentId'],$level+1);
         }
     }
 
@@ -119,7 +119,7 @@ class Menu extends CI_Model{
         $findIt = $this->getList();
         foreach ($findIt as $key => $value) {
           // code...
-          if($value['MENUID'] == $value['MENUPARENT']) {
+          if($value['id'] == $value['parentId']) {
             array_push($this->_arr,$findIt[$key]);
           }
         }
@@ -130,7 +130,7 @@ class Menu extends CI_Model{
         $findIt = $this->getByParent();
         foreach ($findIt as $key => $value) {
           // code...
-          if($value['MENUID'] != $value['MENUPARENT']) {
+          if($value['id'] != $value['parentId']) {
             array_push($this->_arr,$findIt[$key]);
           }
         }
@@ -147,27 +147,27 @@ class Menu extends CI_Model{
     }
 
     public function returnCategories($type = 'arr') {
-        $query = $this->getSortByParent(0,'MENUID','ASC');
+        $query = $this->getSortByParent(0,'id','ASC');
         if (count($query) > 0) {
           if($type == 'menu') {
             // Hiển thị dữ liệu từ database
             foreach ($query as $key => $node) {
               // code...
               // Trả lại tất cả menu cha
-              if($this->hasChild($node['MENUID'])) {
+              if($this->hasChild($node['id'])) {
                 echo '<li>
-                <a href="'.base_url('article/category/'.$node['MENUID']).'" class="dropdown-toggle" data-toggle="dropdown">'.$node['MENUNAME'].' <b class="caret"></b></a>';
+                <a href="'.base_url('article/category/'.$node['id']).'" class="dropdown-toggle" data-toggle="dropdown">'.$node['name'].' <b class="caret"></b></a>';
               } else {
-                  echo '<li><a href="'.base_url('article/category/'.$node['MENUID']).'">' . $node['MENUNAME'] . '</a>';
+                  echo '<li><a href="'.base_url('article/category/'.$node['id']).'">' . $node['name'] . '</a>';
               }
-              $this->getSubmenu($node['MENUID'],'menu'); // Nếu có menu con thì sẽ được hiển thị
+              $this->getSubmenu($node['id'],'menu'); // Nếu có menu con thì sẽ được hiển thị
               echo '</li>';
             }
           } else {
             foreach ($query as $key => $node) {
               // code...
               array_push($this->_arr,$query[$key]); // Trả lại tất cả menu cha
-              $this->getSubmenu($node['MENUID']); // Nếu có menu con thì sẽ được hiển thị
+              $this->getSubmenu($node['id']); // Nếu có menu con thì sẽ được hiển thị
             }
           }
         }
@@ -181,13 +181,13 @@ class Menu extends CI_Model{
           echo '<ul class="dropdown-menu multi-level">';
           foreach ($query as $key => $node) {
             // code...
-            if($this->hasChild($node['MENUID'])) {
+            if($this->hasChild($node['id'])) {
                 echo '<li class="dropdown-submenu">
-                  <a href="'.base_url('article/category/'.$node['MENUID']).'">' . $node['MENUNAME'] . '</a>';
+                  <a href="'.base_url('article/category/'.$node['id']).'">' . $node['name'] . '</a>';
             } else {
-                echo '<li><a href="'.base_url('article/category/'.$node['MENUID']).'">' . $node['MENUNAME'] . '</a>';
+                echo '<li><a href="'.base_url('article/category/'.$node['id']).'">' . $node['name'] . '</a>';
             }
-      			$this->getSubmenu($node['MENUID'],'menu');
+      			$this->getSubmenu($node['id'],'menu');
       			echo '</li>';
           }
       		echo '</ul>';
@@ -195,7 +195,7 @@ class Menu extends CI_Model{
           foreach ($query as $key => $node) {
             // code...
             array_push($this->_arr,$query[$key]);
-      			$this->getSubmenu($node['MENUID']);
+      			$this->getSubmenu($node['id']);
           }
         }
     	}

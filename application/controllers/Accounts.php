@@ -23,12 +23,12 @@ class Accounts extends CI_Controller {
 
     public function add_new_processing() {
       //code
-      $data['USERID'] = $this->input->post('user_id');
-      $data['USERFULLNAME'] = ($this->input->post('fullname')) ? $this->input->post('fullname') : '';
-      $data['USEREMAIL'] = $this->input->post('email');
-      $data['USERPASSWORD'] = md5($this->input->post('password'));
-      $data['USERROLE'] = $this->input->post('permissions');
-      $data['USERSTATUS'] = 'approved';
+      $data['id'] = $this->input->post('user_id');
+      $data['fullname'] = ($this->input->post('fullname')) ? $this->input->post('fullname') : '';
+      $data['email'] = $this->input->post('email');
+      $data['password'] = md5($this->input->post('password'));
+      $data['role'] = $this->input->post('permissions');
+      $data['accountStatus'] = 'approved';
 
       $status = $this->Musers->insertUser($data);
 			// Thông báo
@@ -52,12 +52,12 @@ class Accounts extends CI_Controller {
       //code
       $uid = $this->input->post('uid');
       $pwd = $this->Musers->getPasswordById($uid);
-      $data['USERID'] = $uid;
-      $data['USERFULLNAME'] = $this->input->post('fullname');
-      $data['USEREMAIL'] = $this->input->post('email');
-      $data['USERPASSWORD'] = $pwd['USERPASSWORD'];
-      $data['USERROLE'] = $this->input->post('permissions');
-      $data['USERSTATUS'] = $this->input->post('status');
+      $data['id'] = $uid;
+      $data['fullname'] = $this->input->post('fullname');
+      $data['email'] = $this->input->post('email');
+      $data['password'] = $pwd['password'];
+      $data['role'] = $this->input->post('permissions');
+      $data['accountStatus'] = $this->input->post('status');
 
       $status = $this->Musers->updateUser($data,$uid);
 			// Thông báo

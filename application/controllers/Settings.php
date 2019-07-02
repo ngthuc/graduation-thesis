@@ -16,10 +16,10 @@ class Settings extends CI_Controller {
       $keys = $this->input->post('key[]');
       $values = $this->input->post('value[]');
       for($i = 0; $i < count($keys); $i++) {
-        $data[$i]['SYSTEMTITLE'] = $keys[$i];
-        $data[$i]['SYSTEMDATA'] = $values[$i];
-        $data[$i]['SYSTEMPOLICY'] = 'public';
-        $data[$i]['SYSTEMTYPE'] = 'default';
+        $data[$i]['title'] = $keys[$i];
+        $data[$i]['data'] = $values[$i];
+        $data[$i]['policy'] = 'public';
+        $data[$i]['type'] = 'default';
       }
 
       $status = $this->Msystem->updateMultiSystem($data);
@@ -38,9 +38,9 @@ class Settings extends CI_Controller {
 
     public function add_domain() {
       //code
-      $data['SYSTEMLINK'] = $this->input->post('domain');
-      $data['SYSTEMPOLICY'] = 'protected';
-      $data['SYSTEMTYPE'] = 'domain';
+      $data['link'] = $this->input->post('domain');
+      $data['policy'] = 'protected';
+      $data['type'] = 'domain';
 
       $status = $this->Msystem->insertSystem($data);
 			// Thông báo
@@ -62,6 +62,40 @@ class Settings extends CI_Controller {
 			} else {
 				echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Cập nhật thất bại!"));
 			}
+    }
+
+    public function organisation() {
+        $data['subview'] = 'admin_page/settings/department';
+        $this->load->view('admin_page/main_layout',$data);
+    }
+
+    public function add_organisation() {
+        //code
+        $data['parentId'] = $this->input->post('parent');
+        $data['name'] = $this->input->post('name');
+        $data['english'] = $this->input->post('engname');
+        $data['nickname'] = $this->input->post('nickname');
+
+        $status = $this->Morganisation->insertOrg($data);
+        // Thông báo
+        if(!$status) {
+            echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Thêm mới thành công!"));
+        } else {
+            echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Thêm mới thất bại!"));
+        }
+    }
+
+    public function delete_organisation() {
+        //code
+        $id = $this->input->post('delete');
+
+        $status = $this->Morganisation->deleteOrg($id);
+        // Thông báo
+        if($status) {
+            echo json_encode(array("STATUS"=>"success","MESSAGE"=>"Xóa thành công!"));
+        } else {
+            echo json_encode(array("STATUS"=>"error","MESSAGE"=>"Xóa thất bại!"));
+        }
     }
 
     public function department() {
