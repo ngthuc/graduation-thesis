@@ -29,7 +29,7 @@ public class Organisation {
     private String type;
 
     @ManyToOne
-    @JoinColumn(name="parentId")
+    @JoinColumn(name="childOf")
     private Organisation parent;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy="parent")

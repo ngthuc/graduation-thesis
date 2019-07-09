@@ -1,7 +1,5 @@
 package com.ngthuc.spsimct594.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,13 +19,21 @@ public class GroupPolicy {
 	@JoinColumn(name = "aPartOf", nullable = false)
 	private Policy policy;
 
-    @OneToMany
-	@JoinColumn(name = "groups")
-	private List<Organisation> organisations;
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(
+		name = "groups_policy",
+		joinColumns = { @JoinColumn(name = "groupPolicyId") },
+		inverseJoinColumns = { @JoinColumn(name = "organisationId") }
+	)
+	Set<Organisation> organisations = new HashSet<>();
 
-    @OneToMany
-	@JoinColumn(name = "contacts")
-	private List<User> users = new ArrayList<User>();
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(
+		name = "contacts_policy",
+		joinColumns = { @JoinColumn(name = "groupPolicyId") },
+		inverseJoinColumns = { @JoinColumn(name = "accountId") }
+	)
+	Set<Account> accounts = new HashSet<>();
 
     @Column(name = "groupsType", length = 20)
 	private String groupsType;
@@ -53,20 +59,20 @@ public class GroupPolicy {
 		this.policy = policy;
 	}
 
-	public List<Organisation> getOrganisations() {
+	public Set<Organisation> getOrganisations() {
 		return organisations;
 	}
 
-	public void setOrganisations(List<Organisation> organisations) {
+	public void setOrganisations(Set<Organisation> organisations) {
 		this.organisations = organisations;
 	}
 
-	public List<User> getUsers() {
-		return users;
+	public Set<Account> getAccounts() {
+		return accounts;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setAccounts(Set<Account> accounts) {
+		this.accounts = accounts;
 	}
 
 	public String getGroupsType() {

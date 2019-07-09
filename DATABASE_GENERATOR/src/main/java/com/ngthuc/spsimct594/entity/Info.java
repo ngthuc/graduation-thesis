@@ -1,7 +1,6 @@
 package com.ngthuc.spsimct594.entity;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "info")
@@ -13,8 +12,8 @@ public class Info {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "userId")
-	private User user;
+	@JoinColumn(name = "ownedOf")
+	private Account account;
 
 	@ManyToOne
 	@JoinColumn(name = "ownedBy")
@@ -32,9 +31,6 @@ public class Info {
 
 	@Column(name = "content", columnDefinition = "TEXT")
 	private String content;
-
-	@Column(name = "count")
-	private int count;
 
 	@ManyToOne
 	@JoinColumn(name = "policy")
@@ -56,12 +52,12 @@ public class Info {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public Organisation getOrganisation() {
@@ -102,14 +98,6 @@ public class Info {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
 	}
 
 	public Policy getPolicy() {

@@ -17,13 +17,6 @@ public class System {
 	@Column(name = "data")
 	private String data;
 
-    @Column(name = "link")
-    private String link;
-
-	@ManyToOne
-	@JoinColumn(name = "policy")
-	private Policy policy;
-
     @Column(name = "type")
     private String type;
 
@@ -51,22 +44,6 @@ public class System {
 
 	public void setData(String data) {
 		this.data = data;
-	}
-
-	public String getLink() {
-		return link;
-	}
-
-	public void setLink(String link) {
-		this.link = link;
-	}
-
-	public Policy getPolicy() {
-		return policy;
-	}
-
-	public void setPolicy(Policy policy) {
-		this.policy = policy;
 	}
 
 	public String getType() {

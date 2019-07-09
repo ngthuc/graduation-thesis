@@ -17,8 +17,8 @@ public class Category {
 	private Long id;
 
 	@OneToOne
-	@JoinColumn(name = "userId")
-	private User user;
+	@JoinColumn(name = "ownedOf")
+	private Account account;
 
 	@Column(name = "name", nullable = false)
 	private String name;
@@ -29,18 +29,11 @@ public class Category {
 	@Column(name = "position", nullable = false)
 	private int position;
 
-	@Column(name = "href")
-	private String href;
-
-	@ManyToOne
-	@JoinColumn(name = "policy")
-	private Policy policy;
-
 	@Column(name = "type")
 	private String type;
 
 	@ManyToOne
-	@JoinColumn(name="parentId")
+	@JoinColumn(name="childOf")
 	private Category parent;
 
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="parent")
@@ -56,12 +49,12 @@ public class Category {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public String getName() {
@@ -86,22 +79,6 @@ public class Category {
 
 	public void setPosition(int position) {
 		this.position = position;
-	}
-
-	public String getHref() {
-		return href;
-	}
-
-	public void setHref(String href) {
-		this.href = href;
-	}
-
-	public Policy getPolicy() {
-		return policy;
-	}
-
-	public void setPolicy(Policy policy) {
-		this.policy = policy;
 	}
 
 	public String getType() {

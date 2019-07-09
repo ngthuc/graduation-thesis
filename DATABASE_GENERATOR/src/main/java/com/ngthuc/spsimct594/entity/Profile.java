@@ -13,7 +13,7 @@ public class Profile {
 
 	@OneToOne
 	@JoinColumn(name = "profileOf", nullable = false)
-	private User user;
+	private Account account;
 
 	@Column(name = "keyName", nullable = false)
 	private String key;
@@ -28,6 +28,9 @@ public class Profile {
 	@Column(name = "type", length = 20, nullable = false)
 	private String type;
 
+	@Column(name = "status", nullable = false)
+	private boolean profileStatus;
+
     public Profile() {}
 
 	public Long getId() {
@@ -38,12 +41,12 @@ public class Profile {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public String getKey() {
@@ -76,5 +79,13 @@ public class Profile {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public boolean isProfileStatus() {
+		return profileStatus;
+	}
+
+	public void setProfileStatus(boolean profileStatus) {
+		this.profileStatus = profileStatus;
 	}
 }

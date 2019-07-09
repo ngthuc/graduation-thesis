@@ -14,9 +14,12 @@ public class Policy {
     @Column(name = "name")
 	private String name;
 
+	@Column(name = "alias")
+	private String alias;
+
     @ManyToOne
-	@JoinColumn(name = "userId")
-	private User user;
+	@JoinColumn(name = "ownedOf")
+	private Account account;
 
     @Column(name = "type", nullable = false)
     private String type;
@@ -39,12 +42,20 @@ public class Policy {
 		this.name = name;
 	}
 
-	public User getUser() {
-		return user;
+	public String getAlias() {
+		return alias;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public String getType() {

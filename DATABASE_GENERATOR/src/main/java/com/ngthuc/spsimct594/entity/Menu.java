@@ -17,11 +17,14 @@ public class Menu {
 	private Long id;
 
 	@OneToOne
-	@JoinColumn(name = "userId")
-	private User user;
+	@JoinColumn(name = "createdBy")
+	private Account account;
 
 	@Column(name = "name", nullable = false)
 	private String name;
+
+	@Column(name = "url",nullable = false)
+	private String url;
 
 	@Column(name = "level", nullable = false)
 	private int level;
@@ -33,7 +36,7 @@ public class Menu {
 	private String type;
 
 	@ManyToOne
-	@JoinColumn(name="parentId")
+	@JoinColumn(name="childOf")
 	private Menu parent;
 
 	@OneToMany(fetch = FetchType.LAZY,mappedBy="parent")
@@ -49,12 +52,12 @@ public class Menu {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public String getName() {
@@ -63,6 +66,14 @@ public class Menu {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public int getLevel() {

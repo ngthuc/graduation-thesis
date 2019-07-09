@@ -13,8 +13,8 @@ public class Article {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "userId")
-	private User user;
+	@JoinColumn(name = "author")
+	private Account account;
 
 	@ManyToOne
 	@JoinColumn(name = "cateId")
@@ -55,12 +55,12 @@ public class Article {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public Category getCategory() {

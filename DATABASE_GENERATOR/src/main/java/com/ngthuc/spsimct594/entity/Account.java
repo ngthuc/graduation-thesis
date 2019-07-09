@@ -1,10 +1,12 @@
 package com.ngthuc.spsimct594.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "account")
+public class Account {
 
 	@Id
 	@Column(name = "id", unique = true, length = 30, nullable = false)
@@ -23,12 +25,6 @@ public class User {
 	@Column(name = "subEmail")
 	private String subEmail;
 
-	@Column(name = "avatar")
-	private String avatar;
-
-	@Column(name = "position")
-	private String position;
-
 	@Column(name = "password",length = 60, nullable = false)
 	private String password;
 
@@ -38,13 +34,10 @@ public class User {
 	@Column(name = "theme")
 	private String theme;
 
-	@Column(name = "accountStatus", nullable = false)
+	@Column(name = "status", nullable = false)
 	private String accountStatus;
 
-	@Column(name = "profileStatus", nullable = false)
-	private boolean profileStatus;
-
-    public User() {}
+    public Account() {}
 
 	public String getId() {
 		return id;
@@ -86,22 +79,6 @@ public class User {
 		this.subEmail = subEmail;
 	}
 
-	public String getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -132,13 +109,5 @@ public class User {
 
 	public void setAccountStatus(String accountStatus) {
 		this.accountStatus = accountStatus;
-	}
-
-	public boolean isProfileStatus() {
-		return profileStatus;
-	}
-
-	public void setProfileStatus(boolean profileStatus) {
-		this.profileStatus = profileStatus;
 	}
 }
