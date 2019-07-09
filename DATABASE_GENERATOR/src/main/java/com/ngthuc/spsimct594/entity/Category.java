@@ -32,8 +32,9 @@ public class Category {
 	@Column(name = "href")
 	private String href;
 
-	@Column(name = "policy")
-	private String policy;
+	@ManyToOne
+	@JoinColumn(name = "policy")
+	private Policy policy;
 
 	@Column(name = "type")
 	private String type;
@@ -95,11 +96,11 @@ public class Category {
 		this.href = href;
 	}
 
-	public String getPolicy() {
+	public Policy getPolicy() {
 		return policy;
 	}
 
-	public void setPolicy(String policy) {
+	public void setPolicy(Policy policy) {
 		this.policy = policy;
 	}
 

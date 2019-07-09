@@ -36,8 +36,9 @@ public class Info {
 	@Column(name = "count")
 	private int count;
 
-	@Column(name = "policy")
-	private String policy;
+	@ManyToOne
+	@JoinColumn(name = "policy")
+	private Policy policy;
 
 	@Column(name = "type")
 	private String type;
@@ -111,11 +112,11 @@ public class Info {
 		this.count = count;
 	}
 
-	public String getPolicy() {
+	public Policy getPolicy() {
 		return policy;
 	}
 
-	public void setPolicy(String policy) {
+	public void setPolicy(Policy policy) {
 		this.policy = policy;
 	}
 
