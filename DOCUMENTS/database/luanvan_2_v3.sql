@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15.9
--- https://www.phpmyadmin.net
+-- version 4.8.2
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jul 09, 2019 at 06:26 PM
--- Server version: 5.6.37
--- PHP Version: 5.6.31
+-- Host: 127.0.0.1
+-- Generation Time: Jul 12, 2019 at 12:07 PM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -26,7 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `account`
 --
 
-CREATE TABLE IF NOT EXISTS `account` (
+CREATE TABLE `account` (
   `id` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -44,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `account` (
 -- Table structure for table `article`
 --
 
-CREATE TABLE IF NOT EXISTS `article` (
+CREATE TABLE `article` (
   `id` bigint(20) NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci,
   `count` int(11) DEFAULT NULL,
@@ -64,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `article` (
 -- Table structure for table `category`
 --
 
-CREATE TABLE IF NOT EXISTS `category` (
+CREATE TABLE `category` (
   `id` bigint(20) NOT NULL,
   `level` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -80,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 -- Table structure for table `contacts_policy`
 --
 
-CREATE TABLE IF NOT EXISTS `contacts_policy` (
+CREATE TABLE `contacts_policy` (
   `groupPolicyId` bigint(20) NOT NULL,
   `accountId` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -88,10 +90,21 @@ CREATE TABLE IF NOT EXISTS `contacts_policy` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `grouppolicy`
+-- Table structure for table `groups_policy`
 --
 
-CREATE TABLE IF NOT EXISTS `grouppolicy` (
+CREATE TABLE `groups_policy` (
+  `groupPolicyId` bigint(20) NOT NULL,
+  `organisationId` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `group_policy`
+--
+
+CREATE TABLE `group_policy` (
   `id` bigint(20) NOT NULL,
   `contactsType` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `groupsType` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -101,21 +114,10 @@ CREATE TABLE IF NOT EXISTS `grouppolicy` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `groups_policy`
---
-
-CREATE TABLE IF NOT EXISTS `groups_policy` (
-  `groupPolicyId` bigint(20) NOT NULL,
-  `organisationId` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `info`
 --
 
-CREATE TABLE IF NOT EXISTS `info` (
+CREATE TABLE `info` (
   `id` bigint(20) NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci,
   `infoDate` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -134,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `info` (
 -- Table structure for table `menu`
 --
 
-CREATE TABLE IF NOT EXISTS `menu` (
+CREATE TABLE `menu` (
   `id` bigint(20) NOT NULL,
   `level` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -151,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
 -- Table structure for table `organisation`
 --
 
-CREATE TABLE IF NOT EXISTS `organisation` (
+CREATE TABLE `organisation` (
   `id` bigint(20) NOT NULL,
   `english` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -166,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `organisation` (
 -- Table structure for table `policy`
 --
 
-CREATE TABLE IF NOT EXISTS `policy` (
+CREATE TABLE `policy` (
   `id` bigint(20) NOT NULL,
   `alias` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -180,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `policy` (
 -- Table structure for table `profile`
 --
 
-CREATE TABLE IF NOT EXISTS `profile` (
+CREATE TABLE `profile` (
   `id` bigint(20) NOT NULL,
   `keyName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` bit(1) NOT NULL,
@@ -196,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
 -- Table structure for table `system`
 --
 
-CREATE TABLE IF NOT EXISTS `system` (
+CREATE TABLE `system` (
   `id` bigint(20) NOT NULL,
   `data` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -239,18 +241,18 @@ ALTER TABLE `contacts_policy`
   ADD KEY `FKdrxd05apaxir3s7f50aouw3es` (`accountId`);
 
 --
--- Indexes for table `grouppolicy`
---
-ALTER TABLE `grouppolicy`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FKjj2rnapo8o1plimuet2y5to0a` (`aPartOf`);
-
---
 -- Indexes for table `groups_policy`
 --
 ALTER TABLE `groups_policy`
   ADD PRIMARY KEY (`groupPolicyId`,`organisationId`),
   ADD KEY `FKdyloe7lu3oiib34e585ci1ijj` (`organisationId`);
+
+--
+-- Indexes for table `group_policy`
+--
+ALTER TABLE `group_policy`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FKt51kgoovep736t62ogyqb9oop` (`aPartOf`);
 
 --
 -- Indexes for table `info`
@@ -307,46 +309,55 @@ ALTER TABLE `system`
 --
 ALTER TABLE `article`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `grouppolicy`
+-- AUTO_INCREMENT for table `group_policy`
 --
-ALTER TABLE `grouppolicy`
+ALTER TABLE `group_policy`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `info`
 --
 ALTER TABLE `info`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `organisation`
 --
 ALTER TABLE `organisation`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `policy`
 --
 ALTER TABLE `policy`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `system`
 --
 ALTER TABLE `system`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
 --
 -- Constraints for dumped tables
 --
@@ -376,21 +387,21 @@ ALTER TABLE `category`
 -- Constraints for table `contacts_policy`
 --
 ALTER TABLE `contacts_policy`
-  ADD CONSTRAINT `FKdrxd05apaxir3s7f50aouw3es` FOREIGN KEY (`accountId`) REFERENCES `account` (`id`),
-  ADD CONSTRAINT `FKevxsgrj0s5phd0auyhqh3qbp4` FOREIGN KEY (`groupPolicyId`) REFERENCES `grouppolicy` (`id`);
-
---
--- Constraints for table `grouppolicy`
---
-ALTER TABLE `grouppolicy`
-  ADD CONSTRAINT `FKjj2rnapo8o1plimuet2y5to0a` FOREIGN KEY (`aPartOf`) REFERENCES `policy` (`id`);
+  ADD CONSTRAINT `FKcl1uv9obsootoqs184n5g70sg` FOREIGN KEY (`groupPolicyId`) REFERENCES `group_policy` (`id`),
+  ADD CONSTRAINT `FKdrxd05apaxir3s7f50aouw3es` FOREIGN KEY (`accountId`) REFERENCES `account` (`id`);
 
 --
 -- Constraints for table `groups_policy`
 --
 ALTER TABLE `groups_policy`
-  ADD CONSTRAINT `FKb3w5ghd6apfalo4bjyvml56fx` FOREIGN KEY (`groupPolicyId`) REFERENCES `grouppolicy` (`id`),
-  ADD CONSTRAINT `FKdyloe7lu3oiib34e585ci1ijj` FOREIGN KEY (`organisationId`) REFERENCES `organisation` (`id`);
+  ADD CONSTRAINT `FKdyloe7lu3oiib34e585ci1ijj` FOREIGN KEY (`organisationId`) REFERENCES `organisation` (`id`),
+  ADD CONSTRAINT `FKmb7rgl3gbn0p1fl2o87vbth00` FOREIGN KEY (`groupPolicyId`) REFERENCES `group_policy` (`id`);
+
+--
+-- Constraints for table `group_policy`
+--
+ALTER TABLE `group_policy`
+  ADD CONSTRAINT `FKt51kgoovep736t62ogyqb9oop` FOREIGN KEY (`aPartOf`) REFERENCES `policy` (`id`);
 
 --
 -- Constraints for table `info`
@@ -426,6 +437,7 @@ ALTER TABLE `policy`
 ALTER TABLE `profile`
   ADD CONSTRAINT `FKdb0bxd2yn7e2mhijopgnqhmjw` FOREIGN KEY (`policy`) REFERENCES `policy` (`id`),
   ADD CONSTRAINT `FKijfhkt1nis7vpqbscid9oixim` FOREIGN KEY (`profileOf`) REFERENCES `account` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "grouppolicy")
+@Table(name = "group_policy")
 public class GroupPolicy {
 
     @Id
