@@ -129,11 +129,11 @@
         <div class="box-header">
           <i class="fa fa-comments-o"></i>
 
-          <h3 class="box-title">Giao diện đang sử dụng: <b><?php echo get_system('theme','theme');?></b></h3>
+          <h3 class="box-title">Giao diện đang sử dụng: <b><?php echo get_user_config(get_id_logged(),'theme');?></b></h3>
 
           <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
             <div class="btn-group" data-toggle="btn-toggle">
-              <a type="button" href="<?php echo base_url('canbo/admin/settings/themes/');?>" class="btn btn-info">
+              <a type="button" href="<?php echo base_url('canbo/admin/themes/');?>" class="btn btn-info">
                 <i class="fa fa-edit"></i> Thay đổi
               </a>
             </div>
