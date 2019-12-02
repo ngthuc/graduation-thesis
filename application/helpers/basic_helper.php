@@ -303,6 +303,35 @@ if (!function_exists('get_system'))
     }
 }
 
+if (!function_exists('get_user_config'))
+{
+    function get_user_config($user, $key = null)
+    {
+      // Get a reference to the controller object
+      //$CI = get_instance();
+      // use this below
+      $CI = &get_instance();
+
+      // You may need to load the model if it hasn't been pre-loaded
+      $CI->load->model('Musers');
+
+      // Call a function of the model
+      switch ($key) {
+        case 'theme':
+          $value = $CI->Musers->getById($user);
+          return ($value['USERTHEME'] == 'basic_template') ? 'Basic' : 'Unknow';
+
+        case 'status':
+          $value = $CI->Musers->getById($user);
+          return $value['USERSTATUSSITE'];
+
+        default:
+          $value = $CI->Musers->getById($user);
+          return $value['USERTHEME'];
+      }
+    }
+}
+
 if (!function_exists('check_unit_by_user'))
 {
     function check_unit_by_user($user)
