@@ -32,3 +32,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 DATABASE_GENERATOR/\.idea/
 DATABASE_GENERATOR/target/
+
+DATABASE_GENERATOR/spsimct594.iml
